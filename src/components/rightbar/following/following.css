@@ -1,0 +1,26 @@
+.rightBarFriendList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.rightBarFollowingContainer {
+    display: grid;
+    gap: 10px;
+    grid-template-rows: 120px;
+    grid-template-columns: 120px 120px 120px;;
+}
+
+.rightBarFollowing {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightBarFollowingImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

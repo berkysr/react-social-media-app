@@ -1,0 +1,23 @@
+.rightBarTitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.rightBarInfo {
+    margin-bottom: 30px;
+}
+
+.rightBarInfoItem {
+    margin-bottom: 10px;
+}
+
+.rightBarInfoKey {
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+}
+
+.rightBarInfoValue {
+    font-weight: 300;
+}
