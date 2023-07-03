@@ -6,6 +6,7 @@ export default function CloseFriend({ user }) {
   return (
     <li className="sideBarFriend flex items-center mb-4 cursor-pointer">
       <img
+        loading="lazy"
         src={profilePicture}
         alt=""
         className="sideBarFriendImg 

@@ -8,6 +8,7 @@ export default function Share() {
       <div className="shareWrapper p-2.5">
         <div className="shareTop flex items-center">
           <img
+            loading="lazy"
             src="/assets/person/1.jpeg"
             className="shareProfileImg w-14 h-14 rounded-full object-cover mr-2.5"
             alt=""

@@ -20,6 +20,7 @@ export default function Rightbar({ profile }) {
       <>
         <div className="birthDayContainer flex items-center">
           <img
+            loading="lazy"
             className="birthDayImg w-10 h-10 mr-2.5"
             src="/assets/gift.png"
             alt=""
@@ -29,7 +30,7 @@ export default function Rightbar({ profile }) {
             today!
           </span>
         </div>
-        <img className="rightBarAd w-full rounded-xl" src="/assets/ad.png" alt="" />
+        <img loading="lazy" className="rightBarAd w-full rounded-xl" src="/assets/ad.png" alt="" />
         <h4 className="rightBarTitle text-lg font-medium mb-5">Online Friends</h4>
         <ul className="rightBarFriendList">
           {Users.map((eachUser) => {
@@ -61,7 +62,7 @@ export default function Rightbar({ profile }) {
             return <Following key={company.id} company={company}></Following>;
           })}
         </div>
-        <img className="rightBarAd" src="/assets/ad.png" alt="" />
+        <img loading="lazy" className="rightBarAd" src="/assets/ad.png" alt="" />
       </>
     );
   };

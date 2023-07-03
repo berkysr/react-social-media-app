@@ -8,6 +8,7 @@ export default function OnlineFriend({ user }) {
     <li className="rightBarFriend flex items-center mb-4 cursor-pointer">
       <div className="rightBarProfileImgContainer mr-3 relative">
         <img
+          loading="lazy"
           className="rightBarProfileImg w-9 h-9 rounded-full object-cover mr-2.5"
           src= { profilePicture }
           alt=""

@@ -7,6 +7,7 @@ export default function Following({ company }) {
     <>
       <div className="rightBarFollowing flex flex-col cursor-pointer justify-center items-center">
         <img
+          loading="lazy"
           className="rightBarFollowingImg w-full h-full object-contain"
           src={logo}
           alt=""

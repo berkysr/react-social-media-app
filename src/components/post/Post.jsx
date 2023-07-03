@@ -23,6 +23,7 @@ export default function Post({ post }) {
         <div className="postTop flex items-center justify-between cursor-pointer">
           <div className="postTopLeft flex align-center">
             <img
+              loading="lazy"
               src={profilePicture}
               className="postProfileImg w-9 h-9 rounded-full object-cover"
               alt=""
@@ -41,6 +42,7 @@ export default function Post({ post }) {
         <div className="postCenter mx-0 my-5">
           <span className="postText">{desc}</span>
           <img
+            loading="lazy"
             src={photo}
             className="postImg mt-5 w-full max-h-[112rem] object-contain"
             alt=""
@@ -49,12 +51,14 @@ export default function Post({ post }) {
         <div className="postBottom flex items-center justify-between">
           <div className="postBottomLeft flex items-center">
             <img
+              loading="lazy"
               className="likeIcon w-6 h-6 mr-1.5 cursor-pointer"
               src="/assets/like.png"
               onClick={likeHandler}
               alt=""
             />
             <img
+              loading="lazy"
               className="likeIcon w-6 h-6 mr-2.5 cursor-pointer"
               src="/assets/heart.png"
               onClick={likeHandler}

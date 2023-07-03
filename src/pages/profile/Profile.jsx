@@ -23,11 +23,13 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover relative h-32vh">
               <img
+                loading="lazy"
                 className="profileCoverImg w-full object-cover h-4/5"
                 src="assets/post/3.jpeg"
                 alt=""
               />
               <img
+                loading="lazy"
                 className="profileUserImg 
                 object-cover left-0 right-0 rounded-full absolute m-auto
                 top-1/2	cursor-pointer w-36 h-36 border-4 white"
