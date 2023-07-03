@@ -1,4 +1,5 @@
 import "./userinfo.css";
+import styles from "../../../index.css"
 
 export default function UserInfo({ info, keyValue }) {
   const keyValues = {
@@ -13,9 +14,9 @@ export default function UserInfo({ info, keyValue }) {
   return (
     <>
       {keyValues[keyValue] && info ? (
-        <div className="rightBarInfoItem">
-          <span className="rightBarInfoKey">{keyValues[keyValue]}</span>
-          <span className="rightBarInfoValue">{info}</span>
+        <div className="rightBarInfoItem mb-2.5">
+          <span className="rightBarInfoKey mr-4 font-medium	text-[#555]">{keyValues[keyValue]}</span>
+          <span className="rightBarInfoValue font-light">{info}</span>
         </div>
       ) : null}
     </>

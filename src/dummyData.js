@@ -14,6 +14,8 @@ export const Users = [
     userName: "Janell Shrum",
     online: false,
     closeFriend: true,
+    currentUser: false,
+    following: [1,2,3,4,5,11],
   },
   {
     id: 3,

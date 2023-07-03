@@ -1,5 +1,5 @@
-.topBarContainer {
-    height: 50px;
+/*.topBarContainer {
+    height: 3.5rem;
     width: 100%;
     background-color: #1877f2;
     display: flex;
@@ -7,7 +7,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
-}
+} 
 
 .topBarLeft {
     flex: 3;
@@ -27,7 +27,7 @@
 
 .topBarLink {
     margin-right: 10px;
-    font-size: 14px;
+    font-size: 0.875rem;
     cursor: pointer;
 }
 
@@ -91,6 +91,7 @@
     font-size: 24px;
     margin-left: 20px;
     font-weight: bold;
-    color: whitesmoke;
+    color: #f5f5f5;
     cursor: pointer;
 }
+*/

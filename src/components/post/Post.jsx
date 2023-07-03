@@ -1,54 +1,74 @@
-import './post.css';
-import { MoreVert } from '@mui/icons-material';
+import "./post.css";
+import styles from "../../index.css";
+import { MoreVert } from "@mui/icons-material";
 import { Users } from "../../dummyData";
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Post({ post }) {
-    const { comment, date, desc, like, photo, userId } = post;
-    const { profilePicture, userName } = Users.filter(user => user.id === userId)[0];
-    const [addedLike, setLike] = useState(like);
-    const [isLiked, setIsLiked] = useState(false);
+  const { comment, date, desc, like, photo, userId } = post;
+  const { profilePicture, userName } = Users.filter(
+    (user) => user.id === userId
+  )[0];
+  const [addedLike, setLike] = useState(like);
+  const [isLiked, setIsLiked] = useState(false);
 
-    const likeHandler = () => {
-        setLike(isLiked ? addedLike - 1 : addedLike + 1);
-        setIsLiked(!isLiked);
-    };
+  const likeHandler = () => {
+    setLike(isLiked ? addedLike - 1 : addedLike + 1);
+    setIsLiked(!isLiked);
+  };
 
   return (
-    <div className='post'>
-        <div className="postWrapper">
-            <div className="postTop">
-                <div className="postTopLeft">
-                    <img src={ profilePicture }
-                    className='postProfileImg'
-                    alt="" 
-                    />
-                    <span className="postUserName">{ userName }</span>
-                    <span className="postDate">{ date }</span>
-                </div>
-                <div className="postTopRight">
-                    <MoreVert />
-                </div>
-            </div>
-            <div className="postCenter">
-                <span className="postText">{ desc }</span>
-                <img 
-                src={ photo }
-                className='postImg'
-                alt="" 
-                />
-            </div>
-            <div className="postBottom">
-                <div className="postBottomLeft">
-                    <img className='likeIcon' src="/assets/like.png" onClick={ likeHandler } alt="" />
-                    <img className='likeIcon' src="/assets/heart.png" onClick={ likeHandler } alt="" />
-                    <span className="postLikeCounter">{ addedLike } <u>people</u> like this!</span>
-                </div>
-                <div className="postBottomRight">
-                    <span className="postCommentText">{ comment } Comments</span>
-                </div>
-            </div>
+    <div className="post w-full rounded-xl shadow-card mx-0 my-8">
+      <div className="postWrapper p-3.5">
+        <div className="postTop flex items-center justify-between cursor-pointer">
+          <div className="postTopLeft flex align-center">
+            <img
+              src={profilePicture}
+              className="postProfileImg w-9 h-9 rounded-full object-cover"
+              alt=""
+            />
+            <span className="postUserName text-base font-bold my-0 mx-2.5 flex items-center">
+              {userName}
+            </span>
+            <span className="postDate text-zinc-500	text-xs flex items-center">
+              {date}
+            </span>
+          </div>
+          <div className="postTopRight">
+            <MoreVert />
+          </div>
         </div>
+        <div className="postCenter mx-0 my-5">
+          <span className="postText">{desc}</span>
+          <img
+            src={photo}
+            className="postImg mt-5 w-full max-h-[112rem] object-contain"
+            alt=""
+          />
+        </div>
+        <div className="postBottom flex items-center justify-between">
+          <div className="postBottomLeft flex items-center">
+            <img
+              className="likeIcon w-6 h-6 mr-1.5 cursor-pointer"
+              src="/assets/like.png"
+              onClick={likeHandler}
+              alt=""
+            />
+            <img
+              className="likeIcon w-6 h-6 mr-2.5 cursor-pointer"
+              src="/assets/heart.png"
+              onClick={likeHandler}
+              alt=""
+            />
+            <span className="postLikeCounter text-sm">
+              {addedLike} <u>people</u> like this!
+            </span>
+          </div>
+          <div className="postBottomRight">
+            <span className="postCommentText cursor-pointer text-sm">{comment} Comments</span>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
