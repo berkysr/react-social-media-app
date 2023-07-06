@@ -1,25 +1,13 @@
-import React from "react";
-import { Google, Apple } from "@mui/icons-material";
+import { useEffect } from "react";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
+  const cliendId = '863241284462-dgoi5hg4g19rmlltglij8dlinbe8kkav.apps.googleusercontent.com';
   return (
     <>
       <div className="logInContainer w-screen h-screen flex items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900">
         <div className="logInWrapper shadow-card w-[75vh] h-[75vh] flex justify-center flex-col p-20 bg-gray-200">
           <h1 className="welcomeText text-2xl font-bold py-5">Welcome Back</h1>
-          <div className="logInUpperSection flex flex-row justify-evenly">
-            <button className="signinGoogle h-12 flex-[5] flex justify-evenly items-center px-8 overflow-hidden rounded-lg bg-white text-lg shadow mt-6 m-1.5 text-sm hover:bg-gray-200">
-            <Google/>
-              Log in with Google
-            </button>
-            <button className="signinApple h-12 flex-[5] flex justify-evenly items-center px-8 overflow-hidden rounded-lg bg-white text-lg shadow mt-6 m-1.5 text-sm hover:bg-gray-200">
-            <Apple/>
-              Log in with Apple
-            </button>
-          </div>
-          <div className="divider flex flex-column items-center m-3.5">
-            <div className="divide flex-[4] border-gray-400 border h-[2px]"></div><div className="dividerText flex[2] mx-5">or</div><div className="divide flex-[4] border-gray-400 border h-[2px]"></div>
-          </div>
           <div className="inputWrapper flex align-center justify-center flex-col py-2.5 w-full">
             <span className="emailText text-sm">Your Email</span>
             <input
@@ -43,6 +31,18 @@ export default function Login() {
               Sign in to your account
             </span>
           </button>
+          <div className="divider flex flex-column items-center m-5">
+            <div className="divide flex-[4] border-gray-400 border h-[2px]"></div>
+            <div className="dividerText flex[2] mx-5">or</div>
+            <div className="divide flex-[4] border-gray-400 border h-[2px]"></div>
+          </div>
+          <div className="logInLowerSection flex flex-row justify-evenly">
+            <GoogleLogin
+            clientId={ cliendId }
+            cookiePolicy= { 'single_host_origin' }
+            isSignedIn= { true }
+            />
+          </div>
         </div>
       </div>
     </>
