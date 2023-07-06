@@ -3,6 +3,7 @@ import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import { Routes, Route } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import React from "react";
 
 function App() {
   return (
@@ -14,7 +15,6 @@ function App() {
           <Route path="/sign-in" element={<Login />} />
         </Routes>
       </GoogleOAuthProvider>
-      ;
     </>
   );
 }
