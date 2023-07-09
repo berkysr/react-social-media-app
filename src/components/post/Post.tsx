@@ -1,15 +1,19 @@
-import "./post.css";
-import styles from "../../index.css";
+import React from "react";
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../dummyData";
+import { users } from "../../helper/api/users";
 import { useState } from "react";
+import { Post } from '../../helper/types/post';
 
-export default function Post({ post }) {
+interface PostProps {
+  post: Post;
+}
+
+export default function PostCard({ post }: PostProps) {
   const { comment, date, desc, like, photo, userId } = post;
-  const { profilePicture, userName } = Users.filter(
+  const { profilePicture, userName } = users.filter(
     (user) => user.id === userId
   )[0];
-  const [addedLike, setLike] = useState(like);
+  const [addedLike, setLike] = useState(like || 0);
   const [isLiked, setIsLiked] = useState(false);
 
   const likeHandler = () => {

@@ -1,6 +1,5 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import "./topbar.css";
-import styles from "../../index.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 
 export default function Topbar() {

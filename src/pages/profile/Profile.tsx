@@ -1,15 +1,15 @@
-import "./profile.css";
+import React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
-import { UsersProfileDetails, Users } from "../../dummyData";
-import styles from "../../index.css";
+import { users } from '../../helper/api/users'
+import { usersProfileDetails } from '../../helper/api/profileDetails'
 
 export default function Profile() {
-  const currentUserData = Users.filter((user) => user.currentUser)[0];
-  const { userName, online, profilePicture, currentUser, id } = currentUserData;
-  const currentProfileDetails = UsersProfileDetails.filter(
+  const currentUserData = users.filter((user) => user.currentUser)[0];
+  const { userName, profilePicture, id } = currentUserData;
+  const currentProfileDetails = usersProfileDetails.filter(
     (userProfileDetail) => userProfileDetail.id === id
   );
   const { profileDescription } = currentProfileDetails[0];
@@ -46,7 +46,7 @@ export default function Profile() {
           </div>
           <div className="profileRightBottom flex">
             <Feed />
-            <Rightbar profile />
+            <Rightbar profile/>
           </div>
         </div>
       </div>

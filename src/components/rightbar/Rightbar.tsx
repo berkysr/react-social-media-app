@@ -1,18 +1,23 @@
-import "./rightbar.css";
-import styles from "../../index.css";
+import React from "react";
 import OnlineFriend from "../onlineFriend/OnlineFriend";
-import UserInfo from "./userInfo/UserInfo";
+import UserInfo, { ProfileDetailRawDataUnionType } from "./userInfo/UserInfo";
 import Following from "./following/Following";
-import { UsersProfileDetails, Users, Companies } from "../../dummyData";
+import { users } from '../../helper/api/users'
+import { usersProfileDetails } from '../../helper/api/profileDetails'
+import { companies } from '../../helper/api/companies'
 
-export default function Rightbar({ profile }) {
-  const currentUser = Users.filter((user) => user.currentUser)[0];
+interface RightbarProps {
+  profile?: boolean;
+}
+
+export default function Rightbar({ profile }: RightbarProps) {
+  const currentUser = users.filter((user) => user.currentUser)[0];
   const { id, following } = currentUser;
-  const currentProfileDetails = UsersProfileDetails.filter(
+  const currentProfileDetail = usersProfileDetails.filter(
     (userProfileDetail) => userProfileDetail.id === id
   )[0];
-  const followedCompanies = Companies.filter((company) =>
-    following.includes(company.id)
+  const followedCompanies = companies.filter((company) =>
+    following?.includes(company.id)
   );
 
   const HomePageRightBar = () => {
@@ -33,7 +38,7 @@ export default function Rightbar({ profile }) {
         <img loading="lazy" className="rightBarAd w-full rounded-xl" src="/assets/ad.png" alt="" />
         <h4 className="rightBarTitle text-lg font-medium mb-5">Online Friends</h4>
         <ul className="rightBarFriendList">
-          {Users.map((eachUser) => {
+          {users.map((eachUser) => {
             return eachUser.online ? (
               <OnlineFriend key={eachUser.id} user={eachUser} />
             ) : null;
@@ -48,11 +53,11 @@ export default function Rightbar({ profile }) {
       <>
         <h4 className="rightBarTitle text-lg font-medium mb-5">User Information</h4>
         <div className="rightBarInfo mb-8">
-          {Object.keys(currentProfileDetails).map((info) => (
+          {(Object.keys(currentProfileDetail) as ProfileDetailRawDataUnionType[]).map((profileDetailKey) => (
             <UserInfo
-              key={info}
-              keyValue={info}
-              info={currentProfileDetails[info]}
+              key={profileDetailKey}
+              currentProfileKey={profileDetailKey}
+              currentProfileValue={currentProfileDetail[profileDetailKey]}
             />
           ))}
         </div>

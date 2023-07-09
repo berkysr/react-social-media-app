@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
-  const cliendId = '863241284462-dgoi5hg4g19rmlltglij8dlinbe8kkav.apps.googleusercontent.com';
   return (
     <>
       <div className="logInContainer w-screen h-screen flex items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900">
@@ -38,9 +37,7 @@ export default function Login() {
           </div>
           <div className="logInLowerSection flex flex-row justify-evenly">
             <GoogleLogin
-            clientId={ cliendId }
-            cookiePolicy= { 'single_host_origin' }
-            isSignedIn= { true }
+              onSuccess={console.log}
             />
           </div>
         </div>

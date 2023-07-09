@@ -1,7 +1,11 @@
-import "./following.css";
-import styles from "../../../index.css";
+import React from "react";
+import { Company } from '../../../helper/types/company';
 
-export default function Following({ company }) {
+interface FollowingProps {
+  company: Company;
+}
+
+export default function Following({ company }:FollowingProps) {
   const { logo, name } = company;
   return (
     <>
