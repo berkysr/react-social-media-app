@@ -1,6 +1,4 @@
-import "./sidebar.css";
-import styles from "../../index.css";
-import { Users } from "../../dummyData";
+import React from "react";
 import {
   RssFeed,
   ChatSharp,
@@ -13,6 +11,7 @@ import {
   CastForEducation,
 } from "@mui/icons-material";
 import CloseFriend from "../closeFriend/CloseFriend";
+import { users } from "../../helper/api/users";
 
 export default function Sidebar() {
   return (
@@ -60,7 +59,7 @@ export default function Sidebar() {
         <hr className="sideBarHr my-5 mx-0" />
         <h4 className="sideBarCloseFriendList font-medium mb-4">Close Friends</h4>
         <ul className="sideBarFriendList p-0 m-0 list-none">
-          {Users.map((eachUser) => {
+          {users.map((eachUser) => {
             return eachUser.closeFriend ? (
               <CloseFriend key={eachUser.id} user={eachUser} />
             ) : null;

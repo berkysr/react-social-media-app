@@ -1,9 +1,8 @@
+import React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
-import "./home.css";
-import styles from "../../index.css"
 
 export default function Home() {
   return (
@@ -12,7 +11,7 @@ export default function Home() {
       <div className="homeContainer flex w-full">
         <Sidebar />
         <Feed />
-        <Rightbar />
+        <Rightbar profile={false} />
       </div>
     </>
   );

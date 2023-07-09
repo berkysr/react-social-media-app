@@ -1,7 +1,11 @@
-import "./onlinefriend.css";
-import styles from "../../index.css"
+import React from "react";
+import { User } from '../../helper/types/user'
 
-export default function OnlineFriend({ user }) {
+interface OnlineFriendProps {
+  user: User;
+}
+
+export default function OnlineFriend({ user }: OnlineFriendProps) {
   const { profilePicture, userName } = user;
 
   return (

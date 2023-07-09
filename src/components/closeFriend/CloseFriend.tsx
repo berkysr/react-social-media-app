@@ -1,9 +1,14 @@
-import "./closefriend.css";
-import styles from "../../index.css";
+import React from "react";
+import { User } from "../../helper/types/user";
 
-export default function CloseFriend({ user }) {
+interface CloseFriendProps {
+  user: User;
+}
+
+export default function CloseFriend({ user }: CloseFriendProps) {
   const { profilePicture, userName } = user;
-  return (
+
+  return profilePicture && userName ? (
     <li className="sideBarFriend flex items-center mb-4 cursor-pointer">
       <img
         loading="lazy"
@@ -14,5 +19,5 @@ export default function CloseFriend({ user }) {
       />
       <span className="sideBarFriendName">{userName}</span>
     </li>
-  );
+  ) : null;
 }
