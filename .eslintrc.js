@@ -2,42 +2,37 @@ module.exports = {
   env: {
     browser: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: [".eslintrc.js"],
+      files: ['.eslintrc.js'],
       parserOptions: {
-        parser: "@typescript-eslint/parser",
-        project: "./tsconfig.json",
+        parser: '@typescript-eslint/parser',
+        project: './tsconfig.json',
       },
     },
   ],
   parserOptions: {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
+    ecmaVersion: 2020,
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react', 'prettier'],
   rules: {
-    "no-undefined": "off",
-    "no-undef": "off",
-    "no-eq-null": "off",
-    "no-prototype-builtins": "off",
-    "no-useless-constructor": "off",
-    "no-empty-function": [
-      "warn",
+    'no-undefined': 'off',
+    'no-undef': 'off',
+    'no-eq-null': 'off',
+    'prettier/prettier': ['error'],
+    'no-prototype-builtins': 'off',
+    'no-useless-constructor': 'off',
+    'no-empty-function': [
+      'warn',
       {
-        allow: ["constructors"],
+        allow: ['constructors'],
       },
     ],
-    "@typescript-eslint/no-empty-function": ["off"],
+    '@typescript-eslint/no-empty-function': ['off'],
   },
 };
