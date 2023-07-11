@@ -5,7 +5,7 @@ interface OnlineFriendProps {
   user: User;
 }
 
-export default function OnlineFriend({ user }: OnlineFriendProps) {
+export default function OnlineFriend({ user }: OnlineFriendProp) {
   const { profilePicture, userName } = user;
 
   return (
