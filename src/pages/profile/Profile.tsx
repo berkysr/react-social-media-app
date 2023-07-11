@@ -1,17 +1,15 @@
-import React from "react";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Rightbar from "../../components/rightbar/Rightbar";
-import Topbar from "../../components/topbar/Topbar";
-import Feed from "../../components/feed/Feed";
-import { users } from '../../helper/api/users'
-import { usersProfileDetails } from '../../helper/api/profileDetails'
+import React from 'react';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Rightbar from '../../components/rightbar/Rightbar';
+import Topbar from '../../components/topbar/Topbar';
+import Feed from '../../components/feed/Feed';
+import { users } from '../../helper/api/users';
+import { usersProfileDetails } from '../../helper/api/profileDetails';
 
 export default function Profile() {
   const currentUserData = users.filter((user) => user.currentUser)[0];
   const { userName, profilePicture, id } = currentUserData;
-  const currentProfileDetails = usersProfileDetails.filter(
-    (userProfileDetail) => userProfileDetail.id === id
-  );
+  const currentProfileDetails = usersProfileDetails.filter((userProfileDetail) => userProfileDetail.id === id);
   const { profileDescription } = currentProfileDetails[0];
 
   return (
@@ -39,14 +37,12 @@ export default function Profile() {
             </div>
             <div className="profileInfo flex flex-col items-center justify-center">
               <h4 className="profileInfoName text-2xl">{userName}</h4>
-              <span className="profileInfoDesc font-light	">
-                {profileDescription}{" "}
-              </span>
+              <span className="profileInfoDesc font-light	">{profileDescription} </span>
             </div>
           </div>
           <div className="profileRightBottom flex">
             <Feed />
-            <Rightbar profile/>
+            <Rightbar profile />
           </div>
         </div>
       </div>

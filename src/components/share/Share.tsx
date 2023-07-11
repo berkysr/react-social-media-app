@@ -1,5 +1,5 @@
-import React from "react";
-import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material";
+import React from 'react';
+import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 
 export default function Share() {
   return (
@@ -25,33 +25,31 @@ export default function Share() {
                 htmlColor="tomato"
                 className="shareIcon mr-1 !text-lg"
               />
-              <span className="shareOptionText text-sm font-medium">
-                Photo or Video
-              </span>
+              <span className="shareOptionText text-sm font-medium">Photo or Video</span>
             </div>
             <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
-              <Label htmlColor="blue" className="shareIcon mr-1 !text-lg" />
+              <Label
+                htmlColor="blue"
+                className="shareIcon mr-1 !text-lg"
+              />
               <span className="shareOptionText text-sm font-medium">Tag</span>
             </div>
             <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
-              <Room htmlColor="green" className="shareIcon mr-1 !text-lg" />
-              <span className="shareOptionText text-sm font-medium">
-                Location
-              </span>
+              <Room
+                htmlColor="green"
+                className="shareIcon mr-1 !text-lg"
+              />
+              <span className="shareOptionText text-sm font-medium">Location</span>
             </div>
             <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
               <EmojiEmotions
                 htmlColor="goldenrod"
                 className="shareIcon mr-1 !text-lg"
               />
-              <span className="shareOptionText text-sm font-medium">
-                Feelings
-              </span>
+              <span className="shareOptionText text-sm font-medium">Feelings</span>
             </div>
           </div>
-          <button className="shareButton border-0 p-2 rounded-md font-medium mr-5 cursor-pointer text-white bg-green-500">
-            Share
-          </button>
+          <button className="shareButton border-0 p-2 rounded-md font-medium mr-5 cursor-pointer text-white bg-green-500">Share</button>
         </div>
       </div>
     </div>

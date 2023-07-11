@@ -1,7 +1,7 @@
-import React from "react";
-import { MoreVert } from "@mui/icons-material";
-import { users } from "../../helper/api/users";
-import { useState } from "react";
+import React from 'react';
+import { MoreVert } from '@mui/icons-material';
+import { users } from '../../helper/api/users';
+import { useState } from 'react';
 import { Post } from '../../helper/types/post';
 
 interface PostProps {
@@ -10,9 +10,7 @@ interface PostProps {
 
 export default function PostCard({ post }: PostProps) {
   const { comment, date, desc, like, photo, userId } = post;
-  const { profilePicture, userName } = users.filter(
-    (user) => user.id === userId
-  )[0];
+  const { profilePicture, userName } = users.filter((user) => user.id === userId)[0];
   const [addedLike, setLike] = useState(like || 0);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -32,12 +30,8 @@ export default function PostCard({ post }: PostProps) {
               className="postProfileImg w-9 h-9 rounded-full object-cover"
               alt=""
             />
-            <span className="postUserName text-base font-bold my-0 mx-2.5 flex items-center">
-              {userName}
-            </span>
-            <span className="postDate text-zinc-500	text-xs flex items-center">
-              {date}
-            </span>
+            <span className="postUserName text-base font-bold my-0 mx-2.5 flex items-center">{userName}</span>
+            <span className="postDate text-zinc-500	text-xs flex items-center">{date}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />

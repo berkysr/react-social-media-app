@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import { Company } from '../../../helper/types/company';
 
 interface FollowingProps {
   company: Company;
 }
 
-export default function Following({ company }:FollowingProps) {
+export default function Following({ company }: FollowingProps) {
   const { logo, name } = company;
   return (
     <>
