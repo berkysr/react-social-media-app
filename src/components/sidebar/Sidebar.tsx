@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   RssFeed,
   ChatSharp,
@@ -9,9 +9,9 @@ import {
   CasesSharp,
   EventAvailableSharp,
   CastForEducation,
-} from "@mui/icons-material";
-import CloseFriend from "../closeFriend/CloseFriend";
-import { users } from "../../helper/api/users";
+} from '@mui/icons-material';
+import CloseFriend from '../closeFriend/CloseFriend';
+import { users } from '../../helper/api/users';
 
 export default function Sidebar() {
   return (
@@ -61,7 +61,10 @@ export default function Sidebar() {
         <ul className="sideBarFriendList p-0 m-0 list-none">
           {users.map((eachUser) => {
             return eachUser.closeFriend ? (
-              <CloseFriend key={eachUser.id} user={eachUser} />
+              <CloseFriend
+                key={eachUser.id}
+                user={eachUser}
+              />
             ) : null;
           })}
         </ul>

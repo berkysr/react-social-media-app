@@ -1,19 +1,28 @@
-import React from "react";
-import Home from "./pages/home/Home";
-import Profile from "./pages/profile/Profile";
-import Login from "./pages/login/Login";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import Home from './pages/home/Home';
+import Profile from './pages/profile/Profile';
+import Login from './pages/login/Login';
+import { Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import './index.scss'
+import './index.scss';
 
 function App() {
   return (
     <>
-      <GoogleOAuthProvider clientId="863241284462-dgoi5hg4g19rmlltglij8dlinbe8kkav.apps.googleusercontent.com" >
+      <GoogleOAuthProvider clientId="863241284462-dgoi5hg4g19rmlltglij8dlinbe8kkav.apps.googleusercontent.com">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/sign-in" element={<Login />} />
+          <Route
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile />}
+          />
+          <Route
+            path="/sign-in"
+            element={<Login />}
+          />
         </Routes>
       </GoogleOAuthProvider>
     </>

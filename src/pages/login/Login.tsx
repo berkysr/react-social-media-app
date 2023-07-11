@@ -1,5 +1,5 @@
-import React from "react";
-import { GoogleLogin } from "@react-oauth/google";
+import React from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 
 export default function Login() {
   return (
@@ -26,9 +26,7 @@ export default function Login() {
           </div>
           <button className="logIn group relative h-12 w-full overflow-hidden rounded-lg bg-white text-lg shadow mt-6">
             <div className="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-            <span className="relative text-black group-hover:text-white">
-              Sign in to your account
-            </span>
+            <span className="relative text-black group-hover:text-white">Sign in to your account</span>
           </button>
           <div className="divider flex flex-column items-center m-5">
             <div className="divide flex-[4] border-gray-400 border h-[2px]"></div>
@@ -36,9 +34,7 @@ export default function Login() {
             <div className="divide flex-[4] border-gray-400 border h-[2px]"></div>
           </div>
           <div className="logInLowerSection flex flex-row justify-evenly">
-            <GoogleLogin
-              onSuccess={console.log}
-            />
+            <GoogleLogin onSuccess={console.log} />
           </div>
         </div>
       </div>

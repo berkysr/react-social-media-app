@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.ts\""
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier \"src/**/*.{tsx,ts,scss}\" --write"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -19,6 +20,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
@@ -38,6 +40,7 @@
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
+    "prettier-eslint": "^15.0.1",
     "sass": "^1.63.6",
     "tailwindcss": "^3.3.2",
     "typescript": "^4.9.5"

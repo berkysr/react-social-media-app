@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Person, Chat, Notifications } from '@mui/icons-material';
 
 export default function Topbar() {
   return (
@@ -13,17 +13,16 @@ export default function Topbar() {
       <div className="topBarCenter flex-[5]">
         <div className="topBarSearchBar w-full h-full rounded-[7.5rem] bg-white flex items-center p-1.5">
           <Search className="searchIcon !text-xl ml-2.5" />
-          <input placeholder="Search for a friend" className="searchInput border-0 w-[70%] focus:outline-none" />
+          <input
+            placeholder="Search for a friend"
+            className="searchInput border-0 w-[70%] focus:outline-none"
+          />
         </div>
       </div>
       <div className="topBarRight flex flex-[4] items-center justify-around text-white">
         <div className="topBarLinks">
-          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">
-            Homepage
-          </span>
-          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">
-            Timeline
-          </span>
+          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">Homepage</span>
+          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">Timeline</span>
         </div>
         <div className="topBarIcons flex">
           <div className="topBarIconItem mr-4 cursor-pointer relative">
@@ -46,7 +45,12 @@ export default function Topbar() {
           </div>
         </div>
         <Link to="/profile">
-          <img loading="lazy" src="/assets/person/10.jpeg" alt="" className="topBarImg w-12 h-12 rounded-full object-cover cursor-pointer" />
+          <img
+            loading="lazy"
+            src="/assets/person/10.jpeg"
+            alt=""
+            className="topBarImg w-12 h-12 rounded-full object-cover cursor-pointer"
+          />
         </Link>
       </div>
     </div>

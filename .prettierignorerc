@@ -1,0 +1,5 @@
+# Ignored artifacts:
+build
+coverage
+public
+node_modules

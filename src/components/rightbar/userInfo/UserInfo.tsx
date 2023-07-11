@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
 interface UserInfoProps {
-  currentProfileKey: ProfileDetailRawDataUnionType,
-  currentProfileValue?: string | number,
+  currentProfileKey: ProfileDetailRawDataUnionType;
+  currentProfileValue?: string | number;
 }
 
 export enum ProfileDetailRawData {
-  CITY = "city",
-  FROM = "from",
-  RELTIONSHIP = "relationship",
-  BIRTHDAY = "birthday",
-  JOB = "job",
-  SCHOOL = "school",
-};
+  CITY = 'city',
+  FROM = 'from',
+  RELTIONSHIP = 'relationship',
+  BIRTHDAY = 'birthday',
+  JOB = 'job',
+  SCHOOL = 'school',
+}
 
 export type ProfileDetailRawDataUnionType = `${ProfileDetailRawData}`;
 
