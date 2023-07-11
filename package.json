@@ -9,6 +9,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier \"src/**/*.{tsx,ts,scss}\" --write",
+    "stylelint": "stylelint \"src/**/*.scss\"",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -17,6 +18,9 @@
     ],
     "src/**/*.{ts,tsx}": [
       "eslint --cache --fix"
+    ],
+    "src/**/*.scss": [
+      "stylelint --fix"
     ]
   },
   "dependencies": {
@@ -55,6 +59,8 @@
     "lint-staged": "^13.2.3",
     "prettier-eslint": "^15.0.1",
     "sass": "^1.63.6",
+    "stylelint": "^15.10.1",
+    "stylelint-config-standard-scss": "^10.0.0",
     "tailwindcss": "^3.3.2",
     "typescript": "^4.9.5"
   },
