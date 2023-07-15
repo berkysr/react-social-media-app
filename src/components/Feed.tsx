@@ -1,7 +1,7 @@
 import React from 'react';
-import Share from '../share/Share';
-import PostCard from '../post/Post';
-import { posts } from '../../helper/api/posts';
+import Share from './Share';
+import PostCard from './Post';
+import { posts } from '../helper/api/posts';
 import { Box } from '@mui/system';
 
 export default function Feed() {

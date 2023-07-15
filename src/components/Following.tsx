@@ -1,5 +1,5 @@
 import React from 'react';
-import { Company } from '../../../helper/types/company';
+import { Company } from '../helper/types/company';
 
 interface FollowingProps {
   company: Company;

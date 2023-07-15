@@ -1,10 +1,10 @@
 import React from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Rightbar from '../../components/rightbar/Rightbar';
-import Topbar from '../../components/topbar/Topbar';
-import Feed from '../../components/feed/Feed';
-import { users } from '../../helper/api/users';
-import { usersProfileDetails } from '../../helper/api/profileDetails';
+import Sidebar from '../components/Sidebar';
+import Rightbar from '../components/Rightbar';
+import Topbar from '../components/Topbar';
+import Feed from '../components/Feed';
+import { users } from '../helper/api/users';
+import { usersProfileDetails } from '../helper/api/profileDetails';
 
 export default function Profile() {
   const currentUserData = users.filter((user) => user.currentUser)[0];
