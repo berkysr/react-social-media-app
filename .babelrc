@@ -1,0 +1,25 @@
+{
+    "plugins": [
+        "@babel/plugin-transform-typescript",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./src"
+                ],
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ],
+                "alias": {
+                    "components": "./components",
+                    "helper": "./helper",
+                    "pages": "./pages",
+                    "shared": "./shared"
+                }
+            }
+        ]
+    ]
+}

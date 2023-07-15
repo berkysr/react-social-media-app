@@ -1,4 +1,4 @@
-import { ProfileDetail } from '../types/profileDetail';
+import { ProfileDetail } from '@helper/types/profileDetail';
 
 export const usersProfileDetails: ProfileDetail[] = [
   {

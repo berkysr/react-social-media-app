@@ -1,8 +1,8 @@
 import React from 'react';
-import Share from './Share';
-import PostCard from './Post';
-import { posts } from '../helper/api/posts';
+import PostCard from '@components/Post';
+import { posts } from '@helper/api/posts';
 import { Box } from '@mui/system';
+import Share from '@components/Share';
 
 export default function Feed() {
   return (
@@ -20,6 +20,7 @@ export default function Feed() {
           />
         ))}
       </Box>
+      ü
     </Box>
   );
 }

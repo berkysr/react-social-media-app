@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
+import Home from '@pages/Home';
+import Profile from '@pages/Profile';
+import Login from '@pages/Login';
 import { Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './index.scss';
 import i18n from './i18n';
-import { changeLanguage } from './shared/translationTool';
+import { changeLanguage } from '@shared/translationTool';
 
 function App() {
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);

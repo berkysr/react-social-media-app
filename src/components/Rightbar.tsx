@@ -1,10 +1,10 @@
 import React from 'react';
-import OnlineFriend from './OnlineFriend';
-import UserInfo, { ProfileDetailRawDataUnionType } from './UserInfo';
-import Following from './Following';
-import { users } from '../helper/api/users';
-import { usersProfileDetails } from '../helper/api/profileDetails';
-import { companies } from '../helper/api/companies';
+import OnlineFriend from '@components/OnlineFriend';
+import UserInfo, { ProfileDetailRawDataUnionType } from '@components/UserInfo';
+import Following from '@components/Following';
+import { users } from '@helper/api/users';
+import { usersProfileDetails } from '@helper/api/profileDetails';
+import { companies } from '@helper/api/companies';
 
 interface RightbarProps {
   profile?: boolean;

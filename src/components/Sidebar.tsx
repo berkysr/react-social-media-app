@@ -10,8 +10,8 @@ import {
   EventAvailableSharp,
   CastForEducation,
 } from '@mui/icons-material';
-import CloseFriend from './CloseFriend';
-import { users } from '../helper/api/users';
+import CloseFriend from '@components/CloseFriend';
+import { users } from '@helper/api/users';
 
 export default function Sidebar() {
   return (

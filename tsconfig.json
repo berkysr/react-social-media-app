@@ -7,6 +7,30 @@
             "dom.iterable",
             "esnext"
         ],
+        "baseUrl": ".",
+        "paths": {
+            "extensions": [
+                ".ts",
+                ".tsx",
+                ".json",
+                ".js"
+            ],
+            "@*": [
+                "./src/*"
+            ],
+            "components": [
+                "components/*"
+            ],
+            "helper": [
+                "helper/*"
+            ],
+            "pages": [
+                "pages/*"
+            ],
+            "shared": [
+                "shared/*"
+            ]
+        },
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
