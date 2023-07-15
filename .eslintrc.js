@@ -19,7 +19,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', 'react-hooks'],
   rules: {
     'no-undefined': 'off',
     'no-undef': 'off',
@@ -34,5 +34,11 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-empty-function': ['off'],
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks: 'useDidMountEffect',
+      },
+    ],
   },
 };

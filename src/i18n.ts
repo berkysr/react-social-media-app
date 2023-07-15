@@ -3,15 +3,25 @@ import { initReactI18next } from 'react-i18next';
 
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import translationEn from './translations/en/common.json';
+import translationTr from './translations/tr/common.json';
 
 i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    resources: {
+      en: {
+        translation: translationEn,
+      },
+      tr: {
+        translation: translationTr,
+      },
+    },
     partialBundledLanguages: true,
     backend: {
-      loadPath: 'helper/translations/{{lng}}/{{ns}}',
+      loadPath: 'translations/{{lng}}/{{ns}}',
     },
     interpolation: {
       escapeValue: false,
@@ -23,17 +33,11 @@ i18n
       },
     },
     supportedLngs: ['en', 'tr'],
-    nonExplicitSupportedLngs: true,
     fallbackLng: 'en',
     defaultNS: 'common',
     ns: ['common'],
-    // debug: true,
+    debug: true,
     returnObjects: true,
-    cache: {
-      enabled: true,
-      prefix: 'i18nextLng',
-      expirationTime: Infinity,
-    },
   });
 
 export default i18n;
