@@ -5,7 +5,6 @@ import Login from './pages/login/Login';
 import { Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './index.scss';
-import useDidMountEffect from './hooks/useDidMouseEffect';
 import i18n from './i18n';
 import { changeLanguage } from './shared/translationTool';
 
@@ -24,7 +23,7 @@ function App() {
     setAvailableLanguages(supportedLanguages);
   }, []);
 
-  useDidMountEffect(() => {
+  useEffect(() => {
     const langExists = availableLanguages.includes(language);
     const correctLanguage = langExists ? language : i18n.languages[1];
 

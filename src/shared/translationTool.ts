@@ -4,5 +4,5 @@ export function changeLanguage(value: string): void {
   if (value) {
     document.querySelector('html')?.setAttribute('lang', value);
   }
-  i18n.changeLanguage(value).catch((e: any) => console.log('Error changing language ', e));
+  i18n.changeLanguage(value).catch((e: unknown) => console.log('Error changing language ', e));
 }
