@@ -1,8 +1,8 @@
 import React from 'react';
 import { MoreVert } from '@mui/icons-material';
-import { users } from '../../helper/api/users';
+import { users } from '../helper/api/users';
 import { useState } from 'react';
-import { Post } from '../../helper/types/post';
+import { Post } from '../helper/types/post';
 
 interface PostProps {
   post: Post;
