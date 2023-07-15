@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "login": {
+      "welcome": "Hoş geldin!",
+      "email": "Email",
+      "password": "Parola",
+      "or": "ya da"
+    }
+  },
+  "button": {
+    "signIn": "Hesabına giriş yap"
+  }
+}

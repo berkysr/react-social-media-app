@@ -1,12 +1,15 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="logInContainer w-screen h-screen flex items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900">
         <div className="logInWrapper shadow-card w-[75vh] h-[75vh] flex justify-center flex-col p-20 bg-gray-200">
-          <h1 className="welcomeText text-2xl font-bold py-5">Welcome Back</h1>
+          <h1 className="welcomeText text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
           <div className="inputWrapper flex align-center justify-center flex-col py-2.5 w-full">
             <span className="emailText text-sm">Your Email</span>
             <input

@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "login": {
+      "welcome": "Welcome Back!",
+      "email": "Your Email",
+      "password": "Password",
+      "or": "or"
+    }
+  },
+  "button": {
+    "signIn": "Sign in to your account"
+  }
+}
