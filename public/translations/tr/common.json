@@ -21,7 +21,7 @@
       "likeThis": "bunu beğendi!",
       "comments": "Yorumlar"
     },
-    "rightBar": {
+    "rightbar": {
       "and": "ve",
       "others": "diğerlerinin",
       "birthdayMessage": "bugün doğum günü!",
@@ -35,7 +35,7 @@
       "location": "Lokasyon",
       "feelings": "Duygular"
     },
-    "sideBar": {
+    "sidebar": {
       "feed": "Akış",
       "chats": "Yazışmalar",
       "videos": "Videolar",
@@ -47,7 +47,7 @@
       "courses": "Kurslar",
       "closeFriends": "Yakın Arkadaşlar"
     },
-    "topBar": {
+    "topbar": {
       "homePage": "Ana Sayfa",
       "timeLine": "Akış"
     }
