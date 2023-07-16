@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Person, Chat, Notifications } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 export default function Topbar() {
+  const { t } = useTranslation();
+
   return (
     <div className="topBarContainer h-14 w-full bg-[#1877f2] z-[999] flex items-center sticky top-0">
       <div className="topBarLeft flex-[3]">
         <Link to="/">
-          <span className="topBarLogo ml-5 font-bold text-[#f5f5f5] text-2xl cursor-pointer">Social</span>
+          <span className="topBarLogo ml-5 font-bold text-[#f5f5f5] text-2xl cursor-pointer">{t('logo.social')}</span>
         </Link>
       </div>
       <div className="topBarCenter flex-[5]">
@@ -21,8 +24,8 @@ export default function Topbar() {
       </div>
       <div className="topBarRight flex flex-[4] items-center justify-around text-white">
         <div className="topBarLinks">
-          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">Homepage</span>
-          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">Timeline</span>
+          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">{t('components.topBar.homePage')}</span>
+          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">{t('components.topBar.timeLine')}</span>
         </div>
         <div className="topBarIcons flex">
           <div className="topBarIconItem mr-4 cursor-pointer relative">

@@ -8,6 +8,48 @@
     }
   },
   "button": {
-    "signIn": "Hesabına giriş yap"
+    "signIn": "Hesabına giriş yap",
+    "share": "Paylaş",
+    "showMore": "Daha Fazlası"
+  },
+  "logo": {
+    "social": "Sosyal"
+  },
+  "components": {
+    "post": {
+      "people": "kişi",
+      "likeThis": "bunu beğendi!",
+      "comments": "Yorumlar"
+    },
+    "rightBar": {
+      "and": "ve",
+      "others": "diğerlerinin",
+      "birthdayMessage": "bugün doğum günü!",
+      "onlineFriends": "Çevrimiçi Arkadaşlar",
+      "userInformation": "Kullanıcı Bilgileri",
+      "userFollowings": "Takip Ettiklerin"
+    },
+    "share": {
+      "photoVideo": "Fotoğraf veya Video",
+      "tag": "Etiket",
+      "location": "Lokasyon",
+      "feelings": "Duygular"
+    },
+    "sideBar": {
+      "feed": "Akış",
+      "chats": "Yazışmalar",
+      "videos": "Videolar",
+      "groups": "Gruplar",
+      "bookmarks": "Yer İmleri",
+      "questions": "Sorular",
+      "jobs": "İşler",
+      "events": "Etkinlikler",
+      "courses": "Kurslar",
+      "closeFriends": "Yakın Arkadaşlar"
+    },
+    "topBar": {
+      "homePage": "Ana Sayfa",
+      "timeLine": "Akış"
+    }
   }
 }

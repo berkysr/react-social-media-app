@@ -3,12 +3,14 @@ import { MoreVert } from '@mui/icons-material';
 import { users } from '../helper/api/users';
 import { useState } from 'react';
 import { Post } from '../helper/types/post';
+import { useTranslation } from 'react-i18next';
 
 interface PostProps {
   post: Post;
 }
 
 export default function PostCard({ post }: PostProps) {
+  const { t } = useTranslation();
   const { comment, date, desc, like, photo, userId } = post;
   const { profilePicture, userName } = users.filter((user) => user.id === userId)[0];
   const [addedLike, setLike] = useState(like || 0);
@@ -63,11 +65,13 @@ export default function PostCard({ post }: PostProps) {
               alt=""
             />
             <span className="postLikeCounter text-sm">
-              {addedLike} <u>people</u> like this!
+              {addedLike} <u>{t('components.post.people')}</u> {t('components.post.likeThis')}
             </span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText cursor-pointer text-sm">{comment} Comments</span>
+            <span className="postCommentText cursor-pointer text-sm">
+              {comment} {t('components.post.comments')}
+            </span>
           </div>
         </div>
       </div>
