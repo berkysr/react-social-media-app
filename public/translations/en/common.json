@@ -21,7 +21,7 @@
       "likeThis": "like this!",
       "comments": "Comments"
     },
-    "rightBar": {
+    "rightbar": {
       "and": "and",
       "others": "others",
       "birthdayMessage": "celebrating their birthday today!",
@@ -35,7 +35,7 @@
       "location": "Location",
       "feelings": "Feelings"
     },
-    "sideBar": {
+    "sidebar": {
       "feed": "Feed",
       "chats": "Chats",
       "videos": "Videos",
@@ -47,7 +47,7 @@
       "courses": "Courses",
       "closeFriends": "Close Friends"
     },
-    "topBar": {
+    "topbar": {
       "homePage": "Homepage",
       "timeLine": "Timeline"
     }

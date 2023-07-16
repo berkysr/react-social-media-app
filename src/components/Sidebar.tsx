@@ -23,46 +23,46 @@ export default function Sidebar() {
         <ul className="sideBarList p-0 m-0 list-none">
           <li className="sideBarListItem flex items-center mb-5">
             <RssFeed className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.feed')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.feed')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <ChatSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.chats')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.chats')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <VideoCameraBack className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.videos')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.videos')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <GroupSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.groups')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.groups')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <BookmarkSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.bookmarks')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.bookmarks')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <QuestionAnswerSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.questions')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.questions')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <CasesSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.jobs')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.jobs')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <EventAvailableSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.events')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.events')}</span>
           </li>
           <li className="sideBarListItem flex items-center mb-5">
             <CastForEducation className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sideBar.courses')}</span>
+            <span className="sideBarListItemText">{t('components.sidebar.courses')}</span>
           </li>
         </ul>
         <button className="sideBarButton bg-green-500 text-white w-36 !border-0 p-2.5 rounded-md font-medium">
           {t('button.showMore')}
         </button>
         <hr className="sideBarHr my-5 mx-0" />
-        <h4 className="sideBarCloseFriendList font-medium mb-4">{t('components.sideBar.closeFriends')}</h4>
+        <h4 className="sideBarCloseFriendList font-medium mb-4">{t('components.sidebar.closeFriends')}</h4>
         <ul className="sideBarFriendList p-0 m-0 list-none">
           {users.map((eachUser) => {
             return eachUser.closeFriend ? (

@@ -24,8 +24,8 @@ export default function Topbar() {
       </div>
       <div className="topBarRight flex flex-[4] items-center justify-around text-white">
         <div className="topBarLinks">
-          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">{t('components.topBar.homePage')}</span>
-          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">{t('components.topBar.timeLine')}</span>
+          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.homePage')}</span>
+          <span className="topBarLink mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.timeLine')}</span>
         </div>
         <div className="topBarIcons flex">
           <div className="topBarIconItem mr-4 cursor-pointer relative">
