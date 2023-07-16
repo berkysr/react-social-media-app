@@ -22,9 +22,9 @@ export default function UserInfo({ currentProfileKey, currentProfileValue }: Use
   return (
     <>
       {currentProfileKey && currentProfileValue ? (
-        <div className="rightBarInfoItem mb-2.5">
-          <span className="rightBarInfoKey mr-4 font-medium	text-[#555]">{camelCaseKey}</span>
-          <span className="rightBarInfoValue font-light">{currentProfileValue}</span>
+        <div className="mb-2.5">
+          <span className="mr-4 font-medium	text-[#555]">{camelCaseKey}</span>
+          <span className="font-light">{currentProfileValue}</span>
         </div>
       ) : null}
     </>

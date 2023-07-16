@@ -13,67 +13,81 @@ import {
 import CloseFriend from './CloseFriend';
 import { users } from '../helper/api/users';
 import { useTranslation } from 'react-i18next';
+import { Box } from '@mui/material';
 
 export default function Sidebar() {
   const { t } = useTranslation();
 
   return (
-    <div className="sideBar flex-[3] h-[calc(100vh-3.5rem)] top-14 sticky overflow-y-scroll">
-      <div className="sideBarWrapper p-5">
-        <ul className="sideBarList p-0 m-0 list-none">
-          <li className="sideBarListItem flex items-center mb-5">
-            <RssFeed className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.feed')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <ChatSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.chats')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <VideoCameraBack className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.videos')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <GroupSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.groups')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <BookmarkSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.bookmarks')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <QuestionAnswerSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.questions')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <CasesSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.jobs')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <EventAvailableSharp className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.events')}</span>
-          </li>
-          <li className="sideBarListItem flex items-center mb-5">
-            <CastForEducation className="sideBarIcon mr-4" />
-            <span className="sideBarListItemText">{t('components.sidebar.courses')}</span>
-          </li>
-        </ul>
-        <button className="sideBarButton bg-green-500 text-white w-36 !border-0 p-2.5 rounded-md font-medium">
-          {t('button.showMore')}
-        </button>
-        <hr className="sideBarHr my-5 mx-0" />
-        <h4 className="sideBarCloseFriendList font-medium mb-4">{t('components.sidebar.closeFriends')}</h4>
-        <ul className="sideBarFriendList p-0 m-0 list-none">
-          {users.map((eachUser) => {
-            return eachUser.closeFriend ? (
-              <CloseFriend
-                key={eachUser.id}
-                user={eachUser}
-              />
-            ) : null;
-          })}
-        </ul>
-      </div>
-    </div>
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={3}
+      className="w-full sticky overflow-y-scroll"
+    >
+      <ul className="p-0 m-0 list-none">
+        <li className="flex items-center mb-5">
+          <RssFeed className="mr-4" />
+          <span>{t('components.sidebar.feed')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <ChatSharp className="mr-4" />
+          <span>{t('components.sidebar.chats')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <VideoCameraBack className="mr-4" />
+          <span>{t('components.sidebar.videos')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <GroupSharp className="mr-4" />
+          <span>{t('components.sidebar.groups')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <BookmarkSharp className="mr-4" />
+          <span>{t('components.sidebar.bookmarks')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <QuestionAnswerSharp className="mr-4" />
+          <span>{t('components.sidebar.questions')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <CasesSharp className="mr-4" />
+          <span>{t('components.sidebar.jobs')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <EventAvailableSharp className="mr-4" />
+          <span>{t('components.sidebar.events')}</span>
+        </li>
+
+        <li className="flex items-center mb-5">
+          <CastForEducation className="mr-4" />
+          <span>{t('components.sidebar.courses')}</span>
+        </li>
+      </ul>
+
+      <button className="bg-green-500 text-white w-36 !border-0 p-2.5 rounded-md font-medium">{t('button.showMore')}</button>
+
+      <hr className="my-5 mx-0" />
+
+      <h4 className="font-medium mb-4">{t('components.sidebar.closeFriends')}</h4>
+
+      <ul className="p-0 m-0 list-none">
+        {users.map((eachUser) => {
+          return eachUser.closeFriend ? (
+            <CloseFriend
+              key={eachUser.id}
+              user={eachUser}
+            />
+          ) : null;
+        })}
+      </ul>
+    </Box>
   );
 }

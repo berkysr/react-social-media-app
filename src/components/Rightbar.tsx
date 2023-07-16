@@ -6,6 +6,7 @@ import { users } from '../helper/api/users';
 import { usersProfileDetails } from '../helper/api/profileDetails';
 import { companies } from '../helper/api/companies';
 import { useTranslation } from 'react-i18next';
+import { Box } from '@mui/material';
 
 interface RightbarProps {
   profile?: boolean;
@@ -20,45 +21,64 @@ export default function Rightbar({ profile }: RightbarProps) {
 
   const HomePageRightBar = () => {
     return (
-      <>
-        <div className="birthDayContainer flex items-center">
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={3}
+      >
+        <Box
+          display="flex"
+          flexDirection="row"
+          className="w-full"
+        >
           <img
             loading="lazy"
-            className="birthDayImg w-10 h-10 mr-2.5"
+            className="flex-none w-12 mr-3"
             src="/assets/gift.png"
             alt=""
           />
-          <span className="birthDayText font-light text-base my-8 mx-0">
-            <b>Anthony Davis</b> {t('components.rightbar.and')} <b>3 {t('components.rightbar.others')}</b>{' '}
-            {t('components.rightbar.birthdayMessage')}
+
+          <span className="flex-1 font-light text-base">
+            <b>Anthony Davis</b> {t('components.rightbar.and')} <b>3 {t('components.rightbar.others')}</b>
+            {` ${t('components.rightbar.birthdayMessage')}`}
           </span>
-        </div>
+        </Box>
+
         <img
           loading="lazy"
-          className="rightBarAd w-full rounded-xl"
+          className="w-full rounded-xl"
           src="/assets/ad.png"
           alt=""
         />
-        <h4 className="rightBarTitle text-lg font-medium mb-5">{t('components.rightbar.onlineFriends')}</h4>
-        <ul className="rightBarFriendList">
-          {users.map((eachUser) => {
-            return eachUser.online ? (
-              <OnlineFriend
-                key={eachUser.id}
-                user={eachUser}
-              />
-            ) : null;
-          })}
-        </ul>
-      </>
+
+        <Box
+          display="flex"
+          flexDirection="column"
+          className="w-full"
+        >
+          <h4 className="text-lg font-medium mb-5">{t('components.rightbar.onlineFriends')}</h4>
+
+          <ul>
+            {users.map((eachUser) => {
+              return eachUser.online ? (
+                <OnlineFriend
+                  key={eachUser.id}
+                  user={eachUser}
+                />
+              ) : null;
+            })}
+          </ul>
+        </Box>
+      </Box>
     );
   };
 
   const ProfilePageRightBar = () => {
     return (
       <>
-        <h4 className="rightBarTitle text-lg font-medium mb-5">{t('components.rightbar.userInformation')}</h4>
-        <div className="rightBarInfo mb-8">
+        <h4 className="text-lg font-medium mb-5">{t('components.rightbar.userInformation')}</h4>
+
+        <div className="mb-8">
           {(Object.keys(currentProfileDetail) as ProfileDetailRawDataUnionType[]).map((profileDetailKey) => (
             <UserInfo
               key={profileDetailKey}
@@ -67,8 +87,10 @@ export default function Rightbar({ profile }: RightbarProps) {
             />
           ))}
         </div>
-        <h4 className="rightBarTitle text-lg	font-medium mb-5">{t('components.rightbar.userFollowings')}</h4>
-        <div className="rightBarFollowingContainer mb-5 grid grid-rows-[8rem] grid-cols-[8rem_8rem_8rem] gap-6">
+
+        <h4 className="text-lg	font-medium mb-5">{t('components.rightbar.userFollowings')}</h4>
+
+        <div className="mb-5 grid grid-rows-[8rem] grid-cols-[8rem_8rem_8rem] gap-6">
           {followedCompanies.map((company) => {
             return (
               <Following
@@ -78,9 +100,9 @@ export default function Rightbar({ profile }: RightbarProps) {
             );
           })}
         </div>
+
         <img
           loading="lazy"
-          className="rightBarAd"
           src="/assets/ad.png"
           alt=""
         />
@@ -89,8 +111,13 @@ export default function Rightbar({ profile }: RightbarProps) {
   };
 
   return (
-    <div className="rightBar flex-[3.5] top-[3.5rem]">
-      <div className="rightBarWrapper pt-5 pr-5 pb-0 pl-0">{profile ? <ProfilePageRightBar /> : <HomePageRightBar />}</div>
-    </div>
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={3}
+      className="w-full sticky overflow-y-scroll"
+    >
+      {profile ? <ProfilePageRightBar /> : <HomePageRightBar />}
+    </Box>
   );
 }
