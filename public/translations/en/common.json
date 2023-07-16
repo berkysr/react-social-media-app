@@ -8,6 +8,48 @@
     }
   },
   "button": {
-    "signIn": "Sign in to your account"
+    "signIn": "Sign in to your account",
+    "share": "Share",
+    "showMore": "Show More"
+  },
+  "logo": {
+    "social": "Social"
+  },
+  "components": {
+    "post": {
+      "people": "people",
+      "likeThis": "like this!",
+      "comments": "Comments"
+    },
+    "rightBar": {
+      "and": "and",
+      "others": "others",
+      "birthdayMessage": "celebrating their birthday today!",
+      "onlineFriends": "Online Friends",
+      "userInformation": "User Information",
+      "userFollowings": "Your Followings"
+    },
+    "share": {
+      "photoVideo": "Photo or Video",
+      "tag": "Tag",
+      "location": "Location",
+      "feelings": "Feelings"
+    },
+    "sideBar": {
+      "feed": "Feed",
+      "chats": "Chats",
+      "videos": "Videos",
+      "groups": "Groups",
+      "bookmarks": "Bookmarks",
+      "questions": "Questions",
+      "jobs": "Jobs",
+      "events": "Events",
+      "courses": "Courses",
+      "closeFriends": "Close Friends"
+    },
+    "topBar": {
+      "homePage": "Homepage",
+      "timeLine": "Timeline"
+    }
   }
 }
