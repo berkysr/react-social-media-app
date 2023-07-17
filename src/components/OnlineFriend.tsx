@@ -17,8 +17,10 @@ export default function OnlineFriend({ user }: OnlineFriendProps) {
           src={profilePicture}
           alt=""
         />
+
         <span className="w-2.5 h-2.5 top-0 right-0 absolute bg-green-500 rounded-full"></span>
       </div>
+
       <span className="font-medium">{userName}</span>
     </li>
   );

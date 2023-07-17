@@ -14,9 +14,9 @@ export default function CloseFriend({ user }: CloseFriendProps) {
         loading="lazy"
         src={profilePicture}
         alt=""
-        className="
-        w-9 h-9 rounded-full object-cover mr-2.5"
+        className="w-9 h-9 rounded-full object-cover mr-2.5"
       />
+
       <span>{userName}</span>
     </li>
   ) : null;

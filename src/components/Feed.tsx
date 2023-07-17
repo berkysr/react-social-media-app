@@ -9,10 +9,10 @@ export default function Feed() {
     <Box p={3}>
       <Share />
 
-      {posts.map((eachPost) => (
+      {posts.map((post) => (
         <PostCard
-          key={eachPost.id}
-          post={eachPost}
+          key={post.id}
+          post={post}
         />
       ))}
     </Box>

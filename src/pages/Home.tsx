@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/Rightbar';
+import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/Feed';
 import { Box } from '@mui/material';
 

@@ -32,15 +32,20 @@ export default function PostCard({ post }: PostProps) {
               className="w-9 h-9 rounded-full object-cover"
               alt=""
             />
+
             <span className="text-base font-bold my-0 mx-2.5 flex items-center">{userName}</span>
+
             <span className="text-zinc-500	text-xs flex items-center">{date}</span>
           </div>
+
           <div>
             <MoreVert />
           </div>
         </div>
+
         <div className="mx-0 my-5">
           <span>{desc}</span>
+
           <img
             loading="lazy"
             src={photo}
@@ -48,6 +53,7 @@ export default function PostCard({ post }: PostProps) {
             alt=""
           />
         </div>
+
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img
@@ -57,6 +63,7 @@ export default function PostCard({ post }: PostProps) {
               onClick={likeHandler}
               alt=""
             />
+
             <img
               loading="lazy"
               className="w-6 h-6 mr-2.5 cursor-pointer"
@@ -64,15 +71,15 @@ export default function PostCard({ post }: PostProps) {
               onClick={likeHandler}
               alt=""
             />
+
             <span className="text-sm">
               {addedLike} <u>{t('components.post.people')}</u> {t('components.post.likeThis')}
             </span>
           </div>
-          <div>
-            <span className="cursor-pointer text-sm">
-              {comment} {t('components.post.comments')}
-            </span>
-          </div>
+
+          <span className="cursor-pointer text-sm">
+            {comment} {t('components.post.comments')}
+          </span>
         </div>
       </div>
     </div>

@@ -79,11 +79,11 @@ export default function Sidebar() {
       <h4 className="font-medium mb-4">{t('components.sidebar.closeFriends')}</h4>
 
       <ul className="p-0 m-0 list-none">
-        {users.map((eachUser) => {
-          return eachUser.closeFriend ? (
+        {users.map((user) => {
+          return user.closeFriend ? (
             <CloseFriend
-              key={eachUser.id}
-              user={eachUser}
+              key={user.id}
+              user={user}
             />
           ) : null;
         })}

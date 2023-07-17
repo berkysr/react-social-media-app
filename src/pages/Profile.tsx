@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/Rightbar';
+import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/Feed';
 import { users } from '../helper/api/users';
 import { usersProfileDetails } from '../helper/api/profileDetails';
