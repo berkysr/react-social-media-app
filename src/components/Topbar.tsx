@@ -12,68 +12,95 @@ export default function Topbar() {
       display="flex"
       flexDirection="row"
       justifyContent="start"
+      alignItems="center"
+      px={3}
+      py={1}
+      className="h-14 w-full bg-[#1877f2] z-[999] sticky top-0"
     >
-      <div className="h-14 w-full bg-[#1877f2] z-[999] flex items-center sticky top-0">
-        <div className="flex-[3]">
-          <Link to="/">
-            <span className="ml-5 font-bold text-[#f5f5f5] text-2xl cursor-pointer">{t('logo.social')}</span>
-          </Link>
-        </div>
+      <Box className="flex w-[15%] lg:w-[15%]">
+        <Link to="/">
+          <p className="font-bold text-[#f5f5f5] text-2xl cursor-pointer">{t('logo.social')}</p>
+        </Link>
+      </Box>
 
-        <div className="flex-[5]">
-          <div className="w-full h-full rounded-[7.5rem] bg-white flex items-center p-1.5">
-            <Search className="!text-xl ml-2.5" />
+      <Box
+        display="flex"
+        alignItems="center"
+        className="flex w-[40%] lg:w-[50%] rounded-[7.5rem] bg-white"
+        py={1}
+      >
+        <Search className="!text-xl ml-2.5" />
 
-            <input
-              placeholder="Search for a friend"
-              className="border-0 w-[70%] focus:outline-none"
-            />
-          </div>
-        </div>
+        <input
+          placeholder="Search for a friend"
+          className="border-0 w-[70%] focus:outline-none"
+        />
+      </Box>
 
-        <div className="flex flex-[4] items-center justify-around text-white">
-          <div>
-            <span className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.homePage')}</span>
+      <Box
+        display="flex"
+        alignItems="center"
+        className="flex w-[45%] lg:w-[35%] text-white"
+        flexDirection="row"
+        justifyContent="space-between"
+      >
+        <Box
+          display="flex"
+          flexDirection="row"
+          ml={2}
+        >
+          <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.homePage')}</p>
 
-            <span className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.timeLine')}</span>
-          </div>
+          <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.timeLine')}</p>
+        </Box>
 
-          <div className="flex">
-            <div className="mr-4 cursor-pointer relative">
-              <Person />
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+        >
+          <Box className="mr-4 cursor-pointer relative">
+            <Person />
 
-              <span className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
-                1
-              </span>
-            </div>
+            <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
+              1
+            </p>
+          </Box>
 
-            <div className="mr-4 cursor-pointer relative">
-              <Chat />
+          <Box className="mr-4 cursor-pointer relative">
+            <Chat />
 
-              <span className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
-                3
-              </span>
-            </div>
+            <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
+              3
+            </p>
+          </Box>
 
-            <div className="mr-4 cursor-pointer relative">
-              <Notifications />
+          <Box className="mr-4 cursor-pointer relative">
+            <Notifications />
 
-              <span className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
-                17
-              </span>
-            </div>
-          </div>
+            <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
+              17
+            </p>
+          </Box>
 
-          <Link to="/profile">
-            <img
-              loading="lazy"
-              src="/assets/person/10.jpeg"
-              alt=""
-              className="w-12 h-12 rounded-full object-cover cursor-pointer"
-            />
-          </Link>
-        </div>
-      </div>
+          <Box
+            display="flex"
+            className="w-12 h-12 flex-none"
+          >
+            <Link
+              className="w-full"
+              to="/profile"
+            >
+              <img
+                loading="lazy"
+                src="/assets/person/10.jpeg"
+                alt=""
+                className="w-full h-full rounded-full object-cover cursor-pointer"
+              />
+            </Link>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 }

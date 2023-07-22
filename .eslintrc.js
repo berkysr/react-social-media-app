@@ -24,7 +24,12 @@ module.exports = {
     'no-undefined': 'off',
     'no-undef': 'off',
     'no-eq-null': 'off',
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'no-prototype-builtins': 'off',
     'no-useless-constructor': 'off',
     'no-empty-function': [

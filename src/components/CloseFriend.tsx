@@ -17,7 +17,7 @@ export default function CloseFriend({ user }: CloseFriendProps) {
         className="w-9 h-9 rounded-full object-cover mr-2.5"
       />
 
-      <span>{userName}</span>
+      <figcaption>{userName}</figcaption>
     </li>
   ) : null;
 }

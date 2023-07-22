@@ -13,22 +13,24 @@ export default function HomePageRightBar() {
       flexDirection="column"
       gap={3}
     >
-      <Box
-        display="flex"
-        flexDirection="row"
-        className="w-full"
-      >
-        <img
-          loading="lazy"
-          className="flex-none w-12 mr-3"
-          src="/assets/gift.png"
-          alt=""
-        />
+      <Box display="flex">
+        <Box
+          display="flex"
+          className="w-12 h-12 flex-none"
+          mr={2}
+        >
+          <img
+            loading="lazy"
+            className="flex-none w-full "
+            src="/assets/gift.png"
+            alt=""
+          />
+        </Box>
 
-        <span className="flex-1 font-light text-base">
+        <p className="flex-1 font-light text-base text-sm">
           <b>Anthony Davis</b> {t('components.rightbar.and')} <b>3 {t('components.rightbar.others')}</b>
           {` ${t('components.rightbar.birthdayMessage')}`}
-        </span>
+        </p>
       </Box>
 
       <img

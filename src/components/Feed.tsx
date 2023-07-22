@@ -6,7 +6,12 @@ import { Box } from '@mui/system';
 
 export default function Feed() {
   return (
-    <Box p={3}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={3}
+      className="w-full"
+    >
       <Share />
 
       {posts.map((post) => (

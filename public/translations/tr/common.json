@@ -33,7 +33,9 @@
       "photoVideo": "Fotoğraf veya Video",
       "tag": "Etiket",
       "location": "Lokasyon",
-      "feelings": "Duygular"
+      "feelings": "Duygular",
+      "status": "Ne düşünüyorsun?",
+      "share": "Paylaş"
     },
     "sidebar": {
       "feed": "Akış",

@@ -15,21 +15,21 @@ export default function Home() {
       >
         <Box
           display="flex"
-          className="flex-[3]"
+          className="w-[30%] lg:w-[20%]"
         >
           <Sidebar />
         </Box>
 
         <Box
           display="flex"
-          className="flex-[6]"
+          className="w-[40%] lg:w-[60%]"
         >
           <Feed />
         </Box>
 
         <Box
           display="flex"
-          className="flex-[3]"
+          className="w-[30%] lg:w-[20%]"
         >
           <Rightbar profile={false} />
         </Box>

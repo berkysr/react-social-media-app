@@ -33,7 +33,9 @@
       "photoVideo": "Photo or Video",
       "tag": "Tag",
       "location": "Location",
-      "feelings": "Feelings"
+      "feelings": "Feelings",
+      "status": "What is on your mind?",
+      "share": "Share"
     },
     "sidebar": {
       "feed": "Feed",

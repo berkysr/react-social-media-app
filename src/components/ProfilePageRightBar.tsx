@@ -29,7 +29,7 @@ export default function ProfilePageRightBar() {
       >
         <h2 className="text-lg font-medium mb-5">{t('components.rightbar.userInformation')}</h2>
 
-        <div className="mb-8">
+        <Box mb={3}>
           {profileDetails.map((profileDetailKey, index) => (
             <UserInfo
               key={profileDetailKey}
@@ -39,15 +39,16 @@ export default function ProfilePageRightBar() {
               profiledetailIndex={index}
             />
           ))}
-        </div>
+        </Box>
       </Box>
 
       <Box
         display="flex"
         flexDirection="column"
         className="w-full"
+        mb={5}
       >
-        <h2 className="text-lg	font-medium mb-5">{t('components.rightbar.userFollowings')}</h2>
+        <h2 className="text-lg	font-medium">{t('components.rightbar.userFollowings')}</h2>
 
         <Box
           display="flex"
@@ -65,6 +66,7 @@ export default function ProfilePageRightBar() {
             );
           })}
         </Box>
+
         <img
           loading="lazy"
           src="/assets/ad.png"
