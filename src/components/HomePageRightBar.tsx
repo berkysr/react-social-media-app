@@ -12,6 +12,7 @@ export default function HomePageRightBar() {
       display="flex"
       flexDirection="column"
       gap={3}
+      className="h-fit sticky top-[80px]"
     >
       <Box display="flex">
         <Box

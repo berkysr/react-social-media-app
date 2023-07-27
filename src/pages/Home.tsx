@@ -15,7 +15,7 @@ export default function Home() {
       >
         <Box
           display="flex"
-          className="w-[30%] lg:w-[20%]"
+          className="w-[30%] lg:w-[20%] relative"
         >
           <Sidebar />
         </Box>

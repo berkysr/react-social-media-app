@@ -58,7 +58,7 @@ export default function Sidebar() {
       display="flex"
       flexDirection="column"
       p={3}
-      className="w-full sticky overflow-y-scroll"
+      className="w-full h-fit sticky top-[56px]"
     >
       <ul className="p-0 m-0 list-none">
         {navbarElements.map((element) => (

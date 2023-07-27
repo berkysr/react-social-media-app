@@ -20,7 +20,7 @@ export default function Profile() {
     >
       <Box
         display="flex"
-        className="flex-[3]"
+        className="flex-[3] relative"
       >
         <Sidebar />
       </Box>

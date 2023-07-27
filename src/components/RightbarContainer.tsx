@@ -13,7 +13,7 @@ export default function RightbarContainer({ profile }: RightbarProps) {
       display="flex"
       flexDirection="column"
       p={3}
-      className="w-full sticky overflow-y-scroll"
+      className="w-full relative"
     >
       {profile ? <ProfilePageRightBar /> : <HomePageRightBar />}
     </Box>
