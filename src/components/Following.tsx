@@ -1,5 +1,6 @@
 import React from 'react';
 import { Company } from '../helper/types/company';
+import { Box } from '@mui/material';
 
 interface FollowingProps {
   company: Company;
@@ -9,15 +10,22 @@ export default function Following({ company }: FollowingProps) {
   const { logo, name } = company;
   return (
     <>
-      <div className="rightBarFollowing flex flex-col cursor-pointer justify-center items-center">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        alignItems="center"
+        className="flex-[4] cursor-pointer"
+      >
         <img
           loading="lazy"
-          className="rightBarFollowingImg w-full h-full object-contain"
+          className="object-contain max-w-[65px] max-h-[50px]"
           src={logo}
           alt=""
         />
-        <span className="rightBarFollowingName">{name}</span>
-      </div>
+
+        <figcaption className="text-center">{name}</figcaption>
+      </Box>
     </>
   );
 }

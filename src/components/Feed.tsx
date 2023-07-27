@@ -7,19 +7,19 @@ import { Box } from '@mui/system';
 export default function Feed() {
   return (
     <Box
-      sx={{
-        flex: 5.5,
-      }}
+      display="flex"
+      flexDirection="column"
+      p={3}
+      className="w-full"
     >
-      <Box p="1.25rem">
-        <Share />
-        {posts.map((eachPost) => (
-          <PostCard
-            key={eachPost.id}
-            post={eachPost}
-          />
-        ))}
-      </Box>
+      <Share />
+
+      {posts.map((post) => (
+        <PostCard
+          key={post.id}
+          post={post}
+        />
+      ))}
     </Box>
   );
 }

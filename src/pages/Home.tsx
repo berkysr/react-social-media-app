@@ -1,18 +1,39 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/Rightbar';
-import Topbar from '../components/Topbar';
+import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/Feed';
+import { Box } from '@mui/material';
 
 export default function Home() {
   return (
     <>
-      <Topbar />
-      <div className="homeContainer flex w-full">
-        <Sidebar />
-        <Feed />
-        <Rightbar profile={false} />
-      </div>
+      <Box
+        display="flex"
+        flexDirection="row"
+        justifyContent="start"
+        className="w-full"
+      >
+        <Box
+          display="flex"
+          className="w-[30%] lg:w-[20%] relative"
+        >
+          <Sidebar />
+        </Box>
+
+        <Box
+          display="flex"
+          className="w-[40%] lg:w-[60%]"
+        >
+          <Feed />
+        </Box>
+
+        <Box
+          display="flex"
+          className="w-[30%] lg:w-[20%]"
+        >
+          <Rightbar profile={false} />
+        </Box>
+      </Box>
     </>
   );
 }

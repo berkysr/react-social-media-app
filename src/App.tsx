@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useMemo, useState } from 'react';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
-import { Routes, Route } from 'react-router-dom';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './index.scss';
 import i18n from './i18n';
 import { changeLanguage } from './shared/translationTool';
+import { Grid } from '@mui/material';
+import Topbar from './components/Topbar';
+import { PageNames } from './helper/enums/enums';
 
 function App() {
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
   const [language, setLanguage] = useState<string>('en');
+  const [isSignInPage, setIsSignInPage] = useState<boolean>(false);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const rawPageName = pathname.split('/').pop();
+
+    setIsSignInPage(rawPageName === PageNames.SIGN_IN);
+  }, [pathname]);
 
   useEffect(() => {
     const supportedLngs = i18n.options.supportedLngs ? i18n.options.supportedLngs : [''];
@@ -32,7 +43,13 @@ function App() {
 
   return (
     <>
-      <GoogleOAuthProvider clientId="863241284462-dgoi5hg4g19rmlltglij8dlinbe8kkav.apps.googleusercontent.com">
+      <Grid
+        container
+        direction="column"
+        className="app-container"
+      >
+        {!isSignInPage ? <Topbar /> : null}
+
         <Routes>
           <Route
             path="/"
@@ -47,7 +64,7 @@ function App() {
             element={<Login />}
           />
         </Routes>
-      </GoogleOAuthProvider>
+      </Grid>
     </>
   );
 }

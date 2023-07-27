@@ -1,60 +1,117 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { Box, useTheme } from '@mui/material';
+import IconComponent from './IconComponent';
 
 export default function Share() {
   const { t } = useTranslation();
+  const theme = useTheme();
+
+  const [width, setWidth] = useState(0);
+
+  const windowWidth = window.innerWidth;
+  const isOnlyBigScreen = width >= 1200;
+
+  useEffect(() => {
+    setWidth(windowWidth);
+  }, [windowWidth]);
+
+  const shareIcons = [
+    {
+      infoText: 'photoVideo',
+      child: (
+        <PermMedia
+          htmlColor="tomato"
+          className="mr-1 !text-lg"
+        />
+      ),
+    },
+    {
+      infoText: 'tag',
+      child: (
+        <Label
+          htmlColor="blue"
+          className="mr-1 !text-lg"
+        />
+      ),
+    },
+    {
+      infoText: 'location',
+      child: (
+        <Room
+          htmlColor="green"
+          className="mr-1 !text-lg"
+        />
+      ),
+    },
+    {
+      infoText: 'feelings',
+      child: (
+        <EmojiEmotions
+          htmlColor="goldenrod"
+          className="mr-1 !text-lg"
+        />
+      ),
+    },
+  ];
 
   return (
-    <div className="share w-full rounded-xl shadow-card h-[17vh]">
-      <div className="shareWrapper p-2.5">
-        <div className="shareTop flex items-center">
+    <Box
+      p={3}
+      className="w-full rounded-xl shadow-card"
+    >
+      <Box
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="start"
+      >
+        <Box
+          display="flex"
+          className="w-14 h-14 flex-none"
+        >
           <img
             loading="lazy"
             src="/assets/person/1.jpeg"
-            className="shareProfileImg w-14 h-14 rounded-full object-cover mr-2.5"
+            className="w-full h-full object-cover rounded-[50%]"
             alt=""
           />
+        </Box>
+
+        <Box
+          display="flex"
+          ml={2}
+        >
           <textarea
-            placeholder="What is in your mind"
-            className="shareInput resize-none w-full focus:outline-none"
+            placeholder={t('components.share.status')}
+            className="resize-none w-full focus:outline-none"
           />
-        </div>
-        <hr className="shareHr m-5" />
-        <div className="shareBottom flex items-center justify-between">
-          <div className="shareOptions ml-5 flex">
-            <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
-              <PermMedia
-                htmlColor="tomato"
-                className="shareIcon mr-1 !text-lg"
-              />
-              <span className="shareOptionText text-sm font-medium">{t('components.share.photoVideo')}</span>
-            </div>
-            <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
-              <Label
-                htmlColor="blue"
-                className="shareIcon mr-1 !text-lg"
-              />
-              <span className="shareOptionText text-sm font-medium">{t('components.share.tag')}</span>
-            </div>
-            <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
-              <Room
-                htmlColor="green"
-                className="shareIcon mr-1 !text-lg"
-              />
-              <span className="shareOptionText text-sm font-medium">{t('components.share.location')}</span>
-            </div>
-            <div className="shareOption flex items-center mr-4 justify-between cursor-pointer">
-              <EmojiEmotions
-                htmlColor="goldenrod"
-                className="shareIcon mr-1 !text-lg"
-              />
-              <span className="shareOptionText text-sm font-medium">{t('components.share.feelings')}</span>
-            </div>
-          </div>
-          <button className="shareButton border-0 p-2 rounded-md font-medium mr-5 cursor-pointer text-white bg-green-500">Share</button>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+
+      <hr className="mb-2 mt-5" />
+
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        ml={isOnlyBigScreen ? 3 : 0}
+      >
+        {shareIcons.map((icon) => (
+          <IconComponent
+            key={icon.infoText}
+            infoText={isOnlyBigScreen ? t(`components.share.${icon.infoText}`) : ''}
+            isOnlyBigScreen={isOnlyBigScreen}
+          >
+            {icon.child}
+          </IconComponent>
+        ))}
+
+        <button className="border-0 p-2 rounded-md font-medium lg:mr-5 cursor-pointer text-white bg-green-500">
+          {t('components.share.share')}
+        </button>
+      </Box>
+    </Box>
   );
 }

@@ -1,9 +1,12 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/system';
 import './i18n';
+
+import { GOOGLE_CLIENT_ID } from './helper/utils/constants';
 
 const theme = createTheme({
   palette: {
@@ -29,7 +32,9 @@ root.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Suspense fallback={<div />}>
-          <App />
+          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            <App />
+          </GoogleOAuthProvider>
         </Suspense>
       </ThemeProvider>
     </BrowserRouter>
