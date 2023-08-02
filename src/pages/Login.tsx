@@ -1,11 +1,27 @@
 import React from 'react';
+import FormInput from '../components/InputField';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
+import { useFormik } from 'formik';
+import validationSchema from '../shared/formValidations';
 import { Box } from '@mui/material';
 
 export default function Login() {
   const { t } = useTranslation();
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+    },
+  });
 
   return (
     <Box
@@ -18,24 +34,31 @@ export default function Login() {
         <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
 
         <div className="flex align-center justify-center flex-col py-2.5 w-full">
-          <span className="text-sm">{t('pages.login.email')}</span>
-
-          <input
-            type="text"
-            className="border-solid rounded-xl border-grey border-2 p-2.5 mt-1.5 focus:mt-[-50] focus:border-blue-500 focus:outline-none"
-            placeholder="example@domain.com"
-          />
+          <FormInput
+            id="email"
+            type="email"
+            name="email"
+            value={formik.values.email}
+            placeHolder="example@domain.com"
+            label={t('pages.login.email')}
+            helperText={formik.errors.email ? formik.errors.email : ''}
+            onChange={formik.handleChange}
+          ></FormInput>
         </div>
 
         <div className="flex align-center justify-center flex-col py-2.5 w-full">
-          <span className="text-sm">{t('pages.login.password')}</span>
-
-          <input
-            type="password"
-            name="password"
-            className="border-solid rounded-xl border-grey border-2 p-2.5 mt-1.5 focus:mt-[-50] focus:border-blue-500 focus:outline-none"
-            placeholder="Password"
-          />
+          <div className="flex align-center justify-center flex-col py-2.5 w-full">
+            <FormInput
+              id="password"
+              type="password"
+              name="password"
+              value={formik.values.password}
+              placeHolder="Your password"
+              label={t('pages.login.password')}
+              helperText={formik.errors.password ? formik.errors.password : ''}
+              onChange={formik.handleChange}
+            ></FormInput>
+          </div>
         </div>
 
         <button className="group relative h-12 w-full overflow-hidden rounded-lg bg-white text-lg shadow mt-6">
