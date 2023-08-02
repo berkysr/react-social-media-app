@@ -1,6 +1,7 @@
 import React from 'react';
-import { GoogleLogin } from '@react-oauth/google';
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
+import jwt_decode from 'jwt-decode';
 import { Box } from '@mui/material';
 
 export default function Login() {
@@ -52,7 +53,15 @@ export default function Login() {
         </div>
 
         <div className="flex flex-row justify-evenly">
-          <GoogleLogin onSuccess={console.log} />
+          <GoogleLogin
+            onSuccess={(credentialResponse: CredentialResponse) => {
+              if (credentialResponse) {
+                const jwtDecodedResponse = jwt_decode(credentialResponse.credential as string);
+
+                console.log(jwtDecodedResponse);
+              }
+            }}
+          />
         </div>
       </div>
     </Box>
