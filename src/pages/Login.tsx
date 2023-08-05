@@ -1,11 +1,87 @@
 import React from 'react';
+import FormInput from '../components/InputField';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
+import { useFormik } from 'formik';
 import { Box } from '@mui/material';
+import { SignInPageFields } from '../helper/enums/enums';
+import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
+import {
+  repeatingCharacter,
+  atLeastOneCapitalorSmallLetter,
+  atLeastOneNumber,
+  atLeastOneSpecialCharacter,
+} from '../helper/utils/validationFunctions';
+import * as Yup from 'yup';
 
 export default function Login() {
   const { t } = useTranslation();
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required(t('error:error.validation.required')).email(t('error:error.validation.email.invalid')),
+    password: Yup.string()
+      .required(t('error:error.validation.required'))
+      .test(
+        SignInPageFields.PASSWORD,
+        () => t('error:error.validation.password.repeatingCharacters'),
+        (value) => {
+          if (value) {
+            return !repeatingCharacter(value);
+          }
+
+          return false;
+        },
+      )
+      .test(
+        SignInPageFields.PASSWORD,
+        () => t('error:error.validation.password.smallAndCapitalLetter'),
+        (value) => {
+          if (value) {
+            return atLeastOneCapitalorSmallLetter(value);
+          }
+
+          return false;
+        },
+      )
+      .test(
+        SignInPageFields.PASSWORD,
+        () => t('error:error.validation.password.oneNumber'),
+        (value) => {
+          if (value) {
+            return atLeastOneNumber(value);
+          }
+
+          return false;
+        },
+      )
+      .test(
+        SignInPageFields.PASSWORD,
+        () => t('error:error.validation.password.oneSpecialCharacter'),
+        (value) => {
+          if (value) {
+            return atLeastOneSpecialCharacter(value);
+          }
+
+          return false;
+        },
+      )
+      .min(minCharacterCount, t('error:error.validation.password.minCharacter', { minCharacterCount }))
+      .max(maxCharacterCount, t('error:error.validation.password.maxCharacter', { maxCharacterCount })),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+      resetForm();
+    },
+    isInitialValid: true,
+  });
 
   return (
     <Box
@@ -14,56 +90,86 @@ export default function Login() {
       justifyContent="center"
       className="w-screen h-screen items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900"
     >
-      <div className="shadow-card w-[75vh] h-[75vh] flex justify-center flex-col p-20 bg-gray-200">
-        <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
+      <form onSubmit={formik.handleSubmit}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyItems="center"
+          p={10}
+          className="shadow-card w-[75vh] h-[75vh] bg-gray-200"
+        >
+          <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
 
-        <div className="flex align-center justify-center flex-col py-2.5 w-full">
-          <span className="text-sm">{t('pages.login.email')}</span>
+          <Box
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            className="justify-center flex-col py-2.5 w-full"
+          >
+            <FormInput
+              id={SignInPageFields.EMAIL}
+              type={SignInPageFields.EMAIL}
+              name={SignInPageFields.EMAIL}
+              value={formik.values.email}
+              placeHolder="example@domain.com"
+              label={t('pages.login.email')}
+              helperText={formik.errors.email ? formik.errors.email : ''}
+              onChange={formik.handleChange}
+            ></FormInput>
+          </Box>
 
-          <input
-            type="text"
-            className="border-solid rounded-xl border-grey border-2 p-2.5 mt-1.5 focus:mt-[-50] focus:border-blue-500 focus:outline-none"
-            placeholder="example@domain.com"
-          />
-        </div>
+          <Box className="flex align-center justify-center flex-col py-2.5 w-full">
+            <FormInput
+              id={SignInPageFields.PASSWORD}
+              type={SignInPageFields.PASSWORD}
+              name={SignInPageFields.PASSWORD}
+              value={formik.values.password}
+              placeHolder="Your password"
+              label={t('pages.login.password')}
+              helperText={formik.errors.password ? formik.errors.password : ''}
+              onChange={formik.handleChange}
+            ></FormInput>
+          </Box>
 
-        <div className="flex align-center justify-center flex-col py-2.5 w-full">
-          <span className="text-sm">{t('pages.login.password')}</span>
+          <Box className="flex align-start justify-center w-auto">
+            <button
+              className={`group relative h-12 w-auto !overflow-hidden !rounded-lg !bg-white !text-lg shadow !mt-6 !px-6 select-none ${
+                !formik.dirty || !formik.isValid ? 'opacity-50 !bg-gray' : ''
+              }`}
+              type="submit"
+              disabled={!formik.dirty || !formik.isValid}
+            >
+              {formik.dirty && formik.isValid ? (
+                <div className="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+              ) : null}
 
-          <input
-            type="password"
-            name="password"
-            className="border-solid rounded-xl border-grey border-2 p-2.5 mt-1.5 focus:mt-[-50] focus:border-blue-500 focus:outline-none"
-            placeholder="Password"
-          />
-        </div>
+              <p className={`relative text-black  ${formik.dirty && formik.isValid ? 'group-hover:text-white' : ''}`}>
+                {t('button.signIn')}
+              </p>
+            </button>
+          </Box>
 
-        <button className="group relative h-12 w-full overflow-hidden rounded-lg bg-white text-lg shadow mt-6">
-          <div className="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+          <Box className="flex flex-column items-center m-5">
+            <div className="flex-[4] border-gray-400 border h-[2px]"></div>
 
-          <span className="relative text-black group-hover:text-white">{t('button.signIn')}</span>
-        </button>
+            <div className="flex[2] mx-5">{t('pages.login.or')}</div>
 
-        <div className="flex flex-column items-center m-5">
-          <div className="flex-[4] border-gray-400 border h-[2px]"></div>
+            <div className="flex-[4] border-gray-400 border h-[2px]"></div>
+          </Box>
 
-          <div className="flex[2] mx-5">{t('pages.login.or')}</div>
+          <Box className="flex flex-row justify-evenly">
+            <GoogleLogin
+              onSuccess={(credentialResponse: CredentialResponse) => {
+                if (credentialResponse) {
+                  const jwtDecodedResponse = jwt_decode(credentialResponse.credential as string);
 
-          <div className="flex-[4] border-gray-400 border h-[2px]"></div>
-        </div>
-
-        <div className="flex flex-row justify-evenly">
-          <GoogleLogin
-            onSuccess={(credentialResponse: CredentialResponse) => {
-              if (credentialResponse) {
-                const jwtDecodedResponse = jwt_decode(credentialResponse.credential as string);
-
-                console.log(jwtDecodedResponse);
-              }
-            }}
-          />
-        </div>
-      </div>
+                  console.log(jwtDecodedResponse);
+                }
+              }}
+            />
+          </Box>
+        </Box>
+      </form>
     </Box>
   );
 }

@@ -24,7 +24,7 @@ i18n
     supportedLngs: ['en', 'tr'],
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common'],
+    ns: ['common', 'error'],
     debug: false,
     returnObjects: true,
   });

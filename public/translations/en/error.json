@@ -1,0 +1,18 @@
+{
+  "error": {
+    "validation": {
+      "required": "This field is required.",
+      "email": {
+        "invalid": "Please enter a valid email format."
+      },
+      "password": {
+        "minCharacter": "Password should contain minimum of {{ minCharacterCount }} characters.",
+        "maxCharacter": "Password should contain maximum of {{ maxCharacterCount }} characters.",
+        "repeatingCharacters": "Password should not contain repeating numbers, letters, or special characters.",
+        "smallAndCapitalLetter": "Password should contain at least one small and one capital letter.",
+        "oneNumber": "Password should contain at least one number.",
+        "oneSpecialCharacter": "Password should contain at special character."
+      }
+    }
+  }
+}
