@@ -21,6 +21,7 @@ export default function FormInput({ label = '', type, name, onChange, value, hel
   return (
     <>
       <label className="text-sm">{label}</label>
+
       <input
         id={id}
         type={type}
@@ -30,7 +31,8 @@ export default function FormInput({ label = '', type, name, onChange, value, hel
         className="border-solid rounded-xl border-grey border-2 p-2.5 mt-1.5 focus:mt-[-50] focus:border-blue-500 focus:outline-none"
         placeholder={placeHolder}
       />
-      {helperText ? <p>{helperText}</p> : null}
+
+      {helperText ? <p className="text-red-600 pt-2">{helperText}</p> : null}
     </>
   );
 }

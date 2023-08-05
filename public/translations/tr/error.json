@@ -1,0 +1,18 @@
+{
+  "error": {
+    "validation": {
+      "required": "Bu alan doldurulması zorunludur.",
+      "email": {
+        "invalid": "Lütfen geçerli bir email adresi giriniz."
+      },
+      "password": {
+        "minCharacter": "Parola en az {{ minCharacter }} sayıda karakter içermelidir.",
+        "maxCharacter": "Parola en çok {{ maxCharacter }} sayıda karakter içerebilir.",
+        "repeatingCharacters": "Parola tekrarlayan sayılar, harfler, veya özel karakterler içermemelidir.",
+        "smallAndCapitalLetter": "Parola en az bir adet büyük bir adet küçük harf içermelidir.",
+        "oneNumber": "Parola en az bir adet sayı içermelidir.",
+        "oneSpecialCharacter": "Parola en az bir adet özel karakter içermelidir."
+      }
+    }
+  }
+}
