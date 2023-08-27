@@ -51,7 +51,9 @@
     },
     "topbar": {
       "homePage": "Homepage",
-      "timeLine": "Timeline"
+      "timeLine": "Timeline",
+      "logOut": "Log Out",
+      "search": "Search for a friend"
     }
   }
 }

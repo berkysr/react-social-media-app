@@ -51,7 +51,9 @@
     },
     "topbar": {
       "homePage": "Ana Sayfa",
-      "timeLine": "Akış"
+      "timeLine": "Akış",
+      "logOut": "Çıkış",
+      "search": "Bir arkadaş ara"
     }
   }
 }

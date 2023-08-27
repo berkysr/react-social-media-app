@@ -6,10 +6,7 @@ import IconComponent from './IconComponent';
 
 export default function Share() {
   const { t } = useTranslation();
-  const theme = useTheme();
-
   const [width, setWidth] = useState(0);
-
   const windowWidth = window.innerWidth;
   const isOnlyBigScreen = width >= 1200;
 

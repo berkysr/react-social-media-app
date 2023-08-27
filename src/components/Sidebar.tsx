@@ -8,8 +8,8 @@ import {
   QuestionAnswerSharp,
   CasesSharp,
   EventAvailableSharp,
-  CastForEducation,
 } from '@mui/icons-material';
+import { SideBarElementInfoTexts } from '../helper/enums/enums';
 import CloseFriend from './CloseFriend';
 import { users } from '../helper/api/users';
 import { useTranslation } from 'react-i18next';
@@ -20,35 +20,35 @@ export default function Sidebar() {
   const { t } = useTranslation();
   const navbarElements = [
     {
-      infoText: 'feed',
+      infoText: SideBarElementInfoTexts.FEED,
       child: <RssFeed className="mr-4" />,
     },
     {
-      infoText: 'chats',
+      infoText: SideBarElementInfoTexts.CHATS,
       child: <ChatSharp className="mr-4" />,
     },
     {
-      infoText: 'videos',
+      infoText: SideBarElementInfoTexts.VIDEOS,
       child: <VideoCameraBack className="mr-4" />,
     },
     {
-      infoText: 'groups',
+      infoText: SideBarElementInfoTexts.GROUPS,
       child: <GroupSharp className="mr-4" />,
     },
     {
-      infoText: 'bookmarks',
+      infoText: SideBarElementInfoTexts.BOOKMARKS,
       child: <BookmarkSharp className="mr-4" />,
     },
     {
-      infoText: 'questions',
+      infoText: SideBarElementInfoTexts.QUESTIONS,
       child: <QuestionAnswerSharp className="mr-4" />,
     },
     {
-      infoText: 'jobs',
+      infoText: SideBarElementInfoTexts.JOBS,
       child: <CasesSharp className="mr-4" />,
     },
     {
-      infoText: 'events',
+      infoText: SideBarElementInfoTexts.EVENTS,
       child: <EventAvailableSharp className="mr-4" />,
     },
   ];
