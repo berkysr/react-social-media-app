@@ -1,6 +1,4 @@
 import React from 'react';
-import { User } from '../helper/types/user';
-
 interface FormInputProps {
   label: string;
   type: string;

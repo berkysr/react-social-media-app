@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FormInput from '../components/InputField';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import { SignInPageFields } from '../helper/enums/enums';
+import { SignInPageFields, PlaceHolders, APIMethods, APIEndpoints, APIMockCredentials, Types, PageURLs } from '../helper/enums/enums';
+import { useNavigate } from 'react-router-dom';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
 import {
   repeatingCharacter,
@@ -13,10 +14,14 @@ import {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
 } from '../helper/utils/validationFunctions';
+import { DecodedGoogleCredentialResponse, LoginResponse } from '../helper/types/login';
 import * as Yup from 'yup';
 
 export default function Login() {
   const { t } = useTranslation();
+  const [loginError, setLoginError] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required(t('error:error.validation.required')).email(t('error:error.validation.email.invalid')),
@@ -77,11 +82,38 @@ export default function Login() {
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      resetForm();
+      setIsLoading(true);
+
+      fetch(APIEndpoints.MOCK_AUTHENTICATION_URL, {
+        method: APIMethods.POST,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: APIMockCredentials.MOCK_USERNAME,
+          password: APIMockCredentials.MOCK_PASSWORD,
+        }),
+      })
+        .then((data) => data.json())
+        .then((response: LoginResponse) => {
+          window.localStorage.setItem('token', response.token);
+
+          setTimeout(() => {
+            resetForm();
+            navigate(PageURLs.HOME);
+          }, 500);
+        })
+        .catch((err) => setLoginError(err.message))
+        .finally(() => setIsLoading(false));
     },
     isInitialValid: true,
   });
+
+  const isDisabled = isLoading || !formik.dirty || !formik.isValid;
+
+  useEffect(() => {
+    if (window.localStorage.getItem('token')) {
+      navigate(PageURLs.HOME);
+    }
+  }, []);
 
   return (
     <Box
@@ -111,7 +143,7 @@ export default function Login() {
               type={SignInPageFields.EMAIL}
               name={SignInPageFields.EMAIL}
               value={formik.values.email}
-              placeHolder="example@domain.com"
+              placeHolder={PlaceHolders.EMAIL}
               label={t('pages.login.email')}
               helperText={formik.errors.email ? formik.errors.email : ''}
               onChange={formik.handleChange}
@@ -124,7 +156,7 @@ export default function Login() {
               type={SignInPageFields.PASSWORD}
               name={SignInPageFields.PASSWORD}
               value={formik.values.password}
-              placeHolder="Your password"
+              placeHolder={PlaceHolders.PASSWORD}
               label={t('pages.login.password')}
               helperText={formik.errors.password ? formik.errors.password : ''}
               onChange={formik.handleChange}
@@ -132,20 +164,20 @@ export default function Login() {
           </Box>
 
           <Box className="flex align-start justify-center w-auto">
+            {loginError && <p className="text-red-500">{loginError}</p>}
+
             <button
               className={`group relative h-12 w-auto !overflow-hidden !rounded-lg !bg-white !text-lg shadow !mt-6 !px-6 select-none ${
-                !formik.dirty || !formik.isValid ? 'opacity-50 !bg-gray' : ''
+                isDisabled ? 'opacity-50 !bg-gray' : ''
               }`}
-              type="submit"
-              disabled={!formik.dirty || !formik.isValid}
+              type={Types.SUBMIT}
+              disabled={isDisabled}
             >
-              {formik.dirty && formik.isValid ? (
+              {!isDisabled ? (
                 <div className="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
               ) : null}
 
-              <p className={`relative text-black  ${formik.dirty && formik.isValid ? 'group-hover:text-white' : ''}`}>
-                {t('button.signIn')}
-              </p>
+              <p className={`relative text-black  ${!isDisabled ? 'group-hover:text-white' : ''}`}>{t('button.signIn')}</p>
             </button>
           </Box>
 
@@ -161,9 +193,13 @@ export default function Login() {
             <GoogleLogin
               onSuccess={(credentialResponse: CredentialResponse) => {
                 if (credentialResponse) {
-                  const jwtDecodedResponse = jwt_decode(credentialResponse.credential as string);
+                  const jwtDecodedResponse: DecodedGoogleCredentialResponse = jwt_decode(credentialResponse.credential as string);
 
-                  console.log(jwtDecodedResponse);
+                  window.localStorage.setItem('token', jwtDecodedResponse.jti);
+
+                  setTimeout(() => {
+                    navigate(PageURLs.HOME);
+                  }, 500);
                 }
               }}
             />

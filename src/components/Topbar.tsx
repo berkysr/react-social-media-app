@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 import { Search, Person, Chat, Notifications } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { PageURLs } from '../helper/enums/enums';
 
 export default function Topbar() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    window.localStorage.removeItem('token');
+    navigate(PageURLs.SIGN_IN);
+  };
 
   return (
     <Box
@@ -32,7 +40,7 @@ export default function Topbar() {
         <Search className="!text-xl ml-2.5" />
 
         <input
-          placeholder="Search for a friend"
+          placeholder={t('components.topbar.search')}
           className="border-0 w-[70%] focus:outline-none"
         />
       </Box>
@@ -52,6 +60,13 @@ export default function Topbar() {
           <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.homePage')}</p>
 
           <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.timeLine')}</p>
+
+          <p
+            className="mr-2.5 text-sm font-medium cursor-pointer"
+            onClick={logout}
+          >
+            {t('components.topbar.logOut')}
+          </p>
         </Box>
 
         <Box

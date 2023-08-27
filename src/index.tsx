@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.scss';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/system';
 import './i18n';
-
 import { GOOGLE_CLIENT_ID } from './helper/utils/constants';
 
 const theme = createTheme({

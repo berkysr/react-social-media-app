@@ -1,20 +1,21 @@
-import React, { SetStateAction, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import './index.scss';
+import { useLocation, Route, Routes } from 'react-router-dom';
 import i18n from './i18n';
 import { changeLanguage } from './shared/translationTool';
 import { Grid } from '@mui/material';
 import Topbar from './components/Topbar';
-import { PageNames } from './helper/enums/enums';
+import { PageNames, PageURLs, Languages, Events } from './helper/enums/enums';
+import ProtectedRoute from './helper/utils/protectedRoute';
 
 function App() {
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
-  const [language, setLanguage] = useState<string>('en');
+  const [language, setLanguage] = useState<string>(Languages.EN);
   const [isSignInPage, setIsSignInPage] = useState<boolean>(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const tokenValue = window.localStorage.getItem('token');
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -27,12 +28,18 @@ function App() {
     const supportedLngs = i18n.options.supportedLngs ? i18n.options.supportedLngs : [''];
     const supportedLanguages = supportedLngs.filter((lang: string) => lang !== 'cimode');
 
-    i18n.on('languageChanged', (lng: string) => {
+    i18n.on(Events.LANGUAGE_CHANGED, (lng: string) => {
       setLanguage(lng);
     });
 
     setAvailableLanguages(supportedLanguages);
   }, []);
+
+  useEffect(() => {
+    if (tokenValue) {
+      setIsLoggedIn(!!tokenValue);
+    }
+  }, [tokenValue]);
 
   useEffect(() => {
     const langExists = availableLanguages.includes(language);
@@ -52,15 +59,25 @@ function App() {
 
         <Routes>
           <Route
-            path="/"
-            element={<Home />}
+            path={PageURLs.HOME}
+            element={
+              <ProtectedRoute
+                isProtected={isLoggedIn}
+                component={<Home />}
+              />
+            }
           />
           <Route
-            path="/profile"
-            element={<Profile />}
+            path={PageURLs.PROFILE}
+            element={
+              <ProtectedRoute
+                isProtected={isLoggedIn}
+                component={<Profile />}
+              />
+            }
           />
           <Route
-            path="/sign-in"
+            path={PageURLs.SIGN_IN}
             element={<Login />}
           />
         </Routes>
