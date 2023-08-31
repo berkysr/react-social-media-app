@@ -16,9 +16,14 @@ import {
 } from '../helper/utils/validationFunctions';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../helper/types/login';
 import * as Yup from 'yup';
+import { getAuthenticationAPIDetails } from '../helper/reducers/APIRequestReducer';
+import { useAppDispatch } from '../store';
+import { setIsUserLoggedIn } from '../helper/reducers/appReducer';
 
 export default function Login() {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
   const [loginError, setLoginError] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
@@ -84,22 +89,11 @@ export default function Login() {
     onSubmit: (values, { resetForm }) => {
       setIsLoading(true);
 
-      fetch(APIEndpoints.MOCK_AUTHENTICATION_URL, {
-        method: APIMethods.POST,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: APIMockCredentials.MOCK_USERNAME,
-          password: APIMockCredentials.MOCK_PASSWORD,
-        }),
-      })
-        .then((data) => data.json())
-        .then((response: LoginResponse) => {
-          window.localStorage.setItem('token', response.token);
-
-          setTimeout(() => {
-            resetForm();
-            navigate(PageURLs.HOME);
-          }, 500);
+      dispatch(getAuthenticationAPIDetails({ username: '', password: '' }))
+        .then((response) => {
+          dispatch(setIsUserLoggedIn(true));
+          resetForm();
+          navigate(PageURLs.HOME);
         })
         .catch((err) => setLoginError(err.message))
         .finally(() => setIsLoading(false));
