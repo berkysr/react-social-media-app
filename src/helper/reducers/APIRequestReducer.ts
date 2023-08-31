@@ -4,12 +4,12 @@ import { AppDispatch, RootState } from '../../store';
 import { APIEndpoints, APIMethods, APIMockCredentials, PageURLs } from '../enums/enums';
 
 export interface APIRequestState {
-  MockAuthenticationAPIDetails: LoginResponse;
-  GoogleLoginDetails: DecodedGoogleCredentialResponse;
+  authenticationAPIDetails: LoginResponse;
+  googleLoginDetails: DecodedGoogleCredentialResponse;
 }
 
 const initialState: APIRequestState = {
-  MockAuthenticationAPIDetails: {
+  authenticationAPIDetails: {
     id: null,
     username: '',
     email: '',
@@ -19,7 +19,7 @@ const initialState: APIRequestState = {
     image: '',
     token: '',
   },
-  GoogleLoginDetails: {
+  googleLoginDetails: {
     iss: '',
     azp: '',
     aud: '',
@@ -45,7 +45,7 @@ export const getAuthenticationAPIDetails = createAsyncThunk<
     password: string;
   },
   { state: RootState; dispatch: AppDispatch }
->('APICall/getAuthenticationAPIDetails', async ({ username, password }, { rejectWithValue }) => {
+>('APICall/getAuthenticationAPIDetails', async ({ username, password }, { dispatch, rejectWithValue }) => {
   let authenticationAPIResponse: LoginResponse;
 
   try {
@@ -63,6 +63,8 @@ export const getAuthenticationAPIDetails = createAsyncThunk<
 
   console.log('authenticationAPIResponse', authenticationAPIResponse);
 
+  dispatch(setAuthenticationAPIDetails(authenticationAPIResponse));
+
   return authenticationAPIResponse;
 });
 
@@ -70,24 +72,27 @@ export const proposalSlice = createSlice({
   name: 'APIRequestState',
   initialState,
   reducers: {
-    // setMockAuthenticationAPIDetails: (state, action: PayloadAction<LoginResponse>) => {
-    //   state.MockAuthenticationAPIDetails = action.payload;
-    // },
+    setAuthenticationAPIDetails: (state, action: PayloadAction<LoginResponse>) => {
+      state.authenticationAPIDetails = action.payload;
+    },
+    setGoogleAPIDetails: (state, action: PayloadAction<DecodedGoogleCredentialResponse>) => {
+      state.googleLoginDetails = action.payload;
+    },
   },
   extraReducers(builder) {
-    // builder
-    //   .addCase(getAuthenticationAPIDetails.pending, (state) => {
-    //     console.log('mockAuthenticationAPIResponse pending', state);
-    //   })
-    //   .addCase(getMockAuthenticationAPIDetails.fulfilled, (state, action) => {
-    //     console.log('mockAuthenticationAPIResponse fulfilled', state);
-    //   })
-    //   .addCase(getMockAuthenticationAPIDetails.rejected, (state, err) => {
-    //     console.log('mockAuthenticationAPIResponse rejected', state);
-    //   });
+    builder;
+    // .addCase(getAuthenticationAPIDetails.pending, (state) => {
+    //   console.log('mockAuthenticationAPIResponse pending', state);
+    // })
+    // .addCase(getAuthenticationAPIDetails.fulfilled, (state, action) => {
+    //   console.log('mockAuthenticationAPIResponse fulfilled', state);
+    // })
+    // .addCase(getAuthenticationAPIDetails.rejected, (state, err) => {
+    //   console.log('mockAuthenticationAPIResponse rejected', state);
+    // });
   },
 });
 
-// export const { setMockAuthenticationAPIDetails } = proposalSlice.actions;
+export const { setAuthenticationAPIDetails, setGoogleAPIDetails } = proposalSlice.actions;
 
 export default proposalSlice.reducer;

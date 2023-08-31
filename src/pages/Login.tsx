@@ -16,9 +16,11 @@ import {
 } from '../helper/utils/validationFunctions';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../helper/types/login';
 import * as Yup from 'yup';
-import { getAuthenticationAPIDetails } from '../helper/reducers/APIRequestReducer';
+import { getAuthenticationAPIDetails, setGoogleAPIDetails } from '../helper/reducers/APIRequestReducer';
 import { useAppDispatch } from '../store';
 import { setIsUserLoggedIn } from '../helper/reducers/appReducer';
+
+// URL navigate reducer
 
 export default function Login() {
   const { t } = useTranslation();
@@ -103,12 +105,6 @@ export default function Login() {
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
 
-  useEffect(() => {
-    if (window.localStorage.getItem('token')) {
-      navigate(PageURLs.HOME);
-    }
-  }, []);
-
   return (
     <Box
       display="flex"
@@ -171,7 +167,7 @@ export default function Login() {
                 <div className="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
               ) : null}
 
-              <p className={`relative text-black  ${!isDisabled ? 'group-hover:text-white' : ''}`}>{t('button.signIn')}</p>
+              <p className={`relative text-black ${!isDisabled ? 'group-hover:text-white' : ''}`}>{t('button.signIn')}</p>
             </button>
           </Box>
 
@@ -189,11 +185,10 @@ export default function Login() {
                 if (credentialResponse) {
                   const jwtDecodedResponse: DecodedGoogleCredentialResponse = jwt_decode(credentialResponse.credential as string);
 
-                  window.localStorage.setItem('token', jwtDecodedResponse.jti);
+                  dispatch(setGoogleAPIDetails(jwtDecodedResponse));
+                  dispatch(setIsUserLoggedIn(true));
 
-                  setTimeout(() => {
-                    navigate(PageURLs.HOME);
-                  }, 500);
+                  navigate(PageURLs.HOME);
                 }
               }}
             />
