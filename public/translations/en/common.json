@@ -1,7 +1,7 @@
 {
   "pages": {
     "login": {
-      "welcome": "Welcome Back!",
+      "welcome": "Welcome!",
       "email": "Your Email",
       "password": "Password",
       "or": "or"

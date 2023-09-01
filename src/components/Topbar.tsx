@@ -5,13 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { PageURLs } from '../helper/enums/enums';
+import { useAppDispatch } from '../store';
+import { setIsUserLoggedIn } from '../helper/reducers/appReducer';
 
 export default function Topbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const logout = () => {
-    window.localStorage.removeItem('token');
+    dispatch(setIsUserLoggedIn(false));
+
     navigate(PageURLs.SIGN_IN);
   };
 

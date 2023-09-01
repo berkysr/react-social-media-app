@@ -9,20 +9,18 @@ import { Grid } from '@mui/material';
 import Topbar from './components/Topbar';
 import { PageNames, PageURLs, Languages, Events } from './helper/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
+import { useAppDispatch, useAppSelector } from './store';
+import { selectIsLoggedIn } from './helper/selectors/appSelector';
+import { setLastVisitedURL } from './helper/reducers/appReducer';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
   const [language, setLanguage] = useState<string>(Languages.EN);
-  const [isSignInPage, setIsSignInPage] = useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const tokenValue = window.localStorage.getItem('token');
+
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    const rawPageName = pathname.split('/').pop();
-
-    setIsSignInPage(rawPageName === PageNames.SIGN_IN);
-  }, [pathname]);
 
   useEffect(() => {
     const supportedLngs = i18n.options.supportedLngs ? i18n.options.supportedLngs : [''];
@@ -36,17 +34,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (tokenValue) {
-      setIsLoggedIn(!!tokenValue);
-    }
-  }, [tokenValue]);
-
-  useEffect(() => {
     const langExists = availableLanguages.includes(language);
     const correctLanguage = langExists ? language : i18n.languages[1];
 
     changeLanguage(correctLanguage);
   }, [language, availableLanguages]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(setLastVisitedURL(pathname || ''));
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -55,7 +53,7 @@ function App() {
         direction="column"
         className="app-container"
       >
-        {!isSignInPage ? <Topbar /> : null}
+        {isLoggedIn ? <Topbar /> : null}
 
         <Routes>
           <Route

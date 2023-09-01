@@ -49,7 +49,7 @@ export enum APIMethods {
 }
 
 export enum APIEndpoints {
-  MOCK_AUTHENTICATION_URL = 'https://dummyjson.com/auth/login',
+  AUTHENTICATION_URL = 'https://dummyjson.com/auth/login',
 }
 
 export enum APIMockCredentials {

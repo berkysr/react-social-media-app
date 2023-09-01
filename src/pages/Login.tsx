@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { Box } from '@mui/material';
 import { SignInPageFields, PlaceHolders, APIMethods, APIEndpoints, APIMockCredentials, Types, PageURLs } from '../helper/enums/enums';
 import { useNavigate } from 'react-router-dom';
+import { selecLastVisitedURL } from '../helper/selectors/appSelector';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
 import {
   repeatingCharacter,
@@ -16,11 +17,17 @@ import {
 } from '../helper/utils/validationFunctions';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../helper/types/login';
 import * as Yup from 'yup';
+import { getAuthenticationAPIDetails, setGoogleAPIDetails } from '../helper/reducers/APIRequestReducer';
+import { useAppDispatch, useAppSelector } from '../store';
+import { setIsUserLoggedIn } from '../helper/reducers/appReducer';
 
 export default function Login() {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
   const [loginError, setLoginError] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const lastVisitedURL = useAppSelector(selecLastVisitedURL);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -84,22 +91,11 @@ export default function Login() {
     onSubmit: (values, { resetForm }) => {
       setIsLoading(true);
 
-      fetch(APIEndpoints.MOCK_AUTHENTICATION_URL, {
-        method: APIMethods.POST,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: APIMockCredentials.MOCK_USERNAME,
-          password: APIMockCredentials.MOCK_PASSWORD,
-        }),
-      })
-        .then((data) => data.json())
-        .then((response: LoginResponse) => {
-          window.localStorage.setItem('token', response.token);
-
-          setTimeout(() => {
-            resetForm();
-            navigate(PageURLs.HOME);
-          }, 500);
+      dispatch(getAuthenticationAPIDetails({ username: APIMockCredentials.MOCK_USERNAME, password: APIMockCredentials.MOCK_PASSWORD }))
+        .then((response) => {
+          dispatch(setIsUserLoggedIn(true));
+          resetForm();
+          navigate(lastVisitedURL);
         })
         .catch((err) => setLoginError(err.message))
         .finally(() => setIsLoading(false));
@@ -108,12 +104,6 @@ export default function Login() {
   });
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
-
-  useEffect(() => {
-    if (window.localStorage.getItem('token')) {
-      navigate(PageURLs.HOME);
-    }
-  }, []);
 
   return (
     <Box
@@ -177,7 +167,7 @@ export default function Login() {
                 <div className="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
               ) : null}
 
-              <p className={`relative text-black  ${!isDisabled ? 'group-hover:text-white' : ''}`}>{t('button.signIn')}</p>
+              <p className={`relative text-black ${!isDisabled ? 'group-hover:text-white' : ''}`}>{t('button.signIn')}</p>
             </button>
           </Box>
 
@@ -195,11 +185,9 @@ export default function Login() {
                 if (credentialResponse) {
                   const jwtDecodedResponse: DecodedGoogleCredentialResponse = jwt_decode(credentialResponse.credential as string);
 
-                  window.localStorage.setItem('token', jwtDecodedResponse.jti);
-
-                  setTimeout(() => {
-                    navigate(PageURLs.HOME);
-                  }, 500);
+                  dispatch(setGoogleAPIDetails(jwtDecodedResponse));
+                  dispatch(setIsUserLoggedIn(true));
+                  navigate(lastVisitedURL);
                 }
               }}
             />
