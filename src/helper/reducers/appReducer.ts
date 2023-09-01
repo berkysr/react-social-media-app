@@ -2,6 +2,7 @@ import { createSelector, createSlice, isRejected, PayloadAction } from '@reduxjs
 import { RootState } from '../../store';
 import { User } from '../types/user';
 import { PageURLs } from '../enums/enums';
+import { useNavigate } from 'react-router-dom';
 
 export interface AppState {
   lastVisitedURL: string;
@@ -26,7 +27,7 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setPageBaseUrl: (state, action: PayloadAction<AppState['lastVisitedURL']>) => {
+    setLastVisitedURL: (state, action: PayloadAction<AppState['lastVisitedURL']>) => {
       state.lastVisitedURL = action.payload;
     },
     setPageError: (state, action: PayloadAction<AppState['pageError']>) => {
@@ -51,11 +52,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { setPageBaseUrl, setPageError, setPageLoading, setUser, setIsUserLoggedIn } = appSlice.actions;
-
-export const selectApp = createSelector(
-  (state: RootState) => state.app,
-  (app) => app,
-);
+export const { setLastVisitedURL, setPageError, setPageLoading, setUser, setIsUserLoggedIn } = appSlice.actions;
 
 export default appSlice.reducer;

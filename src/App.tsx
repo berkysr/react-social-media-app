@@ -11,6 +11,7 @@ import { PageNames, PageURLs, Languages, Events } from './helper/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
 import { selectIsLoggedIn } from './helper/selectors/appSelector';
+import { setLastVisitedURL } from './helper/reducers/appReducer';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,8 @@ function App() {
 
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
   const [language, setLanguage] = useState<string>(Languages.EN);
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const supportedLngs = i18n.options.supportedLngs ? i18n.options.supportedLngs : [''];
@@ -36,6 +39,12 @@ function App() {
 
     changeLanguage(correctLanguage);
   }, [language, availableLanguages]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(setLastVisitedURL(pathname || ''));
+    }
+  }, [pathname]);
 
   return (
     <>

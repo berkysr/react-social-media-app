@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../types/login';
 import { AppDispatch, RootState } from '../../store';
-import { APIEndpoints, APIMethods, APIMockCredentials, PageURLs } from '../enums/enums';
+import { APIEndpoints, APIMethods } from '../enums/enums';
 
 export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
@@ -53,15 +53,13 @@ export const getAuthenticationAPIDetails = createAsyncThunk<
       method: APIMethods.POST,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: APIMockCredentials.MOCK_USERNAME,
-        password: APIMockCredentials.MOCK_PASSWORD,
+        username,
+        password,
       }),
     }).then((data) => data.json());
   } catch (e) {
     return rejectWithValue(e);
   }
-
-  console.log('authenticationAPIResponse', authenticationAPIResponse);
 
   dispatch(setAuthenticationAPIDetails(authenticationAPIResponse));
 
@@ -80,16 +78,16 @@ export const proposalSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder;
-    // .addCase(getAuthenticationAPIDetails.pending, (state) => {
-    //   console.log('mockAuthenticationAPIResponse pending', state);
-    // })
-    // .addCase(getAuthenticationAPIDetails.fulfilled, (state, action) => {
-    //   console.log('mockAuthenticationAPIResponse fulfilled', state);
-    // })
-    // .addCase(getAuthenticationAPIDetails.rejected, (state, err) => {
-    //   console.log('mockAuthenticationAPIResponse rejected', state);
-    // });
+    builder
+      .addCase(getAuthenticationAPIDetails.pending, (state) => {
+        console.log('mockAuthenticationAPIResponse pending', state);
+      })
+      .addCase(getAuthenticationAPIDetails.fulfilled, (state, action) => {
+        console.log('mockAuthenticationAPIResponse fulfilled', state);
+      })
+      .addCase(getAuthenticationAPIDetails.rejected, (state, err) => {
+        console.log('mockAuthenticationAPIResponse rejected', state);
+      });
   },
 });
 

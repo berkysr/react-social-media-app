@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { Box } from '@mui/material';
 import { SignInPageFields, PlaceHolders, APIMethods, APIEndpoints, APIMockCredentials, Types, PageURLs } from '../helper/enums/enums';
 import { useNavigate } from 'react-router-dom';
+import { selecLastVisitedURL } from '../helper/selectors/appSelector';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
 import {
   repeatingCharacter,
@@ -17,10 +18,8 @@ import {
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../helper/types/login';
 import * as Yup from 'yup';
 import { getAuthenticationAPIDetails, setGoogleAPIDetails } from '../helper/reducers/APIRequestReducer';
-import { useAppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../helper/reducers/appReducer';
-
-// URL navigate reducer
 
 export default function Login() {
   const { t } = useTranslation();
@@ -28,6 +27,7 @@ export default function Login() {
 
   const [loginError, setLoginError] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const lastVisitedURL = useAppSelector(selecLastVisitedURL);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -91,11 +91,11 @@ export default function Login() {
     onSubmit: (values, { resetForm }) => {
       setIsLoading(true);
 
-      dispatch(getAuthenticationAPIDetails({ username: '', password: '' }))
+      dispatch(getAuthenticationAPIDetails({ username: APIMockCredentials.MOCK_USERNAME, password: APIMockCredentials.MOCK_PASSWORD }))
         .then((response) => {
           dispatch(setIsUserLoggedIn(true));
           resetForm();
-          navigate(PageURLs.HOME);
+          navigate(lastVisitedURL);
         })
         .catch((err) => setLoginError(err.message))
         .finally(() => setIsLoading(false));
@@ -187,8 +187,7 @@ export default function Login() {
 
                   dispatch(setGoogleAPIDetails(jwtDecodedResponse));
                   dispatch(setIsUserLoggedIn(true));
-
-                  navigate(PageURLs.HOME);
+                  navigate(lastVisitedURL);
                 }
               }}
             />
