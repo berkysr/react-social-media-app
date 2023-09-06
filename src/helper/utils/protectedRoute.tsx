@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Navigate } from 'react-router-dom';
 import Login from '../../pages/Login';
-import { PageURLs } from '../enums/enums';
+import { PageURLs } from '../../shared/enums/enums';
 
 interface ProtectedRouteProps {
   component: React.ReactNode;

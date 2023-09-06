@@ -54,6 +54,13 @@
       "timeLine": "Akış",
       "logOut": "Çıkış",
       "search": "Bir arkadaş ara"
+    },
+    "alert": {
+      "title": {
+        "icon": "İkon",
+        "close": "Kapat"
+      },
+      "success": "Başarılı"
     }
   }
 }

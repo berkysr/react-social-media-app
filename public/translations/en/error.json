@@ -12,6 +12,9 @@
         "smallAndCapitalLetter": "Password should contain at least one small and one capital letter.",
         "oneNumber": "Password should contain at least one number.",
         "oneSpecialCharacter": "Password should contain at special character."
+      },
+      "api": {
+        "genericError": "Something went wrong."
       }
     }
   }

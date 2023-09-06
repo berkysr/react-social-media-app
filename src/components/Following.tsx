@@ -1,5 +1,5 @@
 import React from 'react';
-import { Company } from '../helper/types/company';
+import { Company } from '../shared/types/company';
 import { Box } from '@mui/material';
 
 interface FollowingProps {

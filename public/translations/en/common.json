@@ -54,6 +54,13 @@
       "timeLine": "Timeline",
       "logOut": "Log Out",
       "search": "Search for a friend"
+    },
+    "alert": {
+      "title": {
+        "icon": "Icon",
+        "close": "Close"
+      },
+      "success": "Success"
     }
   }
 }

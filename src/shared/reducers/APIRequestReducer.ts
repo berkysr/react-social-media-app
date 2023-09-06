@@ -1,11 +1,15 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../types/login';
+import { Alert } from '../types/general';
 import { AppDispatch, RootState } from '../../store';
 import { APIEndpoints, APIMethods } from '../enums/enums';
+import { t } from 'i18next';
 
 export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
   googleLoginDetails: DecodedGoogleCredentialResponse;
+  alerts: Alert[];
+  isLoading: boolean;
 }
 
 const initialState: APIRequestState = {
@@ -36,6 +40,8 @@ const initialState: APIRequestState = {
     exp: null,
     jti: '',
   },
+  alerts: [],
+  isLoading: false,
 };
 
 export const getAuthenticationAPIDetails = createAsyncThunk<
@@ -46,22 +52,14 @@ export const getAuthenticationAPIDetails = createAsyncThunk<
   },
   { state: RootState; dispatch: AppDispatch }
 >('APICall/getAuthenticationAPIDetails', async ({ username, password }, { dispatch, rejectWithValue }) => {
-  let authenticationAPIResponse: LoginResponse;
-
-  try {
-    authenticationAPIResponse = await fetch(APIEndpoints.AUTHENTICATION_URL, {
-      method: APIMethods.POST,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    }).then((data) => data.json());
-  } catch (e) {
-    return rejectWithValue(e);
-  }
-
-  dispatch(setAuthenticationAPIDetails(authenticationAPIResponse));
+  const authenticationAPIResponse: LoginResponse = await fetch(APIEndpoints.AUTHENTICATION_URL, {
+    method: APIMethods.POST,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  }).then((data) => data.json());
 
   return authenticationAPIResponse;
 });
@@ -70,27 +68,38 @@ export const proposalSlice = createSlice({
   name: 'APIRequestState',
   initialState,
   reducers: {
-    setAuthenticationAPIDetails: (state, action: PayloadAction<LoginResponse>) => {
+    setAuthenticationAPIDetails: (state, action: PayloadAction<APIRequestState['authenticationAPIDetails']>) => {
       state.authenticationAPIDetails = action.payload;
     },
-    setGoogleAPIDetails: (state, action: PayloadAction<DecodedGoogleCredentialResponse>) => {
+    setGoogleAPIDetails: (state, action: PayloadAction<APIRequestState['googleLoginDetails']>) => {
       state.googleLoginDetails = action.payload;
+    },
+    setAlertMessage: (state, action) => {
+      action.payload.identifier = state.alerts.length === 0 ? 1 : state.alerts.length + 1;
+      state.alerts = [...state.alerts, action.payload];
+    },
+    setAlertMessageAsRemoved: (state, action: PayloadAction<number>) => {
+      state.alerts = state.alerts.filter((alert) => alert.identifier !== action.payload);
+    },
+    setIsLoading: (state, action: PayloadAction<APIRequestState['isLoading']>) => {
+      state.isLoading = action.payload;
     },
   },
   extraReducers(builder) {
     builder
       .addCase(getAuthenticationAPIDetails.pending, (state) => {
-        console.log('mockAuthenticationAPIResponse pending', state);
+        state.isLoading = true;
       })
       .addCase(getAuthenticationAPIDetails.fulfilled, (state, action) => {
-        console.log('mockAuthenticationAPIResponse fulfilled', state);
+        state.isLoading = false;
       })
-      .addCase(getAuthenticationAPIDetails.rejected, (state, err) => {
-        console.log('mockAuthenticationAPIResponse rejected', state);
+      .addCase(getAuthenticationAPIDetails.rejected, (state, error) => {
+        state.isLoading = false;
       });
   },
 });
 
-export const { setAuthenticationAPIDetails, setGoogleAPIDetails } = proposalSlice.actions;
+export const { setAuthenticationAPIDetails, setGoogleAPIDetails, setAlertMessageAsRemoved, setAlertMessage, setIsLoading } =
+  proposalSlice.actions;
 
 export default proposalSlice.reducer;

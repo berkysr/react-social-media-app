@@ -1,6 +1,6 @@
 import React from 'react';
 import OnlineFriend from './OnlineFriend';
-import { users } from '../helper/api/users';
+import { users } from '../shared/api/users';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 

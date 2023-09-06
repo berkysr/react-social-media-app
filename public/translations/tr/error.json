@@ -12,6 +12,9 @@
         "smallAndCapitalLetter": "Parola en az bir adet büyük bir adet küçük harf içermelidir.",
         "oneNumber": "Parola en az bir adet sayı içermelidir.",
         "oneSpecialCharacter": "Parola en az bir adet özel karakter içermelidir."
+      },
+      "api": {
+        "genericError": "Bir şeyler ters gitti."
       }
     }
   }
