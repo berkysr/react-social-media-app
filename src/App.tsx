@@ -5,17 +5,20 @@ import Login from './pages/Login';
 import { useLocation, Route, Routes } from 'react-router-dom';
 import i18n from './i18n';
 import { changeLanguage } from './shared/translationTool';
-import { Grid } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import Topbar from './components/Topbar';
-import { PageNames, PageURLs, Languages, Events } from './helper/enums/enums';
+import { PageURLs, Languages, Events } from './shared/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
-import { selectIsLoggedIn } from './helper/selectors/appSelector';
-import { setLastVisitedURL } from './helper/reducers/appReducer';
+import { selectIsLoggedIn } from './shared/selectors/appSelector';
+import { selectAlerts } from './shared/selectors/APIRequestSelector';
+import { setLastVisitedURL } from './shared/reducers/appReducer';
+import AlertComponent from './components/AlertComponent';
 
 function App() {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const alerts = useAppSelector(selectAlerts);
 
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
   const [language, setLanguage] = useState<string>(Languages.EN);
@@ -52,6 +55,7 @@ function App() {
         container
         direction="column"
         className="app-container"
+        position="relative"
       >
         {isLoggedIn ? <Topbar /> : null}
 
@@ -79,6 +83,23 @@ function App() {
             element={<Login />}
           />
         </Routes>
+
+        {alerts ? (
+          <Box
+            position="absolute"
+            className="right-4 top-0 z-[999] max-h-96 overflow-y-auto"
+          >
+            {alerts.map((alert) => (
+              <AlertComponent
+                key={alert.identifier}
+                identifier={alert.identifier}
+                icon={alert.icon}
+                message={alert.message}
+                canBeClosed={alert.canBeClosed}
+              ></AlertComponent>
+            ))}
+          </Box>
+        ) : null}
       </Grid>
     </>
   );

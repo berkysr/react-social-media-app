@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../helper/types/user';
+import { User } from '../shared/types/user';
 
 interface CloseFriendProps {
   user: User;

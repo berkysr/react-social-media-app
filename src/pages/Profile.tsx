@@ -2,8 +2,8 @@ import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/Feed';
-import { users } from '../helper/api/users';
-import { usersProfileDetails } from '../helper/api/profileDetails';
+import { users } from '../shared/api/users';
+import { usersProfileDetails } from '../shared/api/profileDetails';
 import { Box } from '@mui/material';
 
 export default function Profile() {

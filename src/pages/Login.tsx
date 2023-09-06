@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import { SignInPageFields, PlaceHolders, APIMethods, APIEndpoints, APIMockCredentials, Types, PageURLs } from '../helper/enums/enums';
+import { SignInPageFields, PlaceHolders, APIMethods, APIEndpoints, APIMockCredentials, Types, PageURLs } from '../shared/enums/enums';
 import { useNavigate } from 'react-router-dom';
-import { selecLastVisitedURL } from '../helper/selectors/appSelector';
+import { selecLastVisitedURL } from '../shared/selectors/appSelector';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
 import {
   repeatingCharacter,
@@ -15,19 +15,26 @@ import {
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
 } from '../helper/utils/validationFunctions';
-import { DecodedGoogleCredentialResponse, LoginResponse } from '../helper/types/login';
+import { DecodedGoogleCredentialResponse, LoginResponse } from '../shared/types/login';
 import * as Yup from 'yup';
-import { getAuthenticationAPIDetails, setGoogleAPIDetails } from '../helper/reducers/APIRequestReducer';
+import {
+  getAuthenticationAPIDetails,
+  setAlertMessage,
+  setAuthenticationAPIDetails,
+  setGoogleAPIDetails,
+} from '../shared/reducers/APIRequestReducer';
 import { useAppDispatch, useAppSelector } from '../store';
-import { setIsUserLoggedIn } from '../helper/reducers/appReducer';
+import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
+import { selectAlerts, selectIsLoading } from '../shared/selectors/APIRequestSelector';
 
 export default function Login() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const [loginError, setLoginError] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
   const lastVisitedURL = useAppSelector(selecLastVisitedURL);
+  const isLoading = useAppSelector(selectIsLoading);
+  const alerts = useAppSelector(selectAlerts);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -89,17 +96,29 @@ export default function Login() {
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
-      setIsLoading(true);
-
       dispatch(getAuthenticationAPIDetails({ username: APIMockCredentials.MOCK_USERNAME, password: APIMockCredentials.MOCK_PASSWORD }))
         .then((response) => {
-          dispatch(setIsUserLoggedIn(true));
-          resetForm();
-          navigate(lastVisitedURL);
+          const payload = response.payload as LoginResponse;
+
+          if (payload.id) {
+            dispatch(setAuthenticationAPIDetails(payload));
+            dispatch(setIsUserLoggedIn(true));
+
+            resetForm();
+            navigate(lastVisitedURL);
+          }
         })
-        .catch((err) => setLoginError(err.message))
-        .finally(() => setIsLoading(false));
+        .catch((error: any) => {
+          const errorResponse = {
+            message: 'asdasds',
+            icon: 'danger',
+            canBeClosed: true,
+          };
+
+          dispatch(setAlertMessage(errorResponse));
+        });
     },
+
     isInitialValid: true,
   });
 

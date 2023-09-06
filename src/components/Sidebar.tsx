@@ -9,9 +9,9 @@ import {
   CasesSharp,
   EventAvailableSharp,
 } from '@mui/icons-material';
-import { SideBarElementInfoTexts } from '../helper/enums/enums';
+import { SideBarElementInfoTexts } from '../shared/enums/enums';
 import CloseFriend from './CloseFriend';
-import { users } from '../helper/api/users';
+import { users } from '../shared/api/users';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import NavbarMenuElement from './NavbarMenuElement';
