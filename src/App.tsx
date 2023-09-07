@@ -20,6 +20,7 @@ function App() {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const alerts = useAppSelector(selectAlerts);
+  const location = useLocation();
 
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
   const [language, setLanguage] = useState<string>(Languages.EN);
@@ -58,7 +59,7 @@ function App() {
         className="app-container"
         position="relative"
       >
-        {isLoggedIn ? <Topbar /> : null}
+        {isLoggedIn && location.pathname !== PageURLs.SIGN_IN ? <Topbar /> : null}
 
         <Routes>
           <Route
