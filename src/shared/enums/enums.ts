@@ -13,6 +13,7 @@ export enum PageURLs {
   HOME = '/',
   PROFILE = '/profile',
   SIGN_IN = '/sign-in',
+  WILD_CARD = '*',
 }
 
 export enum SideBarElementInfoTexts {
@@ -59,4 +60,12 @@ export enum APIMockCredentials {
 
 export enum Events {
   LANGUAGE_CHANGED = 'languageChanged',
+}
+
+export enum ErrorCode {
+  WILD_CARD = '404',
+}
+
+export enum Common {
+  TOKEN = 'token',
 }

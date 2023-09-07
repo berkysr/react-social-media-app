@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../types/user';
-import { PageURLs } from '../enums/enums';
+import { Common, PageURLs } from '../enums/enums';
+import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
 
 export interface AppState {
   lastVisitedURL: string;
@@ -11,7 +12,7 @@ export interface AppState {
 const initialState: AppState = {
   lastVisitedURL: PageURLs.HOME,
   user: null,
-  isLoggedIn: false,
+  isLoggedIn: !!sessionStorageUtil.get(Common.TOKEN),
 };
 
 export const appSlice = createSlice({

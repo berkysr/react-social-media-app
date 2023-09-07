@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import Login from '../../pages/Login';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 import { PageURLs } from '../../shared/enums/enums';
 
 interface ProtectedRouteProps {

@@ -2,8 +2,9 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../types/login';
 import { Alert } from '../types/general';
 import { AppDispatch, RootState } from '../../store';
-import { APIEndpoints, APIMethods } from '../enums/enums';
+import { APIEndpoints, APIMethods, Common } from '../enums/enums';
 import { t } from 'i18next';
+import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
 
 export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
@@ -91,6 +92,8 @@ export const proposalSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAuthenticationAPIDetails.fulfilled, (state, action) => {
+        sessionStorageUtil.set(Common.TOKEN, action.payload.token);
+
         state.isLoading = false;
       })
       .addCase(getAuthenticationAPIDetails.rejected, (state, error) => {

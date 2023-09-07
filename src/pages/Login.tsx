@@ -5,7 +5,16 @@ import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import { SignInPageFields, PlaceHolders, APIMethods, APIEndpoints, APIMockCredentials, Types, PageURLs } from '../shared/enums/enums';
+import {
+  SignInPageFields,
+  PlaceHolders,
+  APIMethods,
+  APIEndpoints,
+  APIMockCredentials,
+  Types,
+  PageURLs,
+  Common,
+} from '../shared/enums/enums';
 import { useNavigate } from 'react-router-dom';
 import { selecLastVisitedURL } from '../shared/selectors/appSelector';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
@@ -26,6 +35,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
 import { selectAlerts, selectIsLoading } from '../shared/selectors/APIRequestSelector';
+import { sessionStorageUtil } from '../helper/utils/storageFunctions';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -124,6 +134,10 @@ export default function Login() {
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
 
+  useEffect(() => {
+    sessionStorageUtil.remove(Common.TOKEN);
+  }, []);
+
   return (
     <Box
       display="flex"
@@ -204,8 +218,11 @@ export default function Login() {
                 if (credentialResponse) {
                   const jwtDecodedResponse: DecodedGoogleCredentialResponse = jwt_decode(credentialResponse.credential as string);
 
+                  sessionStorageUtil.set(Common.TOKEN, jwtDecodedResponse.jti);
+
                   dispatch(setGoogleAPIDetails(jwtDecodedResponse));
                   dispatch(setIsUserLoggedIn(true));
+
                   navigate(lastVisitedURL);
                 }
               }}
