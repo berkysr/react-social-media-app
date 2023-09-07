@@ -4,3 +4,5 @@ export interface Alert {
   canBeClosed?: boolean;
   identifier: number;
 }
+
+export type SafePrimitives = string | number | boolean | string[] | number[] | boolean[] | { [key: string]: SafePrimitives };

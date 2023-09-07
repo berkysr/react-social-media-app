@@ -5,6 +5,12 @@
       "email": "Your Email",
       "password": "Password",
       "or": "or"
+    },
+    "wildCard": {
+      "404": "404",
+      "header": "Page Not Found",
+      "message": "Sorry, the page you are looking for could not be found.",
+      "buttonMessage": "Return Home"
     }
   },
   "button": {

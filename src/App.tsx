@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
@@ -14,6 +14,7 @@ import { selectIsLoggedIn } from './shared/selectors/appSelector';
 import { selectAlerts } from './shared/selectors/APIRequestSelector';
 import { setLastVisitedURL } from './shared/reducers/appReducer';
 import AlertComponent from './components/AlertComponent';
+import WildCard from './pages/WildCard';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -81,6 +82,10 @@ function App() {
           <Route
             path={PageURLs.SIGN_IN}
             element={<Login />}
+          />
+          <Route
+            path={PageURLs.WILD_CARD}
+            element={<WildCard />}
           />
         </Routes>
 

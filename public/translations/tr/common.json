@@ -5,6 +5,12 @@
       "email": "Email",
       "password": "Parola",
       "or": "ya da"
+    },
+    "wildCard": {
+      "404": "404",
+      "header": "Sayfa Bulunamadı",
+      "message": "Üzgünüz, aradığınız sayfa mevcut değil.",
+      "buttonMessage": "Geri Dön"
     }
   },
   "button": {
