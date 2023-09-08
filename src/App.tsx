@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from './store';
 import { selectIsLoggedIn } from './shared/selectors/appSelector';
 import { selectAlerts } from './shared/selectors/APIRequestSelector';
 import { setLastVisitedURL } from './shared/reducers/appReducer';
-import AlertComponent from './components/AlertComponent';
+import Alert from './components/Alert';
 import WildCard from './pages/WildCard';
 
 function App() {
@@ -96,13 +96,13 @@ function App() {
             className="right-4 top-0 z-[999] max-h-96 overflow-y-auto"
           >
             {alerts.map((alert) => (
-              <AlertComponent
+              <Alert
                 key={alert.identifier}
                 identifier={alert.identifier}
                 icon={alert.icon}
                 message={alert.message}
                 canBeClosed={alert.canBeClosed}
-              ></AlertComponent>
+              ></Alert>
             ))}
           </Box>
         ) : null}

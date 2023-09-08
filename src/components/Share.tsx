@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box, useTheme } from '@mui/material';
-import IconComponent from './IconComponent';
+import Icon from './IconComponent';
 
 export default function Share() {
   const { t } = useTranslation();
@@ -96,13 +96,13 @@ export default function Share() {
         ml={isOnlyBigScreen ? 3 : 0}
       >
         {shareIcons.map((icon) => (
-          <IconComponent
+          <Icon
             key={icon.infoText}
             infoText={isOnlyBigScreen ? t(`components.share.${icon.infoText}`) : ''}
             isOnlyBigScreen={isOnlyBigScreen}
           >
             {icon.child}
-          </IconComponent>
+          </Icon>
         ))}
 
         <button className="border-0 p-2 rounded-md font-medium lg:mr-5 cursor-pointer text-white bg-green-500">

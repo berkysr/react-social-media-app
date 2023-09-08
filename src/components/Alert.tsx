@@ -5,14 +5,14 @@ import { Alert } from '../shared/types/general';
 import { useAppDispatch } from '../store';
 import { setAlertMessageAsRemoved } from '../shared/reducers/APIRequestReducer';
 
-interface AlertComponentProps {
+interface AlertProps {
   icon: 'danger' | 'success' | 'warning';
   message: string;
   canBeClosed?: boolean;
   identifier: number;
 }
 
-export default function AlertComponent({ identifier, icon, message, canBeClosed = true }: AlertComponentProps) {
+export default function Alert({ identifier, icon, message, canBeClosed = true }: AlertProps) {
   const dispatch = useAppDispatch();
 
   const icons = {
