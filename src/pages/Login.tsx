@@ -36,6 +36,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
 import { selectAlerts, selectIsLoading } from '../shared/selectors/APIRequestSelector';
 import { sessionStorageUtil } from '../helper/utils/storageFunctions';
+import Loading from '../components/Loading';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -154,7 +155,6 @@ export default function Login() {
           className="shadow-card w-[75vh] h-[75vh] bg-gray-200"
         >
           <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
-
           <Box
             display="flex"
             justifyContent="center"
