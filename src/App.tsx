@@ -11,15 +11,17 @@ import { PageURLs, Languages, Events } from './shared/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
 import { selectIsLoggedIn } from './shared/selectors/appSelector';
-import { selectAlerts } from './shared/selectors/APIRequestSelector';
+import { selectAlerts, selectIsLoading } from './shared/selectors/APIRequestSelector';
 import { setLastVisitedURL } from './shared/reducers/appReducer';
 import Alert from './components/Alert';
 import WildCard from './pages/WildCard';
+import Loading from './components/Loading';
 
 function App() {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const alerts = useAppSelector(selectAlerts);
+  const isLoading = useAppSelector(selectIsLoading);
   const location = useLocation();
 
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
@@ -59,6 +61,7 @@ function App() {
         className="app-container"
         position="relative"
       >
+        {isLoading ? <Loading /> : null}
         {isLoggedIn && location.pathname !== PageURLs.SIGN_IN ? <Topbar /> : null}
 
         <Routes>
