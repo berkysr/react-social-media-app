@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../types/login';
-import { Alert } from '../types/general';
+import { AlertElement } from '../types/general';
 import { AppDispatch, RootState } from '../../store';
 import { APIEndpoints, APIMethods, Common } from '../enums/enums';
 import { t } from 'i18next';
@@ -9,7 +9,7 @@ import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
 export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
   googleLoginDetails: DecodedGoogleCredentialResponse;
-  alerts: Alert[];
+  alerts: AlertElement[];
   isLoading: boolean;
 }
 
