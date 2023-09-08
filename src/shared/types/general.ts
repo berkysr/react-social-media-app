@@ -1,4 +1,4 @@
-export interface Alert {
+export interface AlertElement {
   icon: 'danger' | 'success' | 'warning';
   message: string;
   canBeClosed?: boolean;

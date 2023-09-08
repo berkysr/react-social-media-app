@@ -1,18 +1,11 @@
 import { Box, Icon } from '@mui/material';
 import { t } from 'i18next';
 import React from 'react';
-import { Alert } from '../shared/types/general';
+import { AlertElement } from '../shared/types/general';
 import { useAppDispatch } from '../store';
 import { setAlertMessageAsRemoved } from '../shared/reducers/APIRequestReducer';
 
-interface AlertProps {
-  icon: 'danger' | 'success' | 'warning';
-  message: string;
-  canBeClosed?: boolean;
-  identifier: number;
-}
-
-export default function Alert({ identifier, icon, message, canBeClosed = true }: AlertProps) {
+export default function Alert({ identifier, icon, message, canBeClosed = true }: AlertElement) {
   const dispatch = useAppDispatch();
 
   const icons = {
