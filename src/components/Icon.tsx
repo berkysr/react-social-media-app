@@ -2,13 +2,13 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { Box } from '@mui/material';
 import React from 'react';
 
-interface IconComponentProps {
+interface IconProps {
   children: ReactJSXElement;
   infoText: string;
   isOnlyBigScreen: boolean;
 }
 
-export default function IconComponent({ children, infoText, isOnlyBigScreen }: IconComponentProps) {
+export default function Icon({ children, infoText, isOnlyBigScreen }: IconProps) {
   return (
     <Box
       display="flex"
