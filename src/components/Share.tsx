@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box, useTheme } from '@mui/material';
-import Icon from './IconComponent';
+import Icon from './Icon';
 
 export default function Share() {
   const { t } = useTranslation();
