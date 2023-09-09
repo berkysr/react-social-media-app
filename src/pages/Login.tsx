@@ -5,16 +5,7 @@ import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import {
-  SignInPageFields,
-  PlaceHolders,
-  APIMethods,
-  APIEndpoints,
-  APIMockCredentials,
-  Types,
-  PageURLs,
-  Common,
-} from '../shared/enums/enums';
+import { SignInPageFields, PlaceHolders, APIMockCredentials, Types, Common } from '../shared/enums/enums';
 import { useNavigate } from 'react-router-dom';
 import { selecLastVisitedURL } from '../shared/selectors/appSelector';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
@@ -34,18 +25,16 @@ import {
 } from '../shared/reducers/APIRequestReducer';
 import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
-import { selectAlerts, selectIsLoading } from '../shared/selectors/APIRequestSelector';
+import { selectIsLoading } from '../shared/selectors/APIRequestSelector';
 import { sessionStorageUtil } from '../helper/utils/storageFunctions';
-import Loading from '../components/Loading';
 
 export default function Login() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const [loginError, setLoginError] = React.useState('');
+  const [loginError] = React.useState('');
   const lastVisitedURL = useAppSelector(selecLastVisitedURL);
   const isLoading = useAppSelector(selectIsLoading);
-  const alerts = useAppSelector(selectAlerts);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -121,7 +110,7 @@ export default function Login() {
         })
         .catch((error: any) => {
           const errorResponse = {
-            message: 'asdasds',
+            message: error.message || t('error:error.api.generic'),
             icon: 'danger',
             canBeClosed: true,
           };
