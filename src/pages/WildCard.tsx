@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { PageURLs, ErrorCode } from '../shared/enums/enums';
 import { useTranslation } from 'react-i18next';
-import { rightArrowSVG } from '../helper/utils/SVG';
+import { leftArrowSVG } from '../helper/utils/SVG';
 
 export default function WildCard() {
   const { t } = useTranslation();
@@ -32,7 +32,7 @@ export default function WildCard() {
             className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded transition duration-150"
             title={t('pages.wildCard.buttonMessage')}
           >
-            {rightArrowSVG}
+            {leftArrowSVG}
 
             <p>{t('pages.wildCard.buttonMessage')}</p>
           </button>
