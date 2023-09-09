@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { PageURLs, ErrorCode } from '../shared/enums/enums';
 import { useTranslation } from 'react-i18next';
+import { rightArrowSVG } from '../helper/utils/SVG';
 
 export default function WildCard() {
   const { t } = useTranslation();
@@ -31,18 +32,7 @@ export default function WildCard() {
             className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded transition duration-150"
             title={t('pages.wildCard.buttonMessage')}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            {rightArrowSVG}
 
             <p>{t('pages.wildCard.buttonMessage')}</p>
           </button>

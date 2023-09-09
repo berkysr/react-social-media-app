@@ -1,71 +1,13 @@
-import { Box, Icon } from '@mui/material';
+import { Box } from '@mui/material';
 import { t } from 'i18next';
 import React from 'react';
 import { AlertElement } from '../shared/types/general';
 import { useAppDispatch } from '../store';
 import { setAlertMessageAsRemoved } from '../shared/reducers/APIRequestReducer';
+import { alertSVG, alertCloseButtonSVG } from '../helper/utils/SVG';
 
 export default function Alert({ identifier, icon, message, canBeClosed = true }: AlertElement) {
   const dispatch = useAppDispatch();
-
-  const icons = {
-    danger: {
-      svg: (
-        <svg
-          className="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="red"
-          viewBox="0 0 20 20"
-        >
-          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
-        </svg>
-      ),
-      color: 'red',
-    },
-    success: {
-      svg: (
-        <svg
-          className="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="green"
-          viewBox="0 0 20 20"
-        >
-          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-        </svg>
-      ),
-      color: 'green',
-    },
-    warning: {
-      svg: (
-        <svg
-          className="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="orange"
-          viewBox="0 0 20 20"
-        >
-          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z" />
-        </svg>
-      ),
-      color: 'orange',
-    },
-  };
-  const closeButton = (
-    <svg
-      className="w-3 h-3"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 14 14"
-    >
-      <path
-        stroke="currentColor"
-        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-      />
-    </svg>
-  );
 
   return (
     <>
@@ -74,10 +16,10 @@ export default function Alert({ identifier, icon, message, canBeClosed = true }:
         className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 gap-3"
       >
         <Box
-          className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-${icons[icon].color}-500 bg-${icons[icon].color}-100 rounded-lg dark:bg-${icons[icon].color}-800 dark:text-${icons[icon].color}-200`}
+          className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-${alertSVG[icon].color}-500 bg-${alertSVG[icon].color}-100 rounded-lg dark:bg-${alertSVG[icon].color}-800 dark:text-${alertSVG[icon].color}-200`}
           title={t('components.alert.title.icon')}
         >
-          {icons[icon].svg}
+          {alertSVG[icon].svg}
         </Box>
 
         <Box className="text-sm font-normal">{message}</Box>
@@ -94,7 +36,7 @@ export default function Alert({ identifier, icon, message, canBeClosed = true }:
               dispatch(setAlertMessageAsRemoved(identifier));
             }}
           >
-            {closeButton}
+            {alertCloseButtonSVG}
           </button>
         ) : null}
       </Box>
