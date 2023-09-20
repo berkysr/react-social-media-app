@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageURLs } from '../shared/enums/enums';
 import { useAppDispatch } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
+import FriendRequest from './FriendRequests';
 
 export default function Topbar() {
   const { t } = useTranslation();
@@ -80,7 +81,7 @@ export default function Topbar() {
         >
           <Box className="mr-4 cursor-pointer relative">
             <Person />
-
+            <FriendRequest />
             <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
               1
             </p>
