@@ -51,6 +51,7 @@ export enum APIMethods {
 
 export enum APIEndpoints {
   AUTHENTICATION_URL = 'https://dummyjson.com/auth/login',
+  RANDOM_USER_URL = 'https://randomuser.me/api/',
 }
 
 export enum APIMockCredentials {
