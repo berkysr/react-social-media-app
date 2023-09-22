@@ -95,6 +95,7 @@ export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
   googleLoginDetails: DecodedGoogleCredentialResponse;
   closeFriends: RandomUser[];
+  onlineFriends: RandomUser[];
   alerts: AlertElement[];
   isLoading: boolean;
 }
@@ -128,6 +129,7 @@ const initialState: APIRequestState = {
     jti: '',
   },
   closeFriends: [],
+  onlineFriends: [],
   alerts: [],
   isLoading: false,
 };
@@ -195,6 +197,9 @@ export const proposalSlice = createSlice({
     setRandomCloseFriends: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
       state.closeFriends = action.payload.results;
     },
+    setRandomOnlineFriends: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
+      state.onlineFriends = action.payload.results;
+    },
   },
   extraReducers(builder) {
     builder
@@ -230,6 +235,7 @@ export const {
   setAlertMessage,
   setIsLoading,
   setRandomCloseFriends,
+  setRandomOnlineFriends,
 } = proposalSlice.actions;
 
 export default proposalSlice.reducer;

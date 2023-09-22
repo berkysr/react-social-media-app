@@ -11,7 +11,7 @@ import { PageURLs, Languages, Events } from './shared/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
 import { selectIsLoggedIn } from './shared/selectors/appSelector';
-import { selectAlerts, selectCloseFriends, selectIsLoading } from './shared/selectors/APIRequestSelector';
+import { selectAlerts, selectCloseFriends, selectIsLoading, selectOnlineFriends } from './shared/selectors/APIRequestSelector';
 import { setLastVisitedURL } from './shared/reducers/appReducer';
 import Alert from './components/Alert';
 import WildCard from './pages/WildCard';
@@ -22,6 +22,7 @@ import {
   generateRandomUsers,
   setAlertMessage,
   setRandomCloseFriends,
+  setRandomOnlineFriends,
 } from './shared/reducers/APIRequestReducer';
 import { t } from 'i18next';
 
@@ -31,6 +32,7 @@ function App() {
   const alerts = useAppSelector(selectAlerts);
   const isLoading = useAppSelector(selectIsLoading);
   const closeFriends = useAppSelector(selectCloseFriends);
+  const onlineFriends = useAppSelector(selectOnlineFriends);
   const location = useLocation();
 
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
@@ -38,31 +40,56 @@ function App() {
 
   const { pathname } = useLocation();
 
-  const randomUserAPIOptions: GenerateUser = {
+  const randomCloseFriendAPIOptions: GenerateUser = {
     filter: ['name', 'picture'],
     results: 10,
   };
 
+  const randomOnlineFriendAPIOptions: GenerateUser = {
+    filter: ['name', 'picture'],
+    results: Math.floor(Math.random() * 10) + 1,
+  };
+
   useEffect(() => {
     const isCloseFriendsEmpty = closeFriends.length === 0;
+    const isOnlineFriendsEmpty = onlineFriends.length === 0;
 
-    if (isLoggedIn && isCloseFriendsEmpty) {
-      dispatch(generateRandomUsers({ filterOptions: randomUserAPIOptions }))
-        .then((response) => {
-          const payload = response.payload as GenerateUserAPIResponse;
-          console.log('payload', payload);
+    if (isLoggedIn) {
+      if (isCloseFriendsEmpty) {
+        dispatch(generateRandomUsers({ filterOptions: randomCloseFriendAPIOptions }))
+          .then((response) => {
+            const payload = response.payload as GenerateUserAPIResponse;
 
-          dispatch(setRandomCloseFriends(payload));
-        })
-        .catch((error: { error: string }) => {
-          const errorResponse = {
-            message: error.error || t('error:error.api.generic'),
-            icon: 'danger',
-            canBeClosed: true,
-          };
+            dispatch(setRandomCloseFriends(payload));
+          })
+          .catch((error: { error: string }) => {
+            const errorResponse = {
+              message: error.error || t('error:error.api.generic'),
+              icon: 'danger',
+              canBeClosed: true,
+            };
 
-          dispatch(setAlertMessage(errorResponse));
-        });
+            dispatch(setAlertMessage(errorResponse));
+          });
+      }
+
+      if (isOnlineFriendsEmpty) {
+        dispatch(generateRandomUsers({ filterOptions: randomOnlineFriendAPIOptions }))
+          .then((response) => {
+            const payload = response.payload as GenerateUserAPIResponse;
+
+            dispatch(setRandomOnlineFriends(payload));
+          })
+          .catch((error: { error: string }) => {
+            const errorResponse = {
+              message: error.error || t('error:error.api.generic'),
+              icon: 'danger',
+              canBeClosed: true,
+            };
+
+            dispatch(setAlertMessage(errorResponse));
+          });
+      }
     }
   }, [isLoggedIn]);
 

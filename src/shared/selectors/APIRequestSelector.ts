@@ -20,3 +20,8 @@ export const selectCloseFriends = createSelector(
   (state: RootState) => state.APICalls,
   (APIRequest) => APIRequest.closeFriends,
 );
+
+export const selectOnlineFriends = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.onlineFriends,
+);
