@@ -11,23 +11,60 @@ import { PageURLs, Languages, Events } from './shared/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
 import { selectIsLoggedIn } from './shared/selectors/appSelector';
-import { selectAlerts, selectIsLoading } from './shared/selectors/APIRequestSelector';
+import { selectAlerts, selectCloseFriends, selectIsLoading } from './shared/selectors/APIRequestSelector';
 import { setLastVisitedURL } from './shared/reducers/appReducer';
 import Alert from './components/Alert';
 import WildCard from './pages/WildCard';
 import Loading from './components/Loading';
+import {
+  GenerateUser,
+  GenerateUserAPIResponse,
+  generateRandomUsers,
+  setAlertMessage,
+  setRandomCloseFriends,
+} from './shared/reducers/APIRequestReducer';
+import { t } from 'i18next';
 
 function App() {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const alerts = useAppSelector(selectAlerts);
   const isLoading = useAppSelector(selectIsLoading);
+  const closeFriends = useAppSelector(selectCloseFriends);
   const location = useLocation();
 
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
   const [language, setLanguage] = useState<string>(Languages.EN);
 
   const { pathname } = useLocation();
+
+  const randomUserAPIOptions: GenerateUser = {
+    filter: ['name', 'picture'],
+    results: 10,
+  };
+
+  useEffect(() => {
+    const isCloseFriendsEmpty = closeFriends.length === 0;
+
+    if (isLoggedIn && isCloseFriendsEmpty) {
+      dispatch(generateRandomUsers({ filterOptions: randomUserAPIOptions }))
+        .then((response) => {
+          const payload = response.payload as GenerateUserAPIResponse;
+          console.log('payload', payload);
+
+          dispatch(setRandomCloseFriends(payload));
+        })
+        .catch((error: { error: string }) => {
+          const errorResponse = {
+            message: error.error || t('error:error.api.generic'),
+            icon: 'danger',
+            canBeClosed: true,
+          };
+
+          dispatch(setAlertMessage(errorResponse));
+        });
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const supportedLngs = i18n.options.supportedLngs ? i18n.options.supportedLngs : [''];

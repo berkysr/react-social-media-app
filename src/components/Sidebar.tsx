@@ -10,13 +10,15 @@ import {
   EventAvailableSharp,
 } from '@mui/icons-material';
 import { SideBarElementInfoTexts } from '../shared/enums/enums';
-import CloseFriend from './CloseFriend';
-import { users } from '../shared/api/users';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import NavbarMenuElement from './NavbarMenuElement';
+import { useAppSelector } from '../store';
+import { selectCloseFriends } from '../shared/selectors/APIRequestSelector';
+import CloseFriend from './CloseFriend';
 
 export default function Sidebar() {
+  const closeFriends = useAppSelector(selectCloseFriends);
   const { t } = useTranslation();
   const navbarElements = [
     {
@@ -58,7 +60,7 @@ export default function Sidebar() {
       display="flex"
       flexDirection="column"
       p={3}
-      className="w-full h-fit sticky top-[56px]"
+      className="w-full h-screen sticky top-[56px]"
     >
       <ul className="p-0 m-0 list-none">
         {navbarElements.map((element) => (
@@ -77,15 +79,15 @@ export default function Sidebar() {
 
       <h4 className="font-medium mb-4">{t('components.sidebar.closeFriends')}</h4>
 
-      <ul className="p-0 m-0 list-none">
-        {users.map((user) => {
-          return user.closeFriend ? (
-            <CloseFriend
-              key={user.id}
-              user={user}
-            />
-          ) : null;
-        })}
+      <ul className="p-0 m-0 list-none overflow-y-auto mb-8">
+        {closeFriends
+          ? closeFriends.map((friend) => (
+              <CloseFriend
+                key={friend.picture?.large}
+                user={friend}
+              />
+            ))
+          : null}
       </ul>
     </Box>
   );

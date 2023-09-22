@@ -4,7 +4,6 @@ import { AlertElement } from '../types/general';
 import { AppDispatch, RootState } from '../../store';
 import { APIEndpoints, APIMethods, Common } from '../enums/enums';
 import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
-import { FilterAltSharp } from '@mui/icons-material';
 
 export type RandomUserFilter =
   | 'gender'
@@ -25,65 +24,65 @@ export interface GenerateUser {
   results?: number;
 }
 
+export interface RandomUser {
+  gender?: string;
+  name?: {
+    title: string;
+    first: string;
+    last: string;
+  };
+  location?: {
+    street: {
+      number: number;
+      name: string;
+    };
+    city: string;
+    state: string;
+    country: string;
+    postcode: string;
+    coordinates: {
+      latitude: string;
+      longitude: string;
+    };
+    timezone: {
+      offset: string;
+      description: string;
+    };
+  };
+  email?: string;
+  login?: {
+    uuid: string;
+    username: string;
+    password: string;
+    salt: string;
+    md5: string;
+    sha1: string;
+    sha256: string;
+  };
+  dob?: {
+    date: string;
+    age: number;
+  };
+  registered?: {
+    date: string;
+    age: number;
+  };
+  phone?: string;
+  cell?: string;
+  id?: {
+    name: string;
+    value: string;
+  };
+  picture?: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  };
+  nat?: string;
+}
+
 export interface GenerateUserAPIResponse {
-  results: [
-    {
-      gender: string;
-      name: {
-        title: string;
-        first: string;
-        last: string;
-      };
-      location: {
-        street: {
-          number: number;
-          name: string;
-        };
-        city: string;
-        state: string;
-        country: string;
-        postcode: string;
-        coordinates: {
-          latitude: string;
-          longitude: string;
-        };
-        timezone: {
-          offset: string;
-          description: string;
-        };
-      };
-      email: string;
-      login: {
-        uuid: string;
-        username: string;
-        password: string;
-        salt: string;
-        md5: string;
-        sha1: string;
-        sha256: string;
-      };
-      dob: {
-        date: string;
-        age: number;
-      };
-      registered: {
-        date: string;
-        age: number;
-      };
-      phone: string;
-      cell: string;
-      id: {
-        name: string;
-        value: string;
-      };
-      picture: {
-        large: string;
-        medium: string;
-        thumbnail: string;
-      };
-      nat: string;
-    },
-  ];
+  results: RandomUser[];
   info: {
     seed: string;
     results: number;
@@ -91,9 +90,11 @@ export interface GenerateUserAPIResponse {
     version: string;
   };
 }
+
 export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
   googleLoginDetails: DecodedGoogleCredentialResponse;
+  closeFriends: RandomUser[];
   alerts: AlertElement[];
   isLoading: boolean;
 }
@@ -126,6 +127,7 @@ const initialState: APIRequestState = {
     exp: null,
     jti: '',
   },
+  closeFriends: [],
   alerts: [],
   isLoading: false,
 };
@@ -190,6 +192,9 @@ export const proposalSlice = createSlice({
     setIsLoading: (state, action: PayloadAction<APIRequestState['isLoading']>) => {
       state.isLoading = action.payload;
     },
+    setRandomCloseFriends: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
+      state.closeFriends = action.payload.results;
+    },
   },
   extraReducers(builder) {
     builder
@@ -218,7 +223,13 @@ export const proposalSlice = createSlice({
   },
 });
 
-export const { setAuthenticationAPIDetails, setGoogleAPIDetails, setAlertMessageAsRemoved, setAlertMessage, setIsLoading } =
-  proposalSlice.actions;
+export const {
+  setAuthenticationAPIDetails,
+  setGoogleAPIDetails,
+  setAlertMessageAsRemoved,
+  setAlertMessage,
+  setIsLoading,
+  setRandomCloseFriends,
+} = proposalSlice.actions;
 
 export default proposalSlice.reducer;
