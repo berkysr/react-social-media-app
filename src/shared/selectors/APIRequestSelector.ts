@@ -15,3 +15,28 @@ export const selectAlerts = createSelector(
   (state: RootState) => state.APICalls,
   (APIRequest) => APIRequest.alerts,
 );
+
+export const selectCloseFriends = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.closeFriends,
+);
+
+export const selectOnlineFriends = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.onlineFriends,
+);
+
+export const selectRandomPosts = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.posts,
+);
+
+export const selectGoogleImage = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.googleLoginDetails.picture,
+);
+
+export const selectCurrentUser = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.currentUser[0],
+);

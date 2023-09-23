@@ -1,23 +1,23 @@
 import React from 'react';
-import { User } from '../shared/types/user';
+import { RandomUser } from '../shared/reducers/APIRequestReducer';
 
 interface CloseFriendProps {
-  user: User;
+  user: RandomUser;
 }
 
 export default function CloseFriend({ user }: CloseFriendProps) {
-  const { profilePicture, userName } = user;
+  const { picture, name } = user;
 
-  return profilePicture && userName ? (
-    <li className="flex items-center mb-4 cursor-pointer">
+  return picture && name ? (
+    <li className="flex items-center mb-4 cursor-pointer pr-4">
       <img
         loading="lazy"
-        src={profilePicture}
+        src={picture.thumbnail}
         alt=""
         className="w-9 h-9 rounded-full object-cover mr-2.5"
       />
 
-      <figcaption>{userName}</figcaption>
+      <figcaption>{`${name.first} ${name.last}`}</figcaption>
     </li>
   ) : null;
 }

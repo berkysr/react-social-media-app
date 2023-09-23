@@ -5,22 +5,15 @@ import { useState } from 'react';
 import { Post } from '../shared/types/post';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
+import { GeneratePostAPIResponse, RandomPost } from '../shared/reducers/APIRequestReducer';
 
 interface PostProps {
-  post: Post;
+  post: RandomPost;
 }
 
 export default function PostCard({ post }: PostProps) {
   const { t } = useTranslation();
-  const { comment, date, desc, like, photo, userId } = post;
-  const { profilePicture, userName } = users.filter((user) => user.id === userId)[0];
-  const [addedLike, setLike] = useState(like || 0);
-  const [isLiked, setIsLiked] = useState(false);
-
-  const likeHandler = () => {
-    setLike(isLiked ? addedLike - 1 : addedLike + 1);
-    setIsLiked(!isLiked);
-  };
+  const { id, image, likes, tags, text, publishDate, owner } = post;
 
   return (
     <Box
@@ -31,14 +24,16 @@ export default function PostCard({ post }: PostProps) {
         <Box className="flex align-center">
           <img
             loading="lazy"
-            src={profilePicture}
+            src={image}
             className="w-9 h-9 rounded-full object-cover"
             alt=""
           />
 
-          <figcaption className="text-base font-bold my-0 mx-2.5 flex items-center">{userName}</figcaption>
+          <figcaption className="text-base font-bold my-0 mx-2.5 flex items-center">{`${owner.firstName} ${owner.lastName}`}</figcaption>
 
-          <time className="text-zinc-500	text-xs flex items-center">{date}</time>
+          <time className="text-zinc-500	text-xs flex items-center">
+            {new Date(publishDate).toLocaleString('en-GB', { timeZone: 'UTC' })}
+          </time>
         </Box>
 
         <MoreVert />
@@ -48,11 +43,11 @@ export default function PostCard({ post }: PostProps) {
         mx={0}
         my={5}
       >
-        <figcaption>{desc}</figcaption>
+        <figcaption>{text}</figcaption>
 
         <img
           loading="lazy"
-          src={photo}
+          src={image}
           className="mt-5 w-full max-h-[112rem] object-contain"
           alt=""
         />
@@ -64,7 +59,7 @@ export default function PostCard({ post }: PostProps) {
             loading="lazy"
             className="w-6 h-6 mr-1.5 cursor-pointer"
             src="/assets/like.png"
-            onClick={likeHandler}
+            // onClick={likeHandler}
             alt=""
           />
 
@@ -72,17 +67,17 @@ export default function PostCard({ post }: PostProps) {
             loading="lazy"
             className="w-6 h-6 mr-2.5 cursor-pointer"
             src="/assets/heart.png"
-            onClick={likeHandler}
+            // onClick={likeHandler}
             alt=""
           />
 
           <p className="text-sm">
-            {addedLike} <u>{t('components.post.people')}</u> {t('components.post.likeThis')}
+            {likes} <u>{t('components.post.people')}</u> {t('components.post.likeThis')}
           </p>
         </Box>
 
         <p className="cursor-pointer text-sm">
-          {comment} {t('components.post.comments')}
+          {likes} {t('components.post.comments')}
         </p>
       </Box>
     </Box>

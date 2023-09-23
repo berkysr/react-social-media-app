@@ -2,15 +2,13 @@ import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/Feed';
-import { users } from '../shared/api/users';
-import { usersProfileDetails } from '../shared/api/profileDetails';
 import { Box } from '@mui/material';
+import { useAppSelector } from '../store';
+import { selectCurrentUser, selectGoogleImage } from '../shared/selectors/APIRequestSelector';
 
 export default function Profile() {
-  const currentUserData = users.filter((user) => user.currentUser)[0];
-  const { userName, profilePicture, id } = currentUserData;
-  const currentProfileDetails = usersProfileDetails.filter((userProfileDetail) => userProfileDetail.id === id);
-  const { profileDescription } = currentProfileDetails[0];
+  const currentProfileImage = useAppSelector(selectGoogleImage);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   return (
     <Box
@@ -43,7 +41,7 @@ export default function Profile() {
             <img
               loading="lazy"
               className="object-cover h-full w-full"
-              src="assets/post/3.jpeg"
+              src="https://images.pexels.com/photos/3074526/pexels-photo-3074526.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
             />
 
@@ -52,7 +50,7 @@ export default function Profile() {
               className=" 
                 object-cover left-0 right-0 rounded-full absolute m-auto
                 bottom-0 cursor-pointer w-36 h-36 border-4 white"
-              src={profilePicture}
+              src={currentProfileImage || currentUser.picture?.medium}
               alt=""
             />
           </Box>
@@ -63,9 +61,9 @@ export default function Profile() {
             justifyContent="center"
             alignItems="center"
           >
-            <h4 className="text-2xl">{userName}</h4>
+            <h4 className="text-2xl">{`${currentUser.name?.first} ${currentUser.name?.last}`}</h4>
 
-            <span className="font-light	">{profileDescription} </span>
+            <span className="font-light	">{currentUser.location?.city} </span>
           </Box>
         </Box>
 
