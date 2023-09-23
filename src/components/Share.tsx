@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import Icon from './Icon';
+import { useAppSelector } from '../store';
+import { selectCurrentUser } from '../shared/selectors/APIRequestSelector';
 
 export default function Share() {
   const { t } = useTranslation();
+  const currentUser = useAppSelector(selectCurrentUser);
   const [width, setWidth] = useState(0);
   const windowWidth = window.innerWidth;
   const isOnlyBigScreen = width >= 1200;
@@ -70,7 +73,7 @@ export default function Share() {
         >
           <img
             loading="lazy"
-            src="/assets/person/1.jpeg"
+            src={((currentUser || {}).picture || {})?.medium || ''}
             className="w-full h-full object-cover rounded-[50%]"
             alt=""
           />

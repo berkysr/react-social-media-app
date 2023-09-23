@@ -83,7 +83,7 @@ export default function Sidebar() {
         {closeFriends
           ? closeFriends.map((friend) => (
               <CloseFriend
-                key={friend.picture?.large}
+                key={`${friend.picture?.large} ${Math.random().toString()}`}
                 user={friend}
               />
             ))

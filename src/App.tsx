@@ -20,9 +20,13 @@ import {
   GenerateUser,
   GenerateUserAPIResponse,
   generateRandomUsers,
+  generateRandomPosts,
   setAlertMessage,
   setRandomCloseFriends,
   setRandomOnlineFriends,
+  setRandomPosts,
+  GeneratePostAPIResponse,
+  setCurrentUser,
 } from './shared/reducers/APIRequestReducer';
 import { t } from 'i18next';
 
@@ -53,8 +57,42 @@ function App() {
   useEffect(() => {
     const isCloseFriendsEmpty = closeFriends.length === 0;
     const isOnlineFriendsEmpty = onlineFriends.length === 0;
+    const randomUserOptions: GenerateUser = {
+      filter: [],
+    };
 
     if (isLoggedIn) {
+      dispatch(generateRandomUsers({ filterOptions: randomUserOptions }))
+        .then((response) => {
+          const payload = response.payload as GenerateUserAPIResponse;
+
+          dispatch(setCurrentUser(payload));
+        })
+        .catch((error: { error: string }) => {
+          const errorResponse = {
+            message: error.error || t('error:error.api.generic'),
+            icon: 'danger',
+            canBeClosed: true,
+          };
+
+          dispatch(setAlertMessage(errorResponse));
+        });
+      dispatch(generateRandomPosts({ page: '0', limit: '10' }))
+        .then((response) => {
+          const payload = response.payload as GeneratePostAPIResponse;
+
+          dispatch(setRandomPosts(payload));
+        })
+        .catch((error: { error: string }) => {
+          const errorResponse = {
+            message: error.error || t('error:error.api.generic'),
+            icon: 'danger',
+            canBeClosed: true,
+          };
+
+          dispatch(setAlertMessage(errorResponse));
+        });
+
       if (isCloseFriendsEmpty) {
         dispatch(generateRandomUsers({ filterOptions: randomCloseFriendAPIOptions }))
           .then((response) => {

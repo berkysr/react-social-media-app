@@ -91,11 +91,33 @@ export interface GenerateUserAPIResponse {
   };
 }
 
+export interface RandomPost {
+  id: string;
+  image: string;
+  likes: number;
+  tags: string[];
+  text: string;
+  publishDate: string;
+  owner: {
+    firstName: string;
+    lastName: string;
+  };
+}
+
+export interface GeneratePostAPIResponse {
+  data: RandomPost[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
 export interface APIRequestState {
   authenticationAPIDetails: LoginResponse;
   googleLoginDetails: DecodedGoogleCredentialResponse;
+  currentUser: RandomUser[];
   closeFriends: RandomUser[];
   onlineFriends: RandomUser[];
+  posts: RandomPost[];
   alerts: AlertElement[];
   isLoading: boolean;
 }
@@ -111,6 +133,7 @@ const initialState: APIRequestState = {
     image: '',
     token: '',
   },
+  currentUser: [],
   googleLoginDetails: {
     iss: '',
     azp: '',
@@ -130,6 +153,7 @@ const initialState: APIRequestState = {
   },
   closeFriends: [],
   onlineFriends: [],
+  posts: [],
   alerts: [],
   isLoading: false,
 };
@@ -174,6 +198,25 @@ export const generateRandomUsers = createAsyncThunk<
   return authenticationAPIResponse;
 });
 
+export const generateRandomPosts = createAsyncThunk<
+  GenerateUserAPIResponse,
+  {
+    page?: string;
+    limit?: string;
+  },
+  { state: RootState; dispatch: AppDispatch }
+>('APICall/generateRandomPosts', async ({ page = 0, limit = 20 }, { dispatch, rejectWithValue }) => {
+  const postEndPoint = `${APIEndpoints.RANDOM_POSTS_URL}?page=${page}&limit=${limit}`;
+  const authenticationAPIResponse: GenerateUserAPIResponse = await fetch(postEndPoint, {
+    headers: {
+      'Content-Type': 'application/json',
+      'app-id': '650f329368cf90859e96a6b7',
+    },
+  }).then((data) => data.json());
+
+  return authenticationAPIResponse;
+});
+
 export const proposalSlice = createSlice({
   name: 'APIRequestState',
   initialState,
@@ -199,6 +242,12 @@ export const proposalSlice = createSlice({
     },
     setRandomOnlineFriends: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
       state.onlineFriends = action.payload.results;
+    },
+    setRandomPosts: (state, action: PayloadAction<GeneratePostAPIResponse>) => {
+      state.posts = action.payload.data;
+    },
+    setCurrentUser: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
+      state.currentUser = action.payload.results;
     },
   },
   extraReducers(builder) {
@@ -236,6 +285,8 @@ export const {
   setIsLoading,
   setRandomCloseFriends,
   setRandomOnlineFriends,
+  setRandomPosts,
+  setCurrentUser,
 } = proposalSlice.actions;
 
 export default proposalSlice.reducer;

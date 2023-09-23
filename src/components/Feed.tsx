@@ -1,11 +1,14 @@
 import React from 'react';
 import Share from './Share';
 import PostCard from './Post';
-import { posts } from '../shared/api/posts';
 import { Box } from '@mui/system';
+import { selectRandomPosts } from '../shared/selectors/APIRequestSelector';
+import { useAppSelector } from '../store';
 
 export default function Feed() {
-  return (
+  const posts = useAppSelector(selectRandomPosts);
+
+  return posts ? (
     <Box
       display="flex"
       flexDirection="column"
@@ -21,5 +24,5 @@ export default function Feed() {
         />
       ))}
     </Box>
-  );
+  ) : null;
 }

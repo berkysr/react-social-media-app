@@ -54,7 +54,7 @@ export default function HomePageRightBar() {
           {onlineFriends
             ? onlineFriends.map((friend) => (
                 <OnlineFriend
-                  key={friend.picture?.large}
+                  key={`${friend.picture?.large} ${Math.random().toString()}`}
                   user={friend}
                 />
               ))

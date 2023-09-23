@@ -5,13 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { PageURLs } from '../shared/enums/enums';
-import { useAppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
+import { selectCurrentUser } from '../shared/selectors/APIRequestSelector';
+import { selectIsLoggedIn } from '../shared/selectors/appSelector';
 
 export default function Topbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(selectCurrentUser);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const logout = () => {
     dispatch(setIsUserLoggedIn(false));
@@ -112,7 +116,7 @@ export default function Topbar() {
             >
               <img
                 loading="lazy"
-                src="/assets/person/10.jpeg"
+                src={((currentUser || {}).picture || {})?.medium || ''}
                 alt=""
                 className="w-full h-full rounded-full object-cover cursor-pointer"
               />
