@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '../types/login';
 import { AlertElement } from '../types/general';
 import { AppDispatch, RootState } from '../../store';
-import { APIEndpoints, APIMethods, Common } from '../enums/enums';
+import { APIMethods, Common } from '../enums/enums';
 import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
 
 export type RandomUserFilter =
@@ -166,7 +166,7 @@ export const getAuthenticationAPIDetails = createAsyncThunk<
   },
   { state: RootState; dispatch: AppDispatch }
 >('APICall/getAuthenticationAPIDetails', async ({ username, password }, { dispatch, rejectWithValue }) => {
-  const authenticationAPIResponse: LoginResponse = await fetch(APIEndpoints.AUTHENTICATION_URL, {
+  const authenticationAPIResponse: LoginResponse = await fetch(process.env.REACT_APP_AUTHENTICATION_URL as string, {
     method: APIMethods.POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -192,7 +192,7 @@ export const generateRandomUsers = createAsyncThunk<
 
   filterOptions.results && (filtersAsString += `&results=${filterOptions.results}`);
 
-  const randomUserEndpoint = APIEndpoints.RANDOM_USER_URL + filtersAsString;
+  const randomUserEndpoint = process.env.REACT_APP_RANDOM_USER_URL + filtersAsString;
   const authenticationAPIResponse: GenerateUserAPIResponse = await fetch(randomUserEndpoint).then((data) => data.json());
 
   return authenticationAPIResponse;
@@ -206,11 +206,11 @@ export const generateRandomPosts = createAsyncThunk<
   },
   { state: RootState; dispatch: AppDispatch }
 >('APICall/generateRandomPosts', async ({ page = 0, limit = 20 }, { dispatch, rejectWithValue }) => {
-  const postEndPoint = `${APIEndpoints.RANDOM_POSTS_URL}?page=${page}&limit=${limit}`;
+  const postEndPoint = `${process.env.REACT_APP_RANDOM_POSTS_URL}?page=${page}&limit=${limit}`;
   const authenticationAPIResponse: GenerateUserAPIResponse = await fetch(postEndPoint, {
     headers: {
       'Content-Type': 'application/json',
-      'app-id': '650f329368cf90859e96a6b7',
+      'app-id': process.env.REACT_APP_DUMMY_API_KEY as string,
     },
   }).then((data) => data.json());
 
