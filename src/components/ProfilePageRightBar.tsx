@@ -70,7 +70,8 @@ export default function ProfilePageRightBar() {
         <img
           loading="lazy"
           src="/assets/ad.png"
-          alt=""
+          aria-label={t('a11y.advertisement')}
+          alt={t('a11y.advertisement')}
         />
       </Box>
     </Box>

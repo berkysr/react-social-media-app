@@ -41,7 +41,10 @@ export default function Topbar() {
       className="h-14 w-full bg-[#1877f2] z-[999] sticky top-0"
     >
       <Box className="flex w-[15%] lg:w-[15%]">
-        <Link to="/">
+        <Link
+          aria-label={t('a11y.goToHome')}
+          to="/"
+        >
           <p className="font-bold text-[#f5f5f5] text-2xl cursor-pointer">{t('logo.social')}</p>
         </Link>
       </Box>
@@ -72,16 +75,13 @@ export default function Topbar() {
           flexDirection="row"
           ml={2}
         >
-          <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.homePage')}</p>
-
-          <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.timeLine')}</p>
-
-          <p
+          <Link
+            to="#"
             className="mr-2.5 text-sm font-medium cursor-pointer"
             onClick={logout}
           >
             {t('components.topbar.logOut')}
-          </p>
+          </Link>
         </Box>
 
         <Box
@@ -119,12 +119,14 @@ export default function Topbar() {
           >
             <Link
               className="w-full"
+              aria-label={t('a11y.goToProfile')}
               to="/profile"
             >
               <img
                 loading="lazy"
                 src={currentUserPicture}
-                alt=""
+                aria-label={t('a11y.currentUserPicture')}
+                alt={t('a11y.currentUserPicture')}
                 className="w-full h-full rounded-full object-cover cursor-pointer"
               />
             </Link>

@@ -25,8 +25,9 @@ export default function HomePageRightBar() {
           <img
             loading="lazy"
             className="flex-none w-full "
+            aria-label={t('a11y.birthDayPresentBox')}
             src="/assets/gift.png"
-            alt=""
+            alt={t('a11y.birthDayPresentBox')}
           />
         </Box>
 
@@ -40,7 +41,8 @@ export default function HomePageRightBar() {
         loading="lazy"
         className="w-full rounded-xl"
         src="/assets/ad.png"
-        alt=""
+        aria-label={t('a11y.advertisement')}
+        alt={t('a11y.advertisement')}
       />
 
       <Box

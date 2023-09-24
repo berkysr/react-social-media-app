@@ -83,8 +83,9 @@ export default function Share() {
           <img
             loading="lazy"
             src={currentUserPicture}
+            aria-label={t('a11y.currentUserPicture')}
             className="w-full h-full object-cover rounded-[50%]"
-            alt=""
+            alt={t('a11y.currentUserPicture')}
           />
         </Box>
 
@@ -117,7 +118,10 @@ export default function Share() {
           </Icon>
         ))}
 
-        <button className="border-0 p-2 rounded-md font-medium lg:mr-5 cursor-pointer text-white bg-green-500">
+        <button
+          className="border-0 p-2 rounded-md font-medium lg:mr-5 cursor-pointer text-white bg-green-500"
+          aria-label={t('components.share.share')}
+        >
           {t('components.share.share')}
         </button>
       </Box>

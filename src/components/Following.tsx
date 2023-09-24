@@ -1,6 +1,7 @@
 import React from 'react';
 import { Company } from '../shared/types/company';
 import { Box } from '@mui/material';
+import { t } from 'i18next';
 
 interface FollowingProps {
   company: Company;
@@ -20,8 +21,9 @@ export default function Following({ company }: FollowingProps) {
         <img
           loading="lazy"
           className="object-contain max-w-[65px] max-h-[50px]"
+          aria-label={`${t('a11y.followedCompany')}-${name}`}
           src={logo}
-          alt=""
+          alt={`${t('a11y.followedCompany')}-${name}`}
         />
 
         <figcaption className="text-center">{name}</figcaption>

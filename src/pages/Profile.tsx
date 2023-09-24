@@ -5,6 +5,7 @@ import Feed from '../components/Feed';
 import { Box } from '@mui/material';
 import { useAppSelector } from '../store';
 import { selectCurrentUser, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
+import { t } from 'i18next';
 
 export default function Profile() {
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
@@ -62,8 +63,9 @@ export default function Profile() {
             <img
               loading="lazy"
               className="object-cover h-full w-full"
+              aria-label={t('a11y.currentUserBackgroundImage')}
               src="https://images.pexels.com/photos/3074526/pexels-photo-3074526.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
+              alt={t('a11y.currentUserBackgroundImage')}
             />
 
             <img
@@ -71,8 +73,9 @@ export default function Profile() {
               className=" 
                 object-cover left-0 right-0 rounded-full absolute m-auto
                 bottom-0 cursor-pointer w-36 h-36 border-4 white"
+              aria-label={t('a11y.currentUserPicture')}
               src={currentUserPicture}
-              alt=""
+              alt={t('a11y.currentUserPicture')}
             />
           </Box>
 
