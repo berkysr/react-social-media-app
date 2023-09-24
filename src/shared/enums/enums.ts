@@ -49,17 +49,6 @@ export enum APIMethods {
   CREATE = 'CREATE',
 }
 
-export enum APIEndpoints {
-  AUTHENTICATION_URL = 'https://dummyjson.com/auth/login',
-  RANDOM_USER_URL = 'https://randomuser.me/api/',
-  RANDOM_POSTS_URL = 'https://dummyapi.io/data/v1/post',
-}
-
-export enum APIMockCredentials {
-  MOCK_USERNAME = 'dfundello',
-  MOCK_PASSWORD = 'k9zgV68UKw8m',
-}
-
 export enum Events {
   LANGUAGE_CHANGED = 'languageChanged',
 }

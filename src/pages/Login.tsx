@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import { SignInPageFields, PlaceHolders, APIMockCredentials, Types, Common } from '../shared/enums/enums';
+import { SignInPageFields, PlaceHolders, Types, Common } from '../shared/enums/enums';
 import { useNavigate } from 'react-router-dom';
 import { selecLastVisitedURL } from '../shared/selectors/appSelector';
 import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
@@ -96,7 +96,12 @@ export default function Login() {
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
-      dispatch(getAuthenticationAPIDetails({ username: APIMockCredentials.MOCK_USERNAME, password: APIMockCredentials.MOCK_PASSWORD }))
+      dispatch(
+        getAuthenticationAPIDetails({
+          username: process.env.REACT_APP_MOCK_USERNAME as string,
+          password: process.env.REACT_APP_MOCK_PASSWORD as string,
+        }),
+      )
         .then((response) => {
           const payload = response.payload as LoginResponse;
 
