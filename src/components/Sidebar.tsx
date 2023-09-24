@@ -23,35 +23,75 @@ export default function Sidebar() {
   const navbarElements = [
     {
       infoText: SideBarElementInfoTexts.FEED,
-      child: <RssFeed className="mr-4" />,
+      child: (
+        <RssFeed
+          className="mr-4"
+          aria-label={t('a11y.goToFeed')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.CHATS,
-      child: <ChatSharp className="mr-4" />,
+      child: (
+        <ChatSharp
+          className="mr-4"
+          aria-label={t('a11y.goToChats')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.VIDEOS,
-      child: <VideoCameraBack className="mr-4" />,
+      child: (
+        <VideoCameraBack
+          className="mr-4"
+          aria-label={t('a11y.goToVideos')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.GROUPS,
-      child: <GroupSharp className="mr-4" />,
+      child: (
+        <GroupSharp
+          className="mr-4"
+          aria-label={t('a11y.goToGroups')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.BOOKMARKS,
-      child: <BookmarkSharp className="mr-4" />,
+      child: (
+        <BookmarkSharp
+          className="mr-4"
+          aria-label={t('a11y.goToBookMarks')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.QUESTIONS,
-      child: <QuestionAnswerSharp className="mr-4" />,
+      child: (
+        <QuestionAnswerSharp
+          className="mr-4"
+          aria-label={t('a11y.goToQuestions')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.JOBS,
-      child: <CasesSharp className="mr-4" />,
+      child: (
+        <CasesSharp
+          className="mr-4"
+          aria-label={t('a11y.goToJobs')}
+        />
+      ),
     },
     {
       infoText: SideBarElementInfoTexts.EVENTS,
-      child: <EventAvailableSharp className="mr-4" />,
+      child: (
+        <EventAvailableSharp
+          className="mr-4"
+          aria-label={t('a11y.goToEvents')}
+        />
+      ),
     },
   ];
 
@@ -73,7 +113,12 @@ export default function Sidebar() {
         ))}
       </ul>
 
-      <button className="bg-green-500 text-white w-36 !border-0 p-2.5 rounded-md font-medium">{t('button.showMore')}</button>
+      <button
+        className="bg-green-500 text-white w-36 !border-0 p-2.5 rounded-md font-medium"
+        aria-label={t('button.showMore')}
+      >
+        {t('button.showMore')}
+      </button>
 
       <hr className="my-5 mx-0" />
 

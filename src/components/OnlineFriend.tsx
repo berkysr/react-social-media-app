@@ -1,5 +1,6 @@
 import React from 'react';
 import { RandomUser } from '../shared/reducers/APIRequestReducer';
+import { t } from 'i18next';
 
 interface OnlineFriendProps {
   user: RandomUser;
@@ -13,8 +14,9 @@ export default function OnlineFriend({ user }: OnlineFriendProps) {
         <img
           loading="lazy"
           className="w-9 h-9 rounded-full object-cover mr-2.5"
+          aria-label={`${t('a11y.closeFriendProfilePicture')}-${name.first} ${name.last}`}
           src={picture.thumbnail}
-          alt=""
+          alt={`${t('a11y.closeFriendProfilePicture')}-${name.first} ${name.last}`}
         />
 
         <span className="w-2.5 h-2.5 top-0 right-2 absolute bg-green-500 rounded-full"></span>

@@ -187,6 +187,7 @@ export default function Login() {
               className={`group relative h-12 w-auto !overflow-hidden !rounded-lg !bg-white !text-lg shadow !mt-6 !px-6 select-none ${
                 isDisabled ? 'opacity-50 !bg-gray' : ''
               }`}
+              aria-label={t('button.signIn')}
               type={Types.SUBMIT}
               disabled={isDisabled}
             >

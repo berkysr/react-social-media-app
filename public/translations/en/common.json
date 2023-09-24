@@ -56,7 +56,6 @@
       "closeFriends": "Close Friends"
     },
     "topbar": {
-      "homePage": "Homepage",
       "timeLine": "Timeline",
       "logOut": "Log Out",
       "search": "Search for a friend"
@@ -68,5 +67,27 @@
       },
       "success": "Success"
     }
+  },
+  "a11y": {
+    "closeFriendProfilePicture": "Close friend profile picture",
+    "followedCompany": "Followed company",
+    "birthDayPresentBox": "Birthday present box",
+    "advertisement": "Advertisement",
+    "postOwnerImage": "Post owners image",
+    "postImage": "Post image",
+    "likePost": "Like post",
+    "favoritePost": "Favorite post",
+    "currentUserPicture": "Current user picture",
+    "currentUserBackgroundImage": "Current user background image",
+    "goToHome": "Go to Homepage",
+    "goToProfile": "Go to Profile page",
+    "goToFeed": "go to feed",
+    "goToChats": "go to chats",
+    "goToVideos": "go to videos",
+    "goToGroups": "go to groups",
+    "goToBookMarks": "go to bookmarks",
+    "goToQuestions": "go to questions",
+    "goToJobs": "go to jobs",
+    "goToEvents": "go to events"
   }
 }

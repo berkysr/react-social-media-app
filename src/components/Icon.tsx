@@ -1,5 +1,6 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { Box } from '@mui/material';
+import { t } from 'i18next';
 import React from 'react';
 
 interface IconProps {
@@ -16,6 +17,7 @@ export default function Icon({ children, infoText, isOnlyBigScreen }: IconProps)
       justifyContent="space-between"
       mr={isOnlyBigScreen ? 4 : 0}
       className="cursor-pointer"
+      aria-label={infoText}
     >
       {children}
 

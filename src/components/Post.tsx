@@ -25,8 +25,9 @@ export default function PostCard({ post }: PostProps) {
           <img
             loading="lazy"
             src={image}
+            aria-label={`${t('a11y.postOwnerImage')}-${owner.firstName} ${owner.lastName}`}
             className="w-9 h-9 rounded-full object-cover"
-            alt=""
+            alt={`${t('a11y.postOwnerImage')}-${owner.firstName} ${owner.lastName}`}
           />
 
           <figcaption className="text-base font-bold my-0 mx-2.5 flex items-center">{`${owner.firstName} ${owner.lastName}`}</figcaption>
@@ -48,8 +49,9 @@ export default function PostCard({ post }: PostProps) {
         <img
           loading="lazy"
           src={image}
+          aria-label={t('a11y.postImage')}
           className="mt-5 w-full max-h-[112rem] object-contain"
-          alt=""
+          alt={t('a11y.postImage')}
         />
       </Box>
 
@@ -59,16 +61,18 @@ export default function PostCard({ post }: PostProps) {
             loading="lazy"
             className="w-6 h-6 mr-1.5 cursor-pointer"
             src="/assets/like.png"
+            aria-label={t('a11y.likePost')}
             // onClick={likeHandler}
-            alt=""
+            alt={t('a11y.likePost')}
           />
 
           <img
             loading="lazy"
             className="w-6 h-6 mr-2.5 cursor-pointer"
             src="/assets/heart.png"
+            aria-label={t('a11y.favoritePost')}
             // onClick={likeHandler}
-            alt=""
+            alt={t('a11y.favoritePost')}
           />
 
           <p className="text-sm">
