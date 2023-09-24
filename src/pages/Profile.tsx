@@ -64,7 +64,7 @@ export default function Profile() {
               loading="lazy"
               className="object-cover h-full w-full"
               aria-label={t('a11y.currentUserBackgroundImage')}
-              src="https://images.pexels.com/photos/3074526/pexels-photo-3074526.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src="https://source.unsplash.com/random/1366x768"
               alt={t('a11y.currentUserBackgroundImage')}
             />
 
