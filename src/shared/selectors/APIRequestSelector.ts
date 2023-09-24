@@ -36,6 +36,11 @@ export const selectGoogleImage = createSelector(
   (APIRequest) => APIRequest.googleLoginDetails.picture,
 );
 
+export const selectGoogleInfo = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.googleLoginDetails,
+);
+
 export const selectCurrentUser = createSelector(
   (state: RootState) => state.APICalls,
   (APIRequest) => APIRequest.currentUser[0],

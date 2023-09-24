@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Person, Chat, Notifications } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
@@ -7,15 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import { PageURLs } from '../shared/enums/enums';
 import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
-import { selectCurrentUser } from '../shared/selectors/APIRequestSelector';
-import { selectIsLoggedIn } from '../shared/selectors/appSelector';
+import { selectCurrentUser, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
 
 export default function Topbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectCurrentUser);
-  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
+  const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
+  const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      setIsCurrentUserLoaded(true);
+    }
+  }, [currentUser]);
 
   const logout = () => {
     dispatch(setIsUserLoggedIn(false));
@@ -23,7 +30,7 @@ export default function Topbar() {
     navigate(PageURLs.SIGN_IN);
   };
 
-  return (
+  return isCurrentUserLoaded ? (
     <Box
       display="flex"
       flexDirection="row"
@@ -116,7 +123,7 @@ export default function Topbar() {
             >
               <img
                 loading="lazy"
-                src={((currentUser || {}).picture || {})?.medium || ''}
+                src={currentUserPicture}
                 alt=""
                 className="w-full h-full rounded-full object-cover cursor-pointer"
               />
@@ -125,5 +132,5 @@ export default function Topbar() {
         </Box>
       </Box>
     </Box>
-  );
+  ) : null;
 }
