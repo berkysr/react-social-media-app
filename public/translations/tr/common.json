@@ -67,5 +67,27 @@
       },
       "success": "Başarılı"
     }
+  },
+  "a11y": {
+    "closeFriendProfilePicture": "Yakın arkadaş profil fotoğrafı",
+    "followedCompany": "Takip edilen şirket",
+    "birthDayPresentBox": "Doğum günü hediyesi kutusu",
+    "advertisement": "Reklam",
+    "postOwnerImage": "Gönderi sahibi fotoğrafı",
+    "postImage": "Gönderi fotoğrafı",
+    "likePost": "Gönderiyi beğen",
+    "favoritePost": "Gönderiyi favorile",
+    "currentUserPicture": "Şu anki kullanıcı fotoğrafı",
+    "currentUserBackgroundImage": "Şu anki kullanıcı arkaplan fotoğrafı",
+    "goToHome": "Anasayfaya git",
+    "goToProfile": "Profil sayfasına git",
+    "goToFeed": "Akışa git",
+    "goToChats": "Mesajlara git",
+    "goToVideos": "Videolara git",
+    "goToGroups": "Gruplara git",
+    "goToBookMarks": "Yer imlerine git",
+    "goToQuestions": "Sorulara git",
+    "goToJobs": "İşlere git",
+    "goToEvents": "Etkinliklere git"
   }
 }
