@@ -7,9 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/system';
 import './i18n';
-import { GOOGLE_CLIENT_ID } from './helper/utils/constants';
 import { store } from './store';
-import Loading from './components/Loading';
 
 const theme = createTheme({
   palette: {
@@ -36,7 +34,7 @@ root.render(
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Suspense fallback={<p>...</p>}>
-            <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
               <App />
             </GoogleOAuthProvider>
           </Suspense>

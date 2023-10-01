@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Person, Chat, Notifications } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { PageURLs } from '../shared/enums/enums';
-import { useAppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
 import FriendRequest from './FriendRequests';
+import { selectCurrentUser, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
 
 export default function Topbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(selectCurrentUser);
+  const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
+  const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
+  const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      setIsCurrentUserLoaded(true);
+    }
+  }, [currentUser]);
 
   const logout = () => {
     dispatch(setIsUserLoggedIn(false));
@@ -20,7 +31,7 @@ export default function Topbar() {
     navigate(PageURLs.SIGN_IN);
   };
 
-  return (
+  return isCurrentUserLoaded ? (
     <Box
       display="flex"
       flexDirection="row"
@@ -31,7 +42,10 @@ export default function Topbar() {
       className="h-14 w-full bg-[#1877f2] z-[999] sticky top-0"
     >
       <Box className="flex w-[15%] lg:w-[15%]">
-        <Link to="/">
+        <Link
+          aria-label={t('a11y.goToHome')}
+          to="/"
+        >
           <p className="font-bold text-[#f5f5f5] text-2xl cursor-pointer">{t('logo.social')}</p>
         </Link>
       </Box>
@@ -62,16 +76,13 @@ export default function Topbar() {
           flexDirection="row"
           ml={2}
         >
-          <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.homePage')}</p>
-
-          <p className="mr-2.5 text-sm font-medium cursor-pointer">{t('components.topbar.timeLine')}</p>
-
-          <p
+          <Link
+            to="#"
             className="mr-2.5 text-sm font-medium cursor-pointer"
             onClick={logout}
           >
             {t('components.topbar.logOut')}
-          </p>
+          </Link>
         </Box>
 
         <Box
@@ -109,12 +120,14 @@ export default function Topbar() {
           >
             <Link
               className="w-full"
+              aria-label={t('a11y.goToProfile')}
               to="/profile"
             >
               <img
                 loading="lazy"
-                src="/assets/person/10.jpeg"
-                alt=""
+                src={currentUserPicture}
+                aria-label={t('a11y.currentUserPicture')}
+                alt={t('a11y.currentUserPicture')}
                 className="w-full h-full rounded-full object-cover cursor-pointer"
               />
             </Link>
@@ -122,5 +135,5 @@ export default function Topbar() {
         </Box>
       </Box>
     </Box>
-  );
+  ) : null;
 }

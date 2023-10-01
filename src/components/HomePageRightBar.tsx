@@ -1,11 +1,13 @@
 import React from 'react';
 import OnlineFriend from './OnlineFriend';
-import { users } from '../shared/api/users';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
+import { selectOnlineFriends } from '../shared/selectors/APIRequestSelector';
+import { useAppSelector } from '../store';
 
 export default function HomePageRightBar() {
   const { t } = useTranslation();
+  const onlineFriends = useAppSelector(selectOnlineFriends);
 
   return (
     <Box
@@ -23,8 +25,9 @@ export default function HomePageRightBar() {
           <img
             loading="lazy"
             className="flex-none w-full "
+            aria-label={t('a11y.birthDayPresentBox')}
             src="/assets/gift.png"
-            alt=""
+            alt={t('a11y.birthDayPresentBox')}
           />
         </Box>
 
@@ -38,7 +41,8 @@ export default function HomePageRightBar() {
         loading="lazy"
         className="w-full rounded-xl"
         src="/assets/ad.png"
-        alt=""
+        aria-label={t('a11y.advertisement')}
+        alt={t('a11y.advertisement')}
       />
 
       <Box
@@ -49,14 +53,14 @@ export default function HomePageRightBar() {
         <h4 className="text-lg font-medium mb-5">{t('components.rightbar.onlineFriends')}</h4>
 
         <ul>
-          {users.map((user) => {
-            return user.online ? (
-              <OnlineFriend
-                key={user.id}
-                user={user}
-              />
-            ) : null;
-          })}
+          {onlineFriends
+            ? onlineFriends.map((friend) => (
+                <OnlineFriend
+                  key={`${friend.picture?.large} ${Math.random().toString()}`}
+                  user={friend}
+                />
+              ))
+            : null}
         </ul>
       </Box>
     </Box>

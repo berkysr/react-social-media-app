@@ -49,15 +49,6 @@ export enum APIMethods {
   CREATE = 'CREATE',
 }
 
-export enum APIEndpoints {
-  AUTHENTICATION_URL = 'https://dummyjson.com/auth/login',
-}
-
-export enum APIMockCredentials {
-  MOCK_USERNAME = 'dfundello',
-  MOCK_PASSWORD = 'k9zgV68UKw8m',
-}
-
 export enum Events {
   LANGUAGE_CHANGED = 'languageChanged',
 }
