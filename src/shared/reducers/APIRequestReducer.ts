@@ -117,6 +117,7 @@ export interface APIRequestState {
   currentUser: RandomUser[];
   closeFriends: RandomUser[];
   onlineFriends: RandomUser[];
+  friendRequests: RandomUser[];
   posts: RandomPost[];
   alerts: AlertElement[];
   isLoading: boolean;
@@ -153,6 +154,7 @@ const initialState: APIRequestState = {
   },
   closeFriends: [],
   onlineFriends: [],
+  friendRequests: [],
   posts: [],
   alerts: [],
   isLoading: false,
@@ -249,6 +251,9 @@ export const proposalSlice = createSlice({
     setCurrentUser: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
       state.currentUser = action.payload.results;
     },
+    setFriendRequests: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
+      state.friendRequests = action.payload.results;
+    },
   },
   extraReducers(builder) {
     builder
@@ -287,6 +292,7 @@ export const {
   setRandomOnlineFriends,
   setRandomPosts,
   setCurrentUser,
+  setFriendRequests,
 } = proposalSlice.actions;
 
 export default proposalSlice.reducer;

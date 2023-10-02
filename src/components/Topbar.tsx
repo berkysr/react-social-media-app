@@ -8,7 +8,8 @@ import { PageURLs } from '../shared/enums/enums';
 import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
 import FriendRequest from './FriendRequests';
-import { selectCurrentUser, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
+import { selectCurrentUser, selectFriendRequests, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
+import TopbarPopover from './TopbarPopover';
 
 export default function Topbar() {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ export default function Topbar() {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectCurrentUser);
   const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
+  const isFriendRequestExist = useAppSelector(selectFriendRequests).length > 0;
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
 
@@ -91,8 +93,12 @@ export default function Topbar() {
           alignItems="center"
         >
           <Box className="mr-4 cursor-pointer relative">
-            <Person />
-            <FriendRequest />
+            <TopbarPopover
+              title={isFriendRequestExist ? t('components.topbar.popover.friendRequests') : ''}
+              icon={<Person />}
+              children={<FriendRequest />}
+              open={false}
+            />
             <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
               1
             </p>

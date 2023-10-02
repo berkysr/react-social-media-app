@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { ThemeProvider, createTheme } from '@mui/system';
+import { ThemeProvider } from '@mui/system';
+import { createTheme } from '@mui/material/styles';
 import './i18n';
 import { store } from './store';
 
@@ -20,9 +21,6 @@ const theme = createTheme({
     },
     action: {
       active: '#001E3C',
-    },
-    success: {
-      dark: '#009688',
     },
   },
 });

@@ -1,17 +1,20 @@
 import React from 'react';
 import { Box } from '@mui/system';
-import PersonRemoveOutlinedIcon from '@mui/icons-material/PersonRemoveOutlined';
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
+import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from '@mui/icons-material/Check';
+import { t } from 'i18next';
+import { useAppSelector } from '../store';
+import { selectFriendRequests } from '../shared/selectors/APIRequestSelector';
 
 export default function FriendRequest() {
+  const friendRequests = useAppSelector(selectFriendRequests);
+
   return (
     <Box
-      display="none"
+      display="block"
       flexDirection="column"
-      p={2}
-      className="w-full absolute bg-white shadow-card w-[400px] h-[200px] rounded-tl-2xl rounded-b-2xl right-0 top-10"
+      className="bg-white w-[300px] rounded-tl-2xl rounded-b-2xl"
     >
-      <h3 className="text-black">Friend Requests</h3>
       <svg
         className="absolute text-white h-6 right-0 ml-3 bottom-full rotate-180"
         x="0px"
@@ -26,36 +29,55 @@ export default function FriendRequest() {
       </svg>
       <Box
         display="flex"
-        flexDirection="row"
-        width="full"
+        flexDirection="column"
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          gap={2}
-          pt={1}
-          width="full"
-        >
-          <div className="flex-shrink-0">
-            <img
-              className="w-8 h-8 rounded-full"
-              src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
-              alt="Neil image"
-            ></img>
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-black truncate">Neil Sims</p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">No mutual friend</p>
-          </div>
-          <Box
-            display="flex"
-            flexDirection="row"
-            gap={2}
-          >
-            <PersonAddOutlinedIcon className="text-black"></PersonAddOutlinedIcon>
-            <PersonRemoveOutlinedIcon className="text-black"></PersonRemoveOutlinedIcon>
-          </Box>
-        </Box>
+        {friendRequests.length > 0 ? (
+          friendRequests.map((friend) => {
+            const mutualFriendCount = Math.floor(Math.random() * 13);
+            return (
+              <Box
+                display="flex"
+                alignItems="center"
+                gap={2}
+                pt={1}
+                width="100%"
+                key={`${friend.picture?.large} ${Math.random().toString()}`}
+              >
+                <div className="flex-shrink-0">
+                  <img
+                    className="w-8 h-8 rounded-full"
+                    src={friend.picture ? friend.picture.thumbnail : ''}
+                    alt={friend.name ? friend.name.first : ''}
+                  ></img>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-black truncate">{friend.name ? `${friend.name.first} ${friend.name.last}` : ''}</p>
+                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {mutualFriendCount <= 0
+                      ? t('components.topbar.popover.noMutualFriend')
+                      : `${mutualFriendCount} ${t('components.topbar.popover.mutualFriend')}`}
+                  </p>
+                </div>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  gap={2}
+                >
+                  <CheckIcon
+                    style={{ fill: 'green' }}
+                    className="text-black"
+                  ></CheckIcon>
+                  <ClearIcon
+                    style={{ fill: 'red' }}
+                    className="text-black"
+                  ></ClearIcon>
+                </Box>
+              </Box>
+            );
+          })
+        ) : (
+          <h3>{t('components.topbar.popover.noFriendRequest')}</h3>
+        )}
       </Box>
     </Box>
   );

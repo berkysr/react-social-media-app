@@ -26,6 +26,11 @@ export const selectOnlineFriends = createSelector(
   (APIRequest) => APIRequest.onlineFriends,
 );
 
+export const selectFriendRequests = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.friendRequests,
+);
+
 export const selectRandomPosts = createSelector(
   (state: RootState) => state.APICalls,
   (APIRequest) => APIRequest.posts,
