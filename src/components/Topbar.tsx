@@ -17,6 +17,7 @@ export default function Topbar() {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectCurrentUser);
   const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
+  const friendRequestCount = useAppSelector(selectFriendRequests).length;
   const isFriendRequestExist = useAppSelector(selectFriendRequests).length > 0;
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
@@ -100,7 +101,7 @@ export default function Topbar() {
               open={false}
             />
             <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
-              1
+              {friendRequestCount === 0 ? '' : friendRequestCount}
             </p>
           </Box>
 
