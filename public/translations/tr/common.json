@@ -58,7 +58,13 @@
     "topbar": {
       "timeLine": "Akış",
       "logOut": "Çıkış",
-      "search": "Bir arkadaş ara"
+      "search": "Bir arkadaş ara",
+      "popover": {
+        "friendRequests": "Arkadaşlık İstekleri",
+        "noMutualFriend": "Ortak arkadaş yok",
+        "mutualFriend": "Ortak arkadaş",
+        "noFriendRequest": "Arkadaşlık İsteği Yok"
+      }
     },
     "alert": {
       "title": {

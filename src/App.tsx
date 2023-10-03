@@ -27,6 +27,7 @@ import {
   setRandomPosts,
   GeneratePostAPIResponse,
   setCurrentUser,
+  setFriendRequests,
 } from './shared/reducers/APIRequestReducer';
 import { t } from 'i18next';
 
@@ -44,9 +45,13 @@ function App() {
 
   const { pathname } = useLocation();
 
-  const randomCloseFriendAPIOptions: GenerateUser = {
+  const randomUserOptions: GenerateUser = {
+    filter: [],
+  };
+
+  const randomFriendRequestAPIOptions: GenerateUser = {
     filter: ['name', 'picture'],
-    results: 10,
+    results: Math.floor(Math.random() * 9),
   };
 
   const randomOnlineFriendAPIOptions: GenerateUser = {
@@ -54,12 +59,14 @@ function App() {
     results: Math.floor(Math.random() * 10) + 1,
   };
 
+  const closeFriendOptions: GenerateUser = {
+    filter: ['name', 'picture'],
+    results: 10,
+  };
+
   useEffect(() => {
     const isCloseFriendsEmpty = closeFriends.length === 0;
     const isOnlineFriendsEmpty = onlineFriends.length === 0;
-    const randomUserOptions: GenerateUser = {
-      filter: [],
-    };
 
     if (isLoggedIn) {
       dispatch(generateRandomUsers({ filterOptions: randomUserOptions }))
@@ -67,6 +74,22 @@ function App() {
           const payload = response.payload as GenerateUserAPIResponse;
 
           dispatch(setCurrentUser(payload));
+        })
+        .catch((error: { error: string }) => {
+          const errorResponse = {
+            message: error.error || t('error:error.api.generic'),
+            icon: 'danger',
+            canBeClosed: true,
+          };
+
+          dispatch(setAlertMessage(errorResponse));
+        });
+
+      dispatch(generateRandomUsers({ filterOptions: randomFriendRequestAPIOptions }))
+        .then((response) => {
+          const payload = response.payload as GenerateUserAPIResponse;
+
+          dispatch(setFriendRequests(payload));
         })
         .catch((error: { error: string }) => {
           const errorResponse = {
@@ -94,7 +117,7 @@ function App() {
         });
 
       if (isCloseFriendsEmpty) {
-        dispatch(generateRandomUsers({ filterOptions: randomCloseFriendAPIOptions }))
+        dispatch(generateRandomUsers({ filterOptions: closeFriendOptions }))
           .then((response) => {
             const payload = response.payload as GenerateUserAPIResponse;
 

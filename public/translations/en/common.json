@@ -58,7 +58,13 @@
     "topbar": {
       "timeLine": "Timeline",
       "logOut": "Log Out",
-      "search": "Search for a friend"
+      "search": "Search for a friend",
+      "popover": {
+        "friendRequests": "Friend Requests",
+        "noMutualFriend": "No mutual friend",
+        "mutualFriend": "mutual friend",
+        "noFriendRequest": "No Friend Request"
+      }
     },
     "alert": {
       "title": {
