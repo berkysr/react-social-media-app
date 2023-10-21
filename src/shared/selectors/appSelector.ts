@@ -15,3 +15,8 @@ export const selecLastVisitedURL = createSelector(
   (state: RootState) => state.app,
   (app) => app.lastVisitedURL,
 );
+
+export const selectLanguage = createSelector(
+  (state: RootState) => state.app,
+  (app) => app.selectedLanguage,
+);

@@ -10,7 +10,7 @@ import Topbar from './components/Topbar';
 import { PageURLs, Languages, Events } from './shared/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
-import { selectIsLoggedIn } from './shared/selectors/appSelector';
+import { selectIsLoggedIn, selectLanguage } from './shared/selectors/appSelector';
 import { selectAlerts, selectCloseFriends, selectIsLoading, selectOnlineFriends } from './shared/selectors/APIRequestSelector';
 import { setLastVisitedURL } from './shared/reducers/appReducer';
 import Alert from './components/Alert';
@@ -38,13 +38,10 @@ function App() {
   const isLoading = useAppSelector(selectIsLoading);
   const closeFriends = useAppSelector(selectCloseFriends);
   const onlineFriends = useAppSelector(selectOnlineFriends);
+  const selectedLanguage = useAppSelector(selectLanguage);
   const location = useLocation();
-
   const [availableLanguages, setAvailableLanguages] = useState<string[]>(['']);
-  const [language, setLanguage] = useState<string>(Languages.EN);
-
   const { pathname } = useLocation();
-
   const randomUserOptions: GenerateUser = {
     filter: [],
   };
@@ -158,19 +155,15 @@ function App() {
     const supportedLngs = i18n.options.supportedLngs ? i18n.options.supportedLngs : [''];
     const supportedLanguages = supportedLngs.filter((lang: string) => lang !== 'cimode');
 
-    i18n.on(Events.LANGUAGE_CHANGED, (lng: string) => {
-      setLanguage(lng);
-    });
-
     setAvailableLanguages(supportedLanguages);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    const langExists = availableLanguages.includes(language);
-    const correctLanguage = langExists ? language : i18n.languages[1];
+    const langExists = availableLanguages.includes(selectedLanguage);
+    const correctLanguage = langExists ? selectedLanguage : i18n.languages[1];
 
     changeLanguage(correctLanguage);
-  }, [language, availableLanguages]);
+  }, [selectedLanguage, availableLanguages]);
 
   useEffect(() => {
     if (isLoggedIn) {

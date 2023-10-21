@@ -39,7 +39,7 @@ export default function TopbarPopover({ title, icon, children }: TopbarPopoverPr
         }}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'center',
         }}
       >
         <Box p={2}>

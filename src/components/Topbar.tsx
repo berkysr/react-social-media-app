@@ -3,23 +3,18 @@ import { Link } from 'react-router-dom';
 import { Search, Person, Chat, Notifications } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { PageURLs } from '../shared/enums/enums';
-import { useAppDispatch, useAppSelector } from '../store';
-import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
+import { useAppSelector } from '../store';
 import FriendRequest from './FriendRequests';
-import { selectCurrentUser, selectFriendRequests, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
+import { selectCurrentUser, selectFriendRequests } from '../shared/selectors/APIRequestSelector';
 import TopbarPopover from './TopbarPopover';
+import ProfileSettingsPopover from './ProfileSettingsPopover';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function Topbar() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectCurrentUser);
-  const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
   const friendRequestCount = useAppSelector(selectFriendRequests).length;
   const isFriendRequestExist = useAppSelector(selectFriendRequests).length > 0;
-  const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,12 +22,6 @@ export default function Topbar() {
       setIsCurrentUserLoaded(true);
     }
   }, [currentUser]);
-
-  const logout = () => {
-    dispatch(setIsUserLoggedIn(false));
-
-    navigate(PageURLs.SIGN_IN);
-  };
 
   return isCurrentUserLoaded ? (
     <Box
@@ -72,22 +61,8 @@ export default function Topbar() {
         alignItems="center"
         className="flex w-[45%] lg:w-[35%] text-white"
         flexDirection="row"
-        justifyContent="space-between"
+        justifyContent="end"
       >
-        <Box
-          display="flex"
-          flexDirection="row"
-          ml={2}
-        >
-          <Link
-            to="#"
-            className="mr-2.5 text-sm font-medium cursor-pointer"
-            onClick={logout}
-          >
-            {t('components.topbar.logOut')}
-          </Link>
-        </Box>
-
         <Box
           display="flex"
           flexDirection="row"
@@ -100,7 +75,11 @@ export default function Topbar() {
               children={<FriendRequest />}
               open={false}
             />
-            <p className="top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs">
+            <p
+              className={`top-[-30%] right-[-30%] w-4 h-4 bg-[#ff0000] rounded-full text-white absolute flex justify-center items-center text-xs ${
+                friendRequestCount === 0 ? 'hidden' : ''
+              }`}
+            >
               {friendRequestCount === 0 ? '' : friendRequestCount}
             </p>
           </Box>
@@ -123,21 +102,15 @@ export default function Topbar() {
 
           <Box
             display="flex"
-            className="w-12 h-12 flex-none"
+            flexDirection="row"
+            alignItems="center"
           >
-            <Link
-              className="w-full"
-              aria-label={t('a11y.goToProfile')}
-              to="/profile"
-            >
-              <img
-                loading="lazy"
-                src={currentUserPicture}
-                aria-label={t('a11y.currentUserPicture')}
-                alt={t('a11y.currentUserPicture')}
-                className="w-full h-full rounded-full object-cover cursor-pointer"
-              />
-            </Link>
+            <TopbarPopover
+              title={t('components.topbar.popover.userSettings')}
+              icon={<SettingsIcon />}
+              children={<ProfileSettingsPopover />}
+              open={false}
+            />
           </Box>
         </Box>
       </Box>
