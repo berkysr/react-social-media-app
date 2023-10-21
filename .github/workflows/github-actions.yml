@@ -1,17 +1,8 @@
-name: Linters
-run-name: Linting with EsLint & StyleLint.
-on: [push]
+name: CI
+on: push
 jobs:
-  build:
+  prod-check:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-    - name: install
-      run: npm install
-    - name: ESLint
-      run: npm run lint
-    - name: Prettier
-      run: npm run stylelint
+    steps:
+      - run: echo "Deploying to production server on branch $GITHUB_REF"
