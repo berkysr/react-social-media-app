@@ -35,7 +35,6 @@ yarn-error.log
 testem.log
 /typings
 .eslintcache
-.github/
 
 # System files
 .DS_Store
