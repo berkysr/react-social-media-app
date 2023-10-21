@@ -1,4 +1,4 @@
-name: Check the source code
+name: Run Linters (Eslint & Stylelint)
 on: push
 jobs:
   test:
