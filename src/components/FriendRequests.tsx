@@ -38,6 +38,7 @@ export default function FriendRequest() {
               <Box
                 display="flex"
                 alignItems="center"
+                className="cursor-pointer hover:bg-[#3333331c] p-2 rounded-lg"
                 gap={2}
                 pt={1}
                 width="100%"
@@ -61,11 +62,12 @@ export default function FriendRequest() {
                 <Box
                   display="flex"
                   flexDirection="row"
+                  className="group/a"
                   gap={2}
                 >
                   <CheckIcon
                     style={{ fill: 'green' }}
-                    className="text-black"
+                    className="text-black group/a-active:bg-red"
                   ></CheckIcon>
                   <ClearIcon
                     style={{ fill: 'red' }}

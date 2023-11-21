@@ -63,7 +63,8 @@
         "friendRequests": "Friend Requests",
         "noMutualFriend": "No mutual friend",
         "mutualFriend": "mutual friend",
-        "noFriendRequest": "No Friend Request"
+        "noFriendRequest": "No Friend Request",
+        "userSettings": "User Settings"
       }
     },
     "alert": {

@@ -63,7 +63,8 @@
         "friendRequests": "Arkadaşlık İstekleri",
         "noMutualFriend": "Ortak arkadaş yok",
         "mutualFriend": "Ortak arkadaş",
-        "noFriendRequest": "Arkadaşlık İsteği Yok"
+        "noFriendRequest": "Arkadaşlık İsteği Yok",
+        "userSettings": "Kullanıcı Ayarları"
       }
     },
     "alert": {
