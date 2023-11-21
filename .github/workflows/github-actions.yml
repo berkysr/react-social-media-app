@@ -1,0 +1,14 @@
+name: Run Linters (Eslint & Stylelint)
+on: push
+jobs:
+  test:
+    name: Run Linters (Eslint & Stylelint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install packages
+        run: npm install
+      - name: StyleLint
+        run: npm run stylelint
+      - name: EsLint
+        run: npm run lint
