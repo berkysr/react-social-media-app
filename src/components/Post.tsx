@@ -1,11 +1,8 @@
 import React from 'react';
 import { MoreVert } from '@mui/icons-material';
-import { users } from '../shared/api/users';
-import { useState } from 'react';
-import { Post } from '../shared/types/post';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import { GeneratePostAPIResponse, RandomPost } from '../shared/reducers/APIRequestReducer';
+import { RandomPost } from '../shared/reducers/APIRequestReducer';
 
 interface PostProps {
   post: RandomPost;
@@ -13,7 +10,7 @@ interface PostProps {
 
 export default function PostCard({ post }: PostProps) {
   const { t } = useTranslation();
-  const { id, image, likes, tags, text, publishDate, owner } = post;
+  const { image, likes, text, publishDate, owner } = post;
 
   return (
     <Box

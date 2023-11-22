@@ -1,5 +1,5 @@
 import React from 'react';
-import OnlineFriend from './OnlineFriend';
+import ProfileLink from './ProfileLink';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { selectOnlineFriends } from '../shared/selectors/APIRequestSelector';
@@ -55,9 +55,10 @@ export default function HomePageRightBar() {
         <ul>
           {onlineFriends
             ? onlineFriends.map((friend) => (
-                <OnlineFriend
+                <ProfileLink
                   key={`${friend.picture?.large} ${Math.random().toString()}`}
                   user={friend}
+                  isOnline={true}
                 />
               ))
             : null}

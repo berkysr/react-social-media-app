@@ -2,7 +2,7 @@ import { t } from 'i18next';
 import { GenerateUser, GenerateUserAPIResponse, generateRandomUsers, setAlertMessage } from '../../shared/reducers/APIRequestReducer';
 import { useAppDispatch } from '../../store';
 
-export function generateUsers(options: GenerateUser) {
+export const generateUsers = (options: GenerateUser) => {
   const dispatch = useAppDispatch();
 
   dispatch(generateRandomUsers({ filterOptions: options }))
@@ -20,4 +20,6 @@ export function generateUsers(options: GenerateUser) {
 
       dispatch(setAlertMessage(errorResponse));
     });
-}
+};
+
+export const formatTextValue = (textValue: string) => textValue.toLowerCase().replaceAll(' ', '');

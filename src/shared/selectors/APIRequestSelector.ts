@@ -36,6 +36,11 @@ export const selectRandomPosts = createSelector(
   (APIRequest) => APIRequest.posts,
 );
 
+export const selectSelectedUser = createSelector(
+  (state: RootState) => state.APICalls,
+  (APIRequest) => APIRequest.selectedUser,
+);
+
 export const selectGoogleImage = createSelector(
   (state: RootState) => state.APICalls,
   (APIRequest) => APIRequest.googleLoginDetails.picture,

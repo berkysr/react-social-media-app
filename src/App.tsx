@@ -7,7 +7,7 @@ import i18n from './i18n';
 import { changeLanguage } from './shared/translationTool';
 import { Grid, Box } from '@mui/material';
 import Topbar from './components/Topbar';
-import { PageURLs, Languages, Events } from './shared/enums/enums';
+import { PageURLs } from './shared/enums/enums';
 import ProtectedRoute from './helper/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
 import { selectIsLoggedIn, selectLanguage } from './shared/selectors/appSelector';
@@ -193,7 +193,7 @@ function App() {
             }
           />
           <Route
-            path={PageURLs.PROFILE}
+            path={`${PageURLs.PROFILE}/:userId`}
             element={
               <ProtectedRoute
                 isProtected={isLoggedIn}
