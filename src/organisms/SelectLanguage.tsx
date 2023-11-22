@@ -12,7 +12,7 @@ export default function SelectLanguage({ currentLang }: SelectLanguageProps) {
     <Box
       display="flex"
       flexDirection="row"
-      justifyContent="end"
+      justifyContent="start"
       className="text-l font-bold w-full flex row gap-[10px] hover:bg-[#3333331c] p-2 rounded-lg cursor-pointer"
       gap={0.5}
     >

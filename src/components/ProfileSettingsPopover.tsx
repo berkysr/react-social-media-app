@@ -48,6 +48,13 @@ export default function ProfileSettingsPopover() {
         isLoggedInUser={true}
       />
 
+      <TopbarPopover
+        open={false}
+        title={''}
+        icon={<SelectLanguage currentLang={selectedLanguage} />}
+        children={<LanguageSelectorPopover />}
+      />
+
       <hr className="border-t-1 border-[rgb(236 239 241)]"></hr>
 
       <Box
@@ -72,12 +79,6 @@ export default function ProfileSettingsPopover() {
             {t('components.topbar.logOut')}
           </Link>
         </Box>
-        <TopbarPopover
-          open={false}
-          title={''}
-          icon={<SelectLanguage currentLang={selectedLanguage} />}
-          children={<LanguageSelectorPopover></LanguageSelectorPopover>}
-        ></TopbarPopover>
       </Box>
     </Box>
   );
