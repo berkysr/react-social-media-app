@@ -11,14 +11,23 @@ import { selectLanguage } from '../shared/selectors/appSelector';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageSelectorPopover from './LanguageSelectorPopover';
+import ProfileLink from './ProfileLink';
+import { RandomUser } from '../shared/reducers/APIRequestReducer';
 
 export default function ProfileSettingsPopover() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const selectedLanguage = useAppSelector(selectLanguage) || Languages.EN;
   const currentUser = useAppSelector(selectCurrentUser);
-  const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
-  const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
+  const googleInfo = useAppSelector(selectGoogleInfo);
+  let updatedUserInfo = currentUser;
+
+  if (googleInfo.given_name && googleInfo.picture) {
+    const currentProfileImage = googleInfo.picture;
+    const currentProfileName = { first: googleInfo.given_name, last: googleInfo.family_name };
+    const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.thumbnail || '';
+    updatedUserInfo = { ...currentUser, name: currentProfileName, picture: { thumbnail: currentUserPicture } } as RandomUser;
+  }
 
   const logout = () => {
     dispatch(setIsUserLoggedIn(false));
@@ -33,20 +42,11 @@ export default function ProfileSettingsPopover() {
       gap={1}
       marginTop={1}
     >
-      <Link
-        className="w-full flex row gap-[10px] hover:bg-[#3333331c] p-2 rounded-lg"
-        aria-label={t('a11y.currentUserPicture')}
-        to="/profile"
-      >
-        <img
-          loading="lazy"
-          src={currentUserPicture}
-          aria-label={t('a11y.currentUserPicture')}
-          alt={t('a11y.currentUserPicture')}
-          className="w-[25px] h-[25px] rounded-full object-cover cursor-pointer"
-        />
-        <figcaption>{`${currentUser.name?.first} ${currentUser.name?.last}`}</figcaption>
-      </Link>
+      <ProfileLink
+        user={updatedUserInfo}
+        isOnline={false}
+        isLoggedInUser={true}
+      />
 
       <hr className="border-t-1 border-[rgb(236 239 241)]"></hr>
 

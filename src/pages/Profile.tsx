@@ -3,23 +3,28 @@ import Sidebar from '../components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/Feed';
 import { Box } from '@mui/material';
-import { useAppSelector } from '../store';
-import { selectCurrentUser, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
+import { useAppDispatch, useAppSelector } from '../store';
+import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../shared/selectors/APIRequestSelector';
 import { t } from 'i18next';
+import { setSelectedUser } from '../shared/reducers/APIRequestReducer';
 
 export default function Profile() {
+  const dispatch = useAppDispatch();
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
   const currentUser = useAppSelector(selectCurrentUser);
+  const selectedUser = useAppSelector(selectSelectedUser);
 
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
   const [currentProfileImage, setCurrentProfileImage] = useState('');
   const [currentUserName, setCurrentUserName] = useState('');
+  const [backgroundPicture, setBackgroundPicture] = useState('');
 
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
 
   useEffect(() => {
     if (currentUser && !currentUserGoogleInfo.iss) {
       setCurrentUserName(`${currentUser.name?.first} ${currentUser.name?.last}`);
+      setCurrentProfileImage(((currentUser || {}).picture || {})?.medium || '');
     }
 
     if (currentUserGoogleInfo.iss) {
@@ -30,7 +35,14 @@ export default function Profile() {
     if (currentUser || currentUserGoogleInfo.iss) {
       setIsCurrentUserLoaded(true);
     }
-  }, [currentUser, currentUserGoogleInfo]);
+
+    if (selectedUser.name && selectedUser.picture) {
+      setCurrentProfileImage(selectedUser.picture.medium);
+      setCurrentUserName(`${selectedUser.name?.first} ${selectedUser.name?.last}`);
+    }
+
+    setBackgroundPicture(`https://source.unsplash.com/random/1366x768?v=${Math.random().toFixed()}`);
+  }, [currentUser, currentUserGoogleInfo, selectedUser]);
 
   return isCurrentUserLoaded ? (
     <Box
@@ -64,7 +76,7 @@ export default function Profile() {
               loading="lazy"
               className="object-cover h-full w-full"
               aria-label={t('a11y.currentUserBackgroundImage')}
-              src="https://source.unsplash.com/random/1366x768"
+              src={backgroundPicture}
               alt={t('a11y.currentUserBackgroundImage')}
             />
 

@@ -118,6 +118,7 @@ export interface APIRequestState {
   closeFriends: RandomUser[];
   onlineFriends: RandomUser[];
   friendRequests: RandomUser[];
+  selectedUser: RandomUser;
   posts: RandomPost[];
   alerts: AlertElement[];
   isLoading: boolean;
@@ -158,6 +159,7 @@ const initialState: APIRequestState = {
   posts: [],
   alerts: [],
   isLoading: false,
+  selectedUser: {},
 };
 
 export const getAuthenticationAPIDetails = createAsyncThunk<
@@ -248,6 +250,9 @@ export const proposalSlice = createSlice({
     setRandomPosts: (state, action: PayloadAction<GeneratePostAPIResponse>) => {
       state.posts = action.payload.data;
     },
+    setSelectedUser: (state, action: PayloadAction<RandomUser>) => {
+      state.selectedUser = action.payload;
+    },
     setCurrentUser: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
       state.currentUser = action.payload.results;
     },
@@ -283,6 +288,7 @@ export const proposalSlice = createSlice({
 });
 
 export const {
+  setSelectedUser,
   setAuthenticationAPIDetails,
   setGoogleAPIDetails,
   setAlertMessageAsRemoved,

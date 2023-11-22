@@ -15,7 +15,7 @@ import { Box } from '@mui/material';
 import NavbarMenuElement from './NavbarMenuElement';
 import { useAppSelector } from '../store';
 import { selectCloseFriends } from '../shared/selectors/APIRequestSelector';
-import CloseFriend from './CloseFriend';
+import ProfileLink from './ProfileLink';
 
 export default function Sidebar() {
   const closeFriends = useAppSelector(selectCloseFriends);
@@ -127,7 +127,7 @@ export default function Sidebar() {
       <ul className="p-0 m-0 list-none overflow-y-auto mb-8">
         {closeFriends
           ? closeFriends.map((friend) => (
-              <CloseFriend
+              <ProfileLink
                 key={`${friend.picture?.large} ${Math.random().toString()}`}
                 user={friend}
               />
