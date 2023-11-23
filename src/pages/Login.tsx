@@ -115,7 +115,7 @@ export default function Login() {
         })
         .catch((error: any) => {
           const errorResponse = {
-            message: error.message || t('error:error.api.generic'),
+            message: error.message || t('error:error.validation.api.genericError'),
             icon: 'danger',
             canBeClosed: true,
           };
