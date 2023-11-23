@@ -74,7 +74,7 @@ function App() {
         })
         .catch((error: { error: string }) => {
           const errorResponse = {
-            message: error.error || t('error:error.api.generic'),
+            message: error.error || t('error:error.validation.api.genericError'),
             icon: 'danger',
             canBeClosed: true,
           };
@@ -90,7 +90,7 @@ function App() {
         })
         .catch((error: { error: string }) => {
           const errorResponse = {
-            message: error.error || t('error:error.api.generic'),
+            message: error.error || t('error:error.validation.api.genericError'),
             icon: 'danger',
             canBeClosed: true,
           };
@@ -105,7 +105,7 @@ function App() {
         })
         .catch((error: { error: string }) => {
           const errorResponse = {
-            message: error.error || t('error:error.api.generic'),
+            message: error.error || t('error:error.validation.api.genericError'),
             icon: 'danger',
             canBeClosed: true,
           };
@@ -122,7 +122,7 @@ function App() {
           })
           .catch((error: { error: string }) => {
             const errorResponse = {
-              message: error.error || t('error:error.api.generic'),
+              message: error.error || t('error:error.validation.api.genericError'),
               icon: 'danger',
               canBeClosed: true,
             };
@@ -140,7 +140,7 @@ function App() {
           })
           .catch((error: { error: string }) => {
             const errorResponse = {
-              message: error.error || t('error:error.api.generic'),
+              message: error.error || t('error:error.validation.api.genericError'),
               icon: 'danger',
               canBeClosed: true,
             };
