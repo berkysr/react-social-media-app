@@ -26,18 +26,17 @@ const theme = createTheme({
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <Suspense fallback={<p>...</p>}>
-            <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
-              <App />
-            </GoogleOAuthProvider>
-          </Suspense>
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Suspense fallback={<p>...</p>}>
+          <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
+            <App />
+          </GoogleOAuthProvider>
+        </Suspense>
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>,
 );
