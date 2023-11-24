@@ -39,7 +39,19 @@ export default function Login() {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required(t('error:error.validation.required')).email(t('error:error.validation.email.invalid')),
+    email: Yup.string()
+      .required(t('error:error.validation.required'))
+      .test(
+        SignInPageFields.EMAIL,
+        () => t('error:error.validation.email.invalid'),
+        (value) => {
+          if (value) {
+            return /(.+)@(.+){2,}\.(.+){2,}/.test(value);
+          }
+
+          return false;
+        },
+      ),
     password: Yup.string()
       .required(t('error:error.validation.required'))
       .test(

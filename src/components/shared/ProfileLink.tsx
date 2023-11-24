@@ -2,9 +2,10 @@ import React from 'react';
 import { t } from 'i18next';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
-import { RandomUser, setSelectedUser } from '../../helpers/reducers/APIRequestReducer';
+import { setSelectedUser } from '../../helpers/reducers/APIRequestReducer';
 import { PageURLs } from '../../helpers/enums/enums';
 import { formatTextValue } from '../../helpers/utils/commonFunctions';
+import { RandomUser } from '../../helpers/types/api';
 
 interface ProfileLinkProps {
   user: RandomUser;
