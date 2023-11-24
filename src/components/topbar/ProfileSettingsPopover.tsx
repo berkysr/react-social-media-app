@@ -12,7 +12,7 @@ import { setIsUserLoggedIn } from '../../helpers/reducers/appReducer';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageSelectorPopover from './LanguageSelectorPopover';
 import ProfileLink from '../shared/ProfileLink';
-import { RandomUser } from '../../helpers/reducers/APIRequestReducer';
+import { RandomUser } from '../../helpers/types/api';
 
 export default function ProfileSettingsPopover() {
   const dispatch = useAppDispatch();

@@ -17,20 +17,17 @@ import Alert from './components/shared/Alert';
 import WildCard from './pages/WildCard';
 import Loading from './components/shared/Loading';
 import {
-  GenerateUser,
-  GenerateUserAPIResponse,
   generateRandomUsers,
   generateRandomPosts,
   setAlertMessage,
   setRandomCloseFriends,
   setRandomOnlineFriends,
   setRandomPosts,
-  GeneratePostAPIResponse,
   setCurrentUser,
   setFriendRequests,
 } from './helpers/reducers/APIRequestReducer';
-import { t } from 'i18next';
 import { generateErrorMessage } from './helpers/utils/commonFunctions';
+import { GeneratePostAPIResponse, GenerateUser, GenerateUserAPIResponse } from './helpers/types/api';
 
 function App() {
   const dispatch = useAppDispatch();

@@ -2,7 +2,7 @@ import React from 'react';
 import { MoreVert } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import { RandomPost } from '../../helpers/reducers/APIRequestReducer';
+import { RandomPost } from '../../helpers/types/api';
 
 interface PostProps {
   post: RandomPost;

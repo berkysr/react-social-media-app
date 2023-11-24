@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../types/user';
 import { Common, Languages, PageURLs } from '../enums/enums';
 import { sessionStorageUtil } from '../utils/storageFunctions';
-
-export interface AppState {
-  lastVisitedURL: string;
-  user: User | null;
-  isLoggedIn: boolean;
-  selectedLanguage: Languages.EN | Languages.TR;
-}
+import { AppState } from '../types/state';
 
 const initialState: AppState = {
   lastVisitedURL: PageURLs.HOME,
