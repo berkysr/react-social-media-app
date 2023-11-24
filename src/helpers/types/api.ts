@@ -1,6 +1,3 @@
-import { AlertElement } from './general';
-import { DecodedGoogleCredentialResponse, LoginResponse } from './login';
-
 export type RandomUserFilter =
   | 'gender'
   | 'name'
