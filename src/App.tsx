@@ -30,6 +30,7 @@ import {
   setFriendRequests,
 } from './shared/reducers/APIRequestReducer';
 import { t } from 'i18next';
+import { generateErrorMessage } from './helper/utils/commonFunctions';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -73,13 +74,7 @@ function App() {
           dispatch(setCurrentUser(payload));
         })
         .catch((error: { error: string }) => {
-          const errorResponse = {
-            message: error.error || t('error:error.validation.api.genericError'),
-            icon: 'danger',
-            canBeClosed: true,
-          };
-
-          dispatch(setAlertMessage(errorResponse));
+          dispatch(setAlertMessage(generateErrorMessage(error.error)));
         });
 
       dispatch(generateRandomUsers({ filterOptions: randomFriendRequestAPIOptions }))
@@ -89,14 +84,9 @@ function App() {
           dispatch(setFriendRequests(payload));
         })
         .catch((error: { error: string }) => {
-          const errorResponse = {
-            message: error.error || t('error:error.validation.api.genericError'),
-            icon: 'danger',
-            canBeClosed: true,
-          };
-
-          dispatch(setAlertMessage(errorResponse));
+          dispatch(setAlertMessage(generateErrorMessage(error.error)));
         });
+
       dispatch(generateRandomPosts({ page: '0', limit: '10' }))
         .then((response) => {
           const payload = response.payload as GeneratePostAPIResponse;
@@ -104,13 +94,7 @@ function App() {
           dispatch(setRandomPosts(payload));
         })
         .catch((error: { error: string }) => {
-          const errorResponse = {
-            message: error.error || t('error:error.validation.api.genericError'),
-            icon: 'danger',
-            canBeClosed: true,
-          };
-
-          dispatch(setAlertMessage(errorResponse));
+          dispatch(setAlertMessage(generateErrorMessage(error.error)));
         });
 
       if (isCloseFriendsEmpty) {
@@ -121,13 +105,7 @@ function App() {
             dispatch(setRandomCloseFriends(payload));
           })
           .catch((error: { error: string }) => {
-            const errorResponse = {
-              message: error.error || t('error:error.validation.api.genericError'),
-              icon: 'danger',
-              canBeClosed: true,
-            };
-
-            dispatch(setAlertMessage(errorResponse));
+            dispatch(setAlertMessage(generateErrorMessage(error.error)));
           });
       }
 
@@ -139,13 +117,7 @@ function App() {
             dispatch(setRandomOnlineFriends(payload));
           })
           .catch((error: { error: string }) => {
-            const errorResponse = {
-              message: error.error || t('error:error.validation.api.genericError'),
-              icon: 'danger',
-              canBeClosed: true,
-            };
-
-            dispatch(setAlertMessage(errorResponse));
+            dispatch(setAlertMessage(generateErrorMessage(error.error)));
           });
       }
     }
