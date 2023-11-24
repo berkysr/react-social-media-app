@@ -3,7 +3,7 @@ import { DecodedGoogleCredentialResponse, LoginResponse } from '../types/login';
 import { AlertElement } from '../types/general';
 import { AppDispatch, RootState } from '../../store';
 import { APIMethods, Common } from '../enums/enums';
-import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
+import { sessionStorageUtil } from '../utils/storageFunctions';
 
 export type RandomUserFilter =
   | 'gender'

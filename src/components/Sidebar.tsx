@@ -9,13 +9,13 @@ import {
   CasesSharp,
   EventAvailableSharp,
 } from '@mui/icons-material';
-import { SideBarElementInfoTexts } from '../shared/enums/enums';
+import { SideBarElementInfoTexts } from '../helpers/enums/enums';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import NavbarMenuElement from './NavbarMenuElement';
+import NavbarMenuElement from './shared/NavbarMenuElement';
 import { useAppSelector } from '../store';
-import { selectCloseFriends } from '../shared/selectors/APIRequestSelector';
-import ProfileLink from './ProfileLink';
+import { selectCloseFriends } from '../helpers/selectors/APIRequestSelector';
+import ProfileLink from './shared/ProfileLink';
 
 export default function Sidebar() {
   const closeFriends = useAppSelector(selectCloseFriends);
