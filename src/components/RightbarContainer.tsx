@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import ProfilePageRightBar from './ProfilePageRightBar';
+import ProfilePageRightBar from './profile/ProfilePageRightBar';
 import HomePageRightBar from './HomePageRightBar';
 
 interface RightbarProps {

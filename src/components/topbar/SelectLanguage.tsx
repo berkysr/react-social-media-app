@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { flagEN, flagTR } from '../helper/utils/SVG';
-import { Languages } from '../shared/enums/enums';
+import { flagEN, flagTR } from '../../helpers/utils/SVG';
+import { Languages } from '../../helpers/enums/enums';
 
 interface SelectLanguageProps {
   currentLang: Languages.EN | Languages.TR;

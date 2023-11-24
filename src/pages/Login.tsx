@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react';
-import FormInput from '../components/InputField';
+import FormInput from '../components/shared/InputField';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import { SignInPageFields, PlaceHolders, Types, Common } from '../shared/enums/enums';
+import { SignInPageFields, PlaceHolders, Types, Common } from '../helpers/enums/enums';
 import { useNavigate } from 'react-router-dom';
-import { selecLastVisitedURL } from '../shared/selectors/appSelector';
-import { minCharacterCount, maxCharacterCount } from '../helper/utils/constants';
+import { selecLastVisitedURL } from '../helpers/selectors/appSelector';
+import { minCharacterCount, maxCharacterCount } from '../helpers/utils/constants';
 import {
   repeatingCharacter,
   atLeastOneCapitalorSmallLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
-} from '../helper/utils/validationFunctions';
-import { DecodedGoogleCredentialResponse, LoginResponse } from '../shared/types/login';
+} from '../helpers/utils/validationFunctions';
+import { DecodedGoogleCredentialResponse, LoginResponse } from '../helpers/types/login';
 import * as Yup from 'yup';
 import {
   getAuthenticationAPIDetails,
   setAlertMessage,
   setAuthenticationAPIDetails,
   setGoogleAPIDetails,
-} from '../shared/reducers/APIRequestReducer';
+} from '../helpers/reducers/APIRequestReducer';
 import { useAppDispatch, useAppSelector } from '../store';
-import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
-import { selectIsLoading } from '../shared/selectors/APIRequestSelector';
-import { sessionStorageUtil } from '../helper/utils/storageFunctions';
-import { generateErrorMessage } from '../helper/utils/commonFunctions';
+import { setIsUserLoggedIn } from '../helpers/reducers/appReducer';
+import { selectIsLoading } from '../helpers/selectors/APIRequestSelector';
+import { sessionStorageUtil } from '../helpers/utils/storageFunctions';
+import { generateErrorMessage } from '../helpers/utils/commonFunctions';
 
 export default function Login() {
   const { t } = useTranslation();

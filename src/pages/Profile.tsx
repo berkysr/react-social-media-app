@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
-import Feed from '../components/Feed';
+import Feed from '../components/feed/Feed';
 import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../store';
-import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../shared/selectors/APIRequestSelector';
+import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../helpers/selectors/APIRequestSelector';
 import { t } from 'i18next';
-import { setSelectedUser } from '../shared/reducers/APIRequestReducer';
+import { setSelectedUser } from '../helpers/reducers/APIRequestReducer';
 
 export default function Profile() {
   const dispatch = useAppDispatch();

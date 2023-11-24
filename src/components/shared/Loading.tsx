@@ -1,5 +1,5 @@
 import React from 'react';
-import { loadingSVG } from '../helper/utils/SVG';
+import { loadingSVG } from '../../helpers/utils/SVG';
 
 export default function Loading() {
   return (

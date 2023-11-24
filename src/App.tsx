@@ -4,18 +4,18 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import { useLocation, Route, Routes } from 'react-router-dom';
 import i18n from './i18n';
-import { changeLanguage } from './shared/translationTool';
+import { changeLanguage } from './helpers/translationTool';
 import { Grid, Box } from '@mui/material';
-import Topbar from './components/Topbar';
-import { PageURLs } from './shared/enums/enums';
-import ProtectedRoute from './helper/utils/protectedRoute';
+import Topbar from './components/topbar/Topbar';
+import { PageURLs } from './helpers/enums/enums';
+import ProtectedRoute from './helpers/utils/protectedRoute';
 import { useAppDispatch, useAppSelector } from './store';
-import { selectIsLoggedIn, selectLanguage } from './shared/selectors/appSelector';
-import { selectAlerts, selectCloseFriends, selectIsLoading, selectOnlineFriends } from './shared/selectors/APIRequestSelector';
-import { setLastVisitedURL } from './shared/reducers/appReducer';
-import Alert from './components/Alert';
+import { selectIsLoggedIn, selectLanguage } from './helpers/selectors/appSelector';
+import { selectAlerts, selectCloseFriends, selectIsLoading, selectOnlineFriends } from './helpers/selectors/APIRequestSelector';
+import { setLastVisitedURL } from './helpers/reducers/appReducer';
+import Alert from './components/shared/Alert';
 import WildCard from './pages/WildCard';
-import Loading from './components/Loading';
+import Loading from './components/shared/Loading';
 import {
   GenerateUser,
   GenerateUserAPIResponse,
@@ -28,9 +28,9 @@ import {
   GeneratePostAPIResponse,
   setCurrentUser,
   setFriendRequests,
-} from './shared/reducers/APIRequestReducer';
+} from './helpers/reducers/APIRequestReducer';
 import { t } from 'i18next';
-import { generateErrorMessage } from './helper/utils/commonFunctions';
+import { generateErrorMessage } from './helpers/utils/commonFunctions';
 
 function App() {
   const dispatch = useAppDispatch();

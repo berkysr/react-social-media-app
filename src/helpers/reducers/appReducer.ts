@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../types/user';
 import { Common, Languages, PageURLs } from '../enums/enums';
-import { sessionStorageUtil } from '../../helper/utils/storageFunctions';
+import { sessionStorageUtil } from '../utils/storageFunctions';
 
 export interface AppState {
   lastVisitedURL: string;

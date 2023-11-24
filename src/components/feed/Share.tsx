@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import Icon from './Icon';
-import { useAppSelector } from '../store';
-import { selectCurrentUser, selectGoogleInfo } from '../shared/selectors/APIRequestSelector';
+import Icon from '../shared/Icon';
+import { useAppSelector } from '../../store';
+import { selectCurrentUser, selectGoogleInfo } from '../../helpers/selectors/APIRequestSelector';
 
 export default function Share() {
   const { t } = useTranslation();
