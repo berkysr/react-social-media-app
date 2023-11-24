@@ -27,6 +27,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { setIsUserLoggedIn } from '../shared/reducers/appReducer';
 import { selectIsLoading } from '../shared/selectors/APIRequestSelector';
 import { sessionStorageUtil } from '../helper/utils/storageFunctions';
+import { generateErrorMessage } from '../helper/utils/commonFunctions';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -114,13 +115,7 @@ export default function Login() {
           }
         })
         .catch((error: any) => {
-          const errorResponse = {
-            message: error.message || t('error:error.validation.api.genericError'),
-            icon: 'danger',
-            canBeClosed: true,
-          };
-
-          dispatch(setAlertMessage(errorResponse));
+          dispatch(setAlertMessage(generateErrorMessage(error.error)));
         });
     },
 
