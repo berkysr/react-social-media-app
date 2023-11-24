@@ -106,16 +106,3 @@ export interface GeneratePostAPIResponse {
   page: number;
   limit: number;
 }
-
-export interface APIRequestState {
-  authenticationAPIDetails: LoginResponse;
-  googleLoginDetails: DecodedGoogleCredentialResponse;
-  currentUser: RandomUser[];
-  closeFriends: RandomUser[];
-  onlineFriends: RandomUser[];
-  friendRequests: RandomUser[];
-  selectedUser: RandomUser;
-  posts: RandomPost[];
-  alerts: AlertElement[];
-  isLoading: boolean;
-}
