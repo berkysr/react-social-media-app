@@ -3,6 +3,8 @@ import Sidebar from '../components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/feed/Feed';
 import { Box } from '@mui/material';
+import SlidingMenu from '../components/mobile/SlidingMenu';
+import { isMobile } from 'react-device-detect';
 
 export default function Home() {
   return (
@@ -15,24 +17,26 @@ export default function Home() {
       >
         <Box
           display="flex"
-          className="w-[30%] lg:w-[20%] relative"
+          className={`${isMobile ? '' : 'w-[30%] lg:w-[20%]'} relative`}
         >
-          <Sidebar />
+          {isMobile ? <SlidingMenu /> : <Sidebar />}
         </Box>
 
         <Box
           display="flex"
-          className="w-[40%] lg:w-[60%]"
+          className={`${isMobile ? 'w-full' : 'w-[40%]'} lg:w-[60%]`}
         >
           <Feed />
         </Box>
 
-        <Box
-          display="flex"
-          className="w-[30%] lg:w-[20%]"
-        >
-          <Rightbar profile={false} />
-        </Box>
+        {!isMobile ? (
+          <Box
+            display="flex"
+            className="w-[30%] lg:w-[20%]"
+          >
+            <Rightbar profile={false} />
+          </Box>
+        ) : null}
       </Box>
     </>
   );

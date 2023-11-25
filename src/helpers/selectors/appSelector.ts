@@ -20,3 +20,8 @@ export const selectLanguage = createSelector(
   (state: RootState) => state.app,
   (app) => app.selectedLanguage,
 );
+
+export const selectIsMobileNavbarActive = createSelector(
+  (state: RootState) => state.app,
+  (app) => app.isMobileNavbarActive,
+);
