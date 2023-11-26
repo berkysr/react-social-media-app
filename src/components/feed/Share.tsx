@@ -5,13 +5,11 @@ import { Box } from '@mui/material';
 import Icon from '../shared/Icon';
 import { useAppSelector } from '../../store';
 import { selectCurrentUser, selectGoogleInfo } from '../../helpers/selectors/APIRequestSelector';
+import { isMobile } from 'react-device-detect';
 
 export default function Share() {
   const { t } = useTranslation();
   const currentUser = useAppSelector(selectCurrentUser);
-  const [width, setWidth] = useState(0);
-  const windowWidth = window.innerWidth;
-  const isOnlyBigScreen = width >= 1200;
   const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
@@ -21,10 +19,6 @@ export default function Share() {
       setIsCurrentUserLoaded(true);
     }
   }, [currentUser]);
-
-  useEffect(() => {
-    setWidth(windowWidth);
-  }, [windowWidth]);
 
   const shareIcons = [
     {
@@ -106,13 +100,13 @@ export default function Share() {
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-        ml={isOnlyBigScreen ? 3 : 0}
+        ml={isMobile ? 3 : 0}
       >
         {shareIcons.map((icon) => (
           <Icon
             key={icon.infoText}
-            infoText={isOnlyBigScreen ? t(`components.share.${icon.infoText}`) : ''}
-            isOnlyBigScreen={isOnlyBigScreen}
+            infoText={isMobile ? '' : t(`components.share.${icon.infoText}`)}
+            isOnlyBigScreen={!isMobile}
           >
             {icon.child}
           </Icon>

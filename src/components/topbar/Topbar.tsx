@@ -43,6 +43,7 @@ export default function Topbar() {
       px={3}
       py={1}
       className="h-14 w-full bg-[#1877f2] z-[999] sticky top-0"
+      position={'sticky'}
     >
       <Box
         className="w-[30%]"

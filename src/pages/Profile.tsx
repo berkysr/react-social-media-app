@@ -3,13 +3,13 @@ import Sidebar from '../components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/feed/Feed';
 import { Box } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppSelector } from '../store';
 import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../helpers/selectors/APIRequestSelector';
 import { t } from 'i18next';
-import { setSelectedUser } from '../helpers/reducers/APIRequestReducer';
+import { isMobile } from 'react-device-detect';
+import SlidingMenu from '../components/mobile/SlidingMenu';
 
 export default function Profile() {
-  const dispatch = useAppDispatch();
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
   const currentUser = useAppSelector(selectCurrentUser);
   const selectedUser = useAppSelector(selectSelectedUser);
@@ -52,9 +52,9 @@ export default function Profile() {
     >
       <Box
         display="flex"
-        className="flex-[3] relative"
+        className={`${isMobile ? '' : 'flex-[3]'} relative`}
       >
-        <Sidebar />
+        {isMobile ? <SlidingMenu /> : <Sidebar />}
       </Box>
 
       <Box
@@ -105,12 +105,12 @@ export default function Profile() {
 
         <Box
           display="flex"
-          flexDirection="row"
+          flexDirection={`${isMobile ? 'column' : 'row'}`}
         >
           <Box
             display="flex"
             flexDirection="column"
-            className="flex"
+            className={`${isMobile ? 'order-1' : ''}`}
           >
             <Feed />
           </Box>
@@ -118,7 +118,7 @@ export default function Profile() {
           <Box
             display="flex"
             flexDirection="column"
-            className="flex-none w-96"
+            className={`flex-none w-96 ${isMobile ? 'order-0 w-full' : ''}`}
           >
             <Rightbar profile />
           </Box>
