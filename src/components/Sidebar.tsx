@@ -16,6 +16,7 @@ import NavbarMenuElement from './shared/NavbarMenuElement';
 import { useAppSelector } from '../store';
 import { selectCloseFriends } from '../helpers/selectors/APIRequestSelector';
 import ProfileLink from './shared/ProfileLink';
+import { isMobile } from 'react-device-detect';
 
 export default function Sidebar() {
   const closeFriends = useAppSelector(selectCloseFriends);
@@ -100,7 +101,7 @@ export default function Sidebar() {
       display="flex"
       flexDirection="column"
       p={3}
-      className="w-full h-screen sticky top-[56px]"
+      className={`"w-full h-screen ${isMobile ? '' : 'sticky'} top-[56px]`}
     >
       <ul className="p-0 m-0 list-none">
         {navbarElements.map((element) => (
@@ -124,7 +125,7 @@ export default function Sidebar() {
 
       <h4 className="font-medium mb-4">{t('components.sidebar.closeFriends')}</h4>
 
-      <ul className="p-0 m-0 list-none overflow-y-auto mb-8">
+      <ul className={`${isMobile ? '' : 'mb-8'} p-0 m-0 list-none overflow-y-auto`}>
         {closeFriends
           ? closeFriends.map((friend) => (
               <ProfileLink

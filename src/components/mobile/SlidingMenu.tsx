@@ -3,20 +3,48 @@ import React from 'react';
 import Sidebar from '../Sidebar';
 import { selectIsMobileNavbarActive } from '../../helpers/selectors/appSelector';
 import { useAppSelector } from '../../store';
+import ProfileLink from '../shared/ProfileLink';
+import { selectOnlineFriends } from '../../helpers/selectors/APIRequestSelector';
+import { useTranslation } from 'react-i18next';
 
 export default function SlidingMenu() {
+  const { t } = useTranslation();
   const isMobileNavbarActive = useAppSelector(selectIsMobileNavbarActive);
+  const onlineFriends = useAppSelector(selectOnlineFriends);
 
   if (isMobileNavbarActive) {
     return (
       <Box
         id="drawer-navigation"
-        className={`fixed shadow-card top-[56] left-[250px] z-40 w-64 h-screen p-4 transition-transform -translate-x-full bg-white overflow-y-auto absolute`}
+        className={`shadow-card top-[56] left-[250px] z-40 w-64 h-screen transition-transform -translate-x-full bg-white overflow-y-auto absolute`}
         tab-index="-1"
         aria-labelledby="drawer-navigation-label"
         position="fixed"
       >
         <Sidebar />
+
+        <Box
+          display="flex"
+          flexDirection="column"
+          className="w-full"
+          p={3}
+          pt={0}
+          mb={3}
+        >
+          <h4 className="text-lg font-medium mb-5">{t('components.rightbar.onlineFriends')}</h4>
+
+          <ul>
+            {onlineFriends
+              ? onlineFriends.map((friend) => (
+                  <ProfileLink
+                    key={`${friend.picture?.large} ${Math.random().toString()}`}
+                    user={friend}
+                    isOnline={true}
+                  />
+                ))
+              : null}
+          </ul>
+        </Box>
       </Box>
     );
   } else {

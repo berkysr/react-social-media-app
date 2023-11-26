@@ -28,6 +28,7 @@ import { setIsUserLoggedIn } from '../helpers/reducers/appReducer';
 import { selectIsLoading } from '../helpers/selectors/APIRequestSelector';
 import { sessionStorageUtil } from '../helpers/utils/storageFunctions';
 import { generateErrorMessage } from '../helpers/utils/commonFunctions';
+import { isMobile } from 'react-device-detect';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -153,7 +154,7 @@ export default function Login() {
           flexDirection="column"
           justifyItems="center"
           p={10}
-          className="shadow-card w-[75vh] h-[75vh] bg-gray-200"
+          className={`${isMobile ? 'w-full' : 'w-[75vh]'} shadow-card h-[75vh] bg-gray-200`}
         >
           <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
           <Box
