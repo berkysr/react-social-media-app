@@ -87,9 +87,8 @@ function App() {
       dispatch(generateRandomPosts({ page: '0', limit: '10' }))
         .then((response) => {
           const payload = response.payload as GeneratePostAPIResponse;
-          const { data } = payload;
 
-          dispatch(setRandomPosts(data));
+          dispatch(setRandomPosts(payload));
         })
         .catch((error: { error: string }) => {
           dispatch(setAlertMessage(generateErrorMessage(error.error)));
