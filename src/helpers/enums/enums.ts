@@ -9,6 +9,11 @@ export enum Languages {
   TR = 'tr',
 }
 
+export enum Locales {
+  EN = 'en-US',
+  TR = 'tr-TR',
+}
+
 export enum PageURLs {
   HOME = '/',
   PROFILE = '/profile',
