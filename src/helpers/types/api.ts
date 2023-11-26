@@ -92,11 +92,8 @@ export interface RandomPost {
   text: string;
   publishDate: string;
   owner: {
-    id: string;
-    title: string;
     firstName: string;
     lastName: string;
-    picture: string;
   };
 }
 
