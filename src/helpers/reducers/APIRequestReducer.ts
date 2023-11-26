@@ -148,10 +148,10 @@ export const proposalSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(generateRandomUsers.fulfilled, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(generateRandomUsers.rejected, (state, error) => {
-        state.isLoading = true;
+        state.isLoading = false;
       });
 
     builder
@@ -161,10 +161,10 @@ export const proposalSlice = createSlice({
       .addCase(getAuthenticationAPIDetails.fulfilled, (state, action) => {
         sessionStorageUtil.set(Common.TOKEN, action.payload.token);
 
-        state.isLoading = true;
+        state.isLoading = false;
       })
       .addCase(getAuthenticationAPIDetails.rejected, (state, error) => {
-        state.isLoading = true;
+        state.isLoading = false;
       });
   },
 });
