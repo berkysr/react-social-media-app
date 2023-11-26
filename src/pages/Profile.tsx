@@ -8,6 +8,7 @@ import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../help
 import { t } from 'i18next';
 import { isMobile } from 'react-device-detect';
 import SlidingMenu from '../components/mobile/SlidingMenu';
+import { loadingSVG } from '../helpers/utils/SVG';
 
 export default function Profile() {
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
@@ -72,6 +73,17 @@ export default function Profile() {
             className="relative h-96 w-full overflow-hidden"
             pb={9}
           >
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              position="absolute"
+              className="h-96 w-full"
+              zIndex="-1"
+            >
+              {loadingSVG}
+            </Box>
+
             <img
               loading="lazy"
               className="object-cover h-full w-full"
