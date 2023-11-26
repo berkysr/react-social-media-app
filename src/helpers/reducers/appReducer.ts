@@ -8,6 +8,7 @@ const initialState: AppState = {
   user: null,
   isLoggedIn: !!sessionStorageUtil.get(Common.TOKEN),
   selectedLanguage: Languages.EN,
+  isMobileNavbarActive: false,
 };
 
 export const appSlice = createSlice({
@@ -26,9 +27,12 @@ export const appSlice = createSlice({
     setSelectedLanguage: (state, action: PayloadAction<AppState['selectedLanguage']>) => {
       state.selectedLanguage = action.payload;
     },
+    setIsMobileNavbarActive: (state, action: PayloadAction<AppState['isMobileNavbarActive']>) => {
+      state.isMobileNavbarActive = action.payload;
+    },
   },
 });
 
-export const { setLastVisitedURL, setUser, setIsUserLoggedIn, setSelectedLanguage } = appSlice.actions;
+export const { setLastVisitedURL, setUser, setIsUserLoggedIn, setSelectedLanguage, setIsMobileNavbarActive } = appSlice.actions;
 
 export default appSlice.reducer;

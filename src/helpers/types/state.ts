@@ -9,6 +9,7 @@ export interface AppState {
   user: User | null;
   isLoggedIn: boolean;
   selectedLanguage: Languages.EN | Languages.TR;
+  isMobileNavbarActive: boolean;
 }
 
 export interface APIRequestState {
