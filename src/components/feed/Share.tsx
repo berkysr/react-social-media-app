@@ -3,10 +3,14 @@ import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import Icon from '../shared/Icon';
-import { useAppSelector } from '../../store';
-import { selectCurrentUser, selectGoogleInfo } from '../../helpers/selectors/APIRequestSelector';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { selectCurrentUser, selectGoogleInfo, selectRandomPosts } from '../../helpers/selectors/APIRequestSelector';
+import { setRandomPosts } from '../../helpers/reducers/APIRequestReducer';
+import { RandomPost } from '../../helpers/types/api';
 
 export default function Share() {
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector(selectRandomPosts);
   const { t } = useTranslation();
   const currentUser = useAppSelector(selectCurrentUser);
   const [width, setWidth] = useState(0);
@@ -15,6 +19,7 @@ export default function Share() {
   const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
+  const [shareText, setShareText] = useState('');
 
   useEffect(() => {
     if (currentUser) {
@@ -25,6 +30,37 @@ export default function Share() {
   useEffect(() => {
     setWidth(windowWidth);
   }, [windowWidth]);
+
+  const handleShareClick = () => {
+    if (!shareText) {
+      return;
+    }
+
+    const newPost: RandomPost = {
+      id: Math.random().toString(),
+      image: '',
+      likes: 0,
+      tags: [''],
+      text: shareText,
+      publishDate: new Date().toISOString(),
+      owner: {
+        id: currentUser.login?.md5 || '',
+        title: currentUser.name?.title || '',
+        firstName: currentUser.name?.first || '',
+        lastName: currentUser.name?.last || '',
+        picture: currentUserPicture || '',
+      },
+    };
+
+    const newPosts = [newPost, ...posts];
+
+    dispatch(setRandomPosts(newPosts));
+    setShareText('');
+  };
+
+  const handleChange = (event: React.ChangeEvent) => {
+    setShareText((event.target as HTMLInputElement).value);
+  };
 
   const shareIcons = [
     {
@@ -96,6 +132,8 @@ export default function Share() {
           <textarea
             placeholder={t('components.share.status')}
             className="resize-none w-full focus:outline-none"
+            onChange={(event) => handleChange(event)}
+            value={shareText}
           />
         </Box>
       </Box>
@@ -121,6 +159,7 @@ export default function Share() {
         <button
           className="border-0 p-2 rounded-md font-medium lg:mr-5 cursor-pointer text-white bg-green-500"
           aria-label={t('components.share.share')}
+          onClick={() => handleShareClick()}
         >
           {t('components.share.share')}
         </button>
