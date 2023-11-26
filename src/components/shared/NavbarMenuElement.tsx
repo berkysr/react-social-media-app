@@ -1,4 +1,5 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { t } from 'i18next';
 import React from 'react';
 
 interface NavbarMenuElementProps {
@@ -11,7 +12,7 @@ export default function NavbarMenuElement({ children, infoText }: NavbarMenuElem
     <li className="flex items-center mb-5 cursor-pointer">
       {children}
 
-      <p className="capitalize">{infoText}</p>
+      <p className="capitalize">{t(`components.sidebar.${infoText}`)}</p>
     </li>
   );
 }
