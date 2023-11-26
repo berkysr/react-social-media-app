@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { MoreVert } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { RandomPost } from '../../helpers/types/api';
+import { useAppSelector } from '../../store';
+import { selectLanguage } from '../../helpers/selectors/appSelector';
+import { Languages, Locales } from '../../helpers/enums/enums';
 
 interface PostProps {
   post: RandomPost;
@@ -11,6 +14,10 @@ interface PostProps {
 export default function PostCard({ post }: PostProps) {
   const { t } = useTranslation();
   const { image, likes, text, publishDate, owner } = post;
+  const selectedLanguage = useAppSelector(selectLanguage) || Languages.EN;
+  const locale = useMemo(() => {
+    return selectedLanguage === Languages.EN ? Locales.EN : Locales.TR;
+  }, [selectedLanguage]);
 
   return (
     <Box
@@ -30,7 +37,7 @@ export default function PostCard({ post }: PostProps) {
           <figcaption className="text-base font-bold my-0 mx-2.5 flex items-center">{`${owner.firstName} ${owner.lastName}`}</figcaption>
 
           <time className="text-zinc-500	text-xs flex items-center">
-            {new Date(publishDate).toLocaleString('en-GB', { timeZone: 'UTC' })}
+            {new Date(publishDate).toLocaleString(locale, { timeZone: 'UTC' })}
           </time>
         </Box>
 
