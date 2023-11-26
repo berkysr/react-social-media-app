@@ -3,7 +3,7 @@ import { LoginResponse } from '../types/login';
 import { AppDispatch, RootState } from '../../store';
 import { APIMethods, Common } from '../enums/enums';
 import { sessionStorageUtil } from '../utils/storageFunctions';
-import { GeneratePostAPIResponse, GenerateUser, GenerateUserAPIResponse, RandomUser, RandomUserFilter } from '../types/api';
+import { GenerateUser, GenerateUserAPIResponse, RandomPost, RandomUser, RandomUserFilter } from '../types/api';
 import { APIRequestState } from '../types/state';
 
 const initialState: APIRequestState = {
@@ -129,8 +129,8 @@ export const proposalSlice = createSlice({
     setRandomOnlineFriends: (state, action: PayloadAction<GenerateUserAPIResponse>) => {
       state.onlineFriends = action.payload.results;
     },
-    setRandomPosts: (state, action: PayloadAction<GeneratePostAPIResponse>) => {
-      state.posts = action.payload.data;
+    setRandomPosts: (state, action: PayloadAction<RandomPost[]>) => {
+      state.posts = action.payload;
     },
     setSelectedUser: (state, action: PayloadAction<RandomUser>) => {
       state.selectedUser = action.payload;
