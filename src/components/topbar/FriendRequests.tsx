@@ -48,6 +48,8 @@ export default function FriendRequest() {
                   <img
                     className="w-8 h-8 rounded-full"
                     src={friend.picture ? friend.picture.thumbnail : ''}
+                    width="100%"
+                    height="100%"
                     alt={friend.name ? friend.name.first : ''}
                   ></img>
                 </div>

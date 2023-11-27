@@ -33,6 +33,8 @@ export default function ProfileLink({ user, isOnline = false, isLoggedInUser = f
       >
         <img
           loading="lazy"
+          width="100%"
+          height="100%"
           src={picture.thumbnail}
           aria-label={t('a11y.currentUserPicture')}
           alt={t('a11y.currentUserPicture')}
@@ -50,6 +52,8 @@ export default function ProfileLink({ user, isOnline = false, isLoggedInUser = f
           <div className="mr-3 relative">
             <img
               loading="lazy"
+              width="100%"
+              height="100%"
               className="w-9 h-9 rounded-full object-cover mr-2.5"
               aria-label={`${t('a11y.closeFriendProfilePicture')}-${name.first} ${name.last}`}
               src={picture.thumbnail}

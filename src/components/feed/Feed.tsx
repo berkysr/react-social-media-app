@@ -17,10 +17,11 @@ export default function Feed() {
     >
       <Share />
 
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <PostCard
           key={post.id}
           post={post}
+          index={index}
         />
       ))}
     </Box>

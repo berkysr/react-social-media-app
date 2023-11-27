@@ -69,7 +69,9 @@ export default function ProfilePageRightBar() {
 
         <img
           loading="lazy"
-          src="/assets/ad.png"
+          src="/assets/ad.webp"
+          width="100%"
+          height="100%"
           aria-label={t('a11y.advertisement')}
           alt={t('a11y.advertisement')}
         />

@@ -89,6 +89,8 @@ export default function Profile() {
               className="object-cover h-full w-full"
               aria-label={t('a11y.currentUserBackgroundImage')}
               src={backgroundPicture}
+              width="100%"
+              height="100%"
               alt={t('a11y.currentUserBackgroundImage')}
             />
 
@@ -99,6 +101,8 @@ export default function Profile() {
                 bottom-0 cursor-pointer w-36 h-36 border-4 white"
               aria-label={t('a11y.currentUserPicture')}
               src={currentUserPicture}
+              width="100%"
+              height="100%"
               alt={t('a11y.currentUserPicture')}
             />
           </Box>
