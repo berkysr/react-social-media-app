@@ -61,7 +61,7 @@ export default function Login() {
         () => t('error:error.validation.password.repeatingCharacters'),
         (value) => {
           if (value) {
-            return !repeatingCharacter(value);
+            return repeatingCharacter(value);
           }
 
           return false;
@@ -133,7 +133,7 @@ export default function Login() {
         });
     },
 
-    isInitialValid: true,
+    validateOnMount: false,
   });
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
