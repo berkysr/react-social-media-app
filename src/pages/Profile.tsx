@@ -42,7 +42,7 @@ export default function Profile() {
       setCurrentUserName(`${selectedUser.name?.first} ${selectedUser.name?.last}`);
     }
 
-    setBackgroundPicture(`https://source.unsplash.com/random/1366x768?v=${Math.random().toFixed()}`);
+    setBackgroundPicture(`https://source.unsplash.com/random/1366x768?v=${Math.random().toFixed(4)}`);
   }, [currentUser, currentUserGoogleInfo, selectedUser]);
 
   return isCurrentUserLoaded ? (
