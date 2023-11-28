@@ -115,7 +115,7 @@ export default function Sidebar() {
       </ul>
 
       <button
-        className="bg-green-500 text-white w-36 !border-0 p-2.5 rounded-md font-medium"
+        className="bg-[#1877f2] text-white w-36 !border-0 p-2.5 rounded-md font-medium"
         aria-label={t('button.showMore')}
       >
         {t('button.showMore')}

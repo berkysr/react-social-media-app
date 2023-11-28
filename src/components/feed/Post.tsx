@@ -9,9 +9,10 @@ import { Languages, Locales } from '../../helpers/enums/enums';
 
 interface PostProps {
   post: RandomPost;
+  index: number;
 }
 
-export default function PostCard({ post }: PostProps) {
+export default function PostCard({ post, index }: PostProps) {
   const { t } = useTranslation();
   const { image, likes, text, publishDate, owner } = post;
   const selectedLanguage = useAppSelector(selectLanguage) || Languages.EN;
@@ -27,8 +28,10 @@ export default function PostCard({ post }: PostProps) {
       <Box className="flex items-center justify-between cursor-pointer">
         <Box className="flex align-center">
           <img
-            loading="lazy"
+            loading={`${index === 0 ? 'eager' : 'lazy'}`}
             src={owner.picture}
+            width="100%"
+            height="100%"
             aria-label={`${t('a11y.postOwnerImage')}-${owner.firstName} ${owner.lastName}`}
             className="w-9 h-9 rounded-full object-cover"
             alt={`${t('a11y.postOwnerImage')}-${owner.firstName} ${owner.lastName}`}
@@ -52,8 +55,10 @@ export default function PostCard({ post }: PostProps) {
 
         {image ? (
           <img
-            loading="lazy"
+            loading={`${index === 0 ? 'eager' : 'lazy'}`}
             src={image}
+            width="100%"
+            height="100%"
             aria-label={t('a11y.postImage')}
             className="mt-5 w-full max-h-[112rem] object-contain"
             alt={t('a11y.postImage')}
@@ -66,6 +71,8 @@ export default function PostCard({ post }: PostProps) {
           <img
             loading="lazy"
             className="w-6 h-6 mr-1.5 cursor-pointer"
+            width="100%"
+            height="100%"
             src="/assets/like.png"
             aria-label={t('a11y.likePost')}
             alt={t('a11y.likePost')}
@@ -74,6 +81,8 @@ export default function PostCard({ post }: PostProps) {
           <img
             loading="lazy"
             className="w-6 h-6 mr-2.5 cursor-pointer"
+            width="100%"
+            height="100%"
             src="/assets/heart.png"
             aria-label={t('a11y.favoritePost')}
             alt={t('a11y.favoritePost')}

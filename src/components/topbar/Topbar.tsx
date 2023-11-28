@@ -14,6 +14,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import { setIsMobileNavbarActive } from '../../helpers/reducers/appReducer';
 import { selectIsMobileNavbarActive } from '../../helpers/selectors/appSelector';
+import { appLogo } from '../../helpers/utils/SVG';
 
 export default function Topbar() {
   const { t } = useTranslation();
@@ -46,7 +47,7 @@ export default function Topbar() {
       position="sticky"
     >
       <Box
-        className="w-[30%]"
+        className={isMobile ? 'w-[50%]' : 'w-[30%]'}
         display="flex"
         flexDirection="row"
         alignItems="center"
@@ -68,12 +69,14 @@ export default function Topbar() {
           )
         ) : null}
 
-        <Box className="flex">
+        <Box>
           <Link
+            className="flex flex-row gap-[12px] items-center"
             aria-label={t('a11y.goToHome')}
             to="/"
           >
-            <p className="font-bold text-[#f5f5f5] text-2xl cursor-pointer">{t('logo.social')}</p>
+            {appLogo}
+            <p className={`font-bold text-[#f5f5f5] cursor-pointer ${isMobile ? 'text-sm' : 'text-2xl'}`}>{t('logo.social')}</p>
           </Link>
         </Box>
       </Box>

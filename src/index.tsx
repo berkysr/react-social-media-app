@@ -9,6 +9,7 @@ import { ThemeProvider } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 import './i18n';
 import { store } from './store';
+import Loading from './components/shared/Loading';
 
 const theme = createTheme({
   palette: {
@@ -31,7 +32,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Suspense fallback={<p>...</p>}>
+        <Suspense fallback={<Loading />}>
           <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
             <App />
           </GoogleOAuthProvider>

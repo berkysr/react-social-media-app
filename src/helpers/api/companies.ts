@@ -33,26 +33,21 @@ export const companies: Company[] = [
   },
   {
     id: 7,
-    name: 'Google',
-    logo: '/assets/logo/google.png',
-  },
-  {
-    id: 8,
     name: 'Mercedes',
     logo: '/assets/logo/mercedes.png',
   },
   {
-    id: 9,
+    id: 8,
     name: 'Porsche',
     logo: '/assets/logo/porsche.png',
   },
   {
-    id: 10,
+    id: 9,
     name: 'Tesla',
     logo: '/assets/logo/tesla.png',
   },
   {
-    id: 11,
+    id: 10,
     name: 'Twitter',
     logo: '/assets/logo/twitter.png',
   },
