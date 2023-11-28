@@ -1,7 +1,7 @@
 export const repeatingCharacter: (value: string) => boolean = (value) => {
   const arrayOfValue = value.split('');
 
-  return arrayOfValue.some((arrayValue, index) => {
+  return !arrayOfValue.some((arrayValue, index) => {
     return arrayValue === arrayOfValue[index - 1] || arrayValue === arrayOfValue[index + 1];
   });
 };
