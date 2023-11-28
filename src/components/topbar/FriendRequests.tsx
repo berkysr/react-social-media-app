@@ -3,8 +3,8 @@ import { Box } from '@mui/system';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import { t } from 'i18next';
-import { useAppSelector } from '../../store';
-import { selectFriendRequests } from '../../helpers/selectors/APIRequestSelector';
+import { useAppSelector } from '@base/store';
+import { selectFriendRequests } from '@helpers/selectors/APIRequestSelector';
 
 export default function FriendRequest() {
   const friendRequests = useAppSelector(selectFriendRequests);

@@ -1,8 +1,6 @@
 import React from 'react';
 import Popover, { PopoverProps } from '@mui/material/Popover';
 import { Box } from '@mui/material';
-import { useAppSelector } from '../../store';
-import { selectFriendRequests } from '../../helpers/selectors/APIRequestSelector';
 
 interface TopbarPopoverProps extends PopoverProps {
   title: string;

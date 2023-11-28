@@ -1,10 +1,10 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { setSelectedLanguage } from '../../helpers/reducers/appReducer';
-import { Languages } from '../../helpers/enums/enums';
-import { flagEN, flagTR } from '../../helpers/utils/SVG';
-import { selectLanguage } from '../../helpers/selectors/appSelector';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import { setSelectedLanguage } from '@helpers/reducers/appReducer';
+import { Languages } from '@helpers/enums/enums';
+import { flagEN, flagTR } from '@helpers/utils/SVG';
+import { selectLanguage } from '@helpers/selectors/appSelector';
 
 export default function LanguageSelectorPopover() {
   const dispatch = useAppDispatch();

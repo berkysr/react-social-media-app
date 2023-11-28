@@ -9,13 +9,13 @@ import {
   CasesSharp,
   EventAvailableSharp,
 } from '@mui/icons-material';
-import { SideBarElementInfoTexts } from '../helpers/enums/enums';
+import { SideBarElementInfoTexts } from '@helpers/enums/enums';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import NavbarMenuElement from './shared/NavbarMenuElement';
-import { useAppSelector } from '../store';
-import { selectCloseFriends } from '../helpers/selectors/APIRequestSelector';
-import ProfileLink from './shared/ProfileLink';
+import NavbarMenuElement from '@components/shared/NavbarMenuElement';
+import { useAppSelector } from '@base/store';
+import { selectCloseFriends } from '@helpers/selectors/APIRequestSelector';
+import ProfileLink from '@components/shared/ProfileLink';
 import { isMobile } from 'react-device-detect';
 
 export default function Sidebar() {

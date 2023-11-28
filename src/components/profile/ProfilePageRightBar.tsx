@@ -1,9 +1,9 @@
 import React from 'react';
-import UserInfo, { ProfileDetailRawDataUnionType } from './UserInfo';
-import Following from './Following';
-import { users } from '../../helpers/api/users';
-import { usersProfileDetails } from '../../helpers/api/profileDetails';
-import { companies } from '../../helpers/api/companies';
+import UserInfo, { ProfileDetailRawDataUnionType } from '@components/profile/UserInfo';
+import Following from '@components/profile/Following';
+import { users } from '@helpers/api/users';
+import { usersProfileDetails } from '@helpers/api/profileDetails';
+import { companies } from '@helpers/api/companies';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 
