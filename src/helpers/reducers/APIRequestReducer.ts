@@ -1,10 +1,10 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LoginResponse } from '@helpers/types/login';
 import { AppDispatch, RootState } from '@base/store';
 import { APIMethods, Common } from '@helpers/enums/enums';
-import { sessionStorageUtil } from '@helpers/utils/storageFunctions';
 import { GenerateUser, GenerateUserAPIResponse, RandomPost, RandomUser, RandomUserFilter } from '@helpers/types/api';
+import { LoginResponse } from '@helpers/types/login';
 import { APIRequestState } from '@helpers/types/state';
+import { sessionStorageUtil } from '@helpers/utils/storageFunctions';
 
 const initialState: APIRequestState = {
   authenticationAPIDetails: {
