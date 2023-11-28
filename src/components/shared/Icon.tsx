@@ -1,6 +1,5 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { Box } from '@mui/material';
-import { t } from 'i18next';
 import React from 'react';
 
 interface IconProps {

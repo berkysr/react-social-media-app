@@ -29,6 +29,7 @@ import { selectIsLoading } from '../helpers/selectors/APIRequestSelector';
 import { sessionStorageUtil } from '../helpers/utils/storageFunctions';
 import { generateErrorMessage } from '../helpers/utils/commonFunctions';
 import { isMobile } from 'react-device-detect';
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -172,6 +173,7 @@ export default function Login() {
               label={t('pages.login.email')}
               helperText={formik.errors.email ? formik.errors.email : ''}
               onChange={formik.handleChange}
+              tooltip={{ icon: <InfoIcon fontSize="small" />, text: t('components.tooltip.email') }}
             ></FormInput>
           </Box>
 
@@ -185,6 +187,7 @@ export default function Login() {
               label={t('pages.login.password')}
               helperText={formik.errors.password ? formik.errors.password : ''}
               onChange={formik.handleChange}
+              tooltip={{ icon: <InfoIcon fontSize="small" />, text: t('components.tooltip.password') }}
             ></FormInput>
           </Box>
 
