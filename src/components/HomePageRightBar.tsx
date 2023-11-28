@@ -1,9 +1,9 @@
-import React from 'react';
-import ProfileLink from '@components/shared/ProfileLink';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import { selectOnlineFriends } from '@helpers/selectors/APIRequestSelector';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@base/store';
+import ProfileLink from '@components/shared/ProfileLink';
+import { selectOnlineFriends } from '@helpers/selectors/APIRequestSelector';
 
 export default function HomePageRightBar() {
   const { t } = useTranslation();

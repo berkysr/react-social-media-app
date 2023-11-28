@@ -36,6 +36,7 @@ module.exports = {
   rules: {
     'no-undefined': 'off',
     'no-undef': 'off',
+    'import/no-unresolved': 'off',
     'no-eq-null': 'off',
     'prettier/prettier': [
       'error',

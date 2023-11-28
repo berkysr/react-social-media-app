@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import Icon from '@components/shared/Icon';
-import { useAppDispatch, useAppSelector } from '@base/store';
-import { selectCurrentUser, selectGoogleInfo, selectRandomPosts } from '@helpers/selectors/APIRequestSelector';
-import { setRandomPosts } from '@helpers/reducers/APIRequestReducer';
-import { RandomPost } from '@helpers/types/api';
+import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import Icon from '@components/shared/Icon';
+import { setRandomPosts } from '@helpers/reducers/APIRequestReducer';
+import { selectCurrentUser, selectGoogleInfo, selectRandomPosts } from '@helpers/selectors/APIRequestSelector';
+import { RandomPost } from '@helpers/types/api';
 
 export default function Share() {
   const dispatch = useAppDispatch();

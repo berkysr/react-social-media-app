@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   RssFeed,
   ChatSharp,
@@ -9,14 +8,15 @@ import {
   CasesSharp,
   EventAvailableSharp,
 } from '@mui/icons-material';
-import { SideBarElementInfoTexts } from '@helpers/enums/enums';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import NavbarMenuElement from '@components/shared/NavbarMenuElement';
-import { useAppSelector } from '@base/store';
-import { selectCloseFriends } from '@helpers/selectors/APIRequestSelector';
-import ProfileLink from '@components/shared/ProfileLink';
+import React from 'react';
 import { isMobile } from 'react-device-detect';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@base/store';
+import NavbarMenuElement from '@components/shared/NavbarMenuElement';
+import ProfileLink from '@components/shared/ProfileLink';
+import { SideBarElementInfoTexts } from '@helpers/enums/enums';
+import { selectCloseFriends } from '@helpers/selectors/APIRequestSelector';
 
 export default function Sidebar() {
   const closeFriends = useAppSelector(selectCloseFriends);

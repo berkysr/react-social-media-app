@@ -1,12 +1,12 @@
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/system';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import '@base/index.scss';
 import { Provider } from 'react-redux';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter } from 'react-router-dom';
 import App from '@base/App';
-import { ThemeProvider } from '@mui/system';
-import { createTheme } from '@mui/material/styles';
 import '@base/i18n';
 import { store } from '@base/store';
 import Loading from '@components/shared/Loading';
