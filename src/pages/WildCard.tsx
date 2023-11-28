@@ -1,10 +1,10 @@
 import React from 'react';
-import { wildCardSVG } from '../helpers/utils/SVG';
+import { wildCardSVG } from '@helpers/utils/SVG';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { PageURLs, ErrorCode } from '../helpers/enums/enums';
+import { PageURLs, ErrorCode } from '@helpers/enums/enums';
 import { useTranslation } from 'react-i18next';
-import { leftArrowSVG } from '../helpers/utils/SVG';
+import { leftArrowSVG } from '@helpers/utils/SVG';
 
 export default function WildCard() {
   const { t } = useTranslation();

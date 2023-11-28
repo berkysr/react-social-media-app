@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { MoreVert } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
-import { RandomPost } from '../../helpers/types/api';
-import { useAppSelector } from '../../store';
-import { selectLanguage } from '../../helpers/selectors/appSelector';
-import { Languages, Locales } from '../../helpers/enums/enums';
+import { RandomPost } from '@helpers/types/api';
+import { useAppSelector } from '@base/store';
+import { selectLanguage } from '@helpers/selectors/appSelector';
+import { Languages, Locales } from '@helpers/enums/enums';
 
 interface PostProps {
   post: RandomPost;

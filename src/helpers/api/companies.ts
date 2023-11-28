@@ -1,4 +1,4 @@
-import { Company } from '../types/company';
+import { Company } from '@helpers/types/company';
 
 export const companies: Company[] = [
   {

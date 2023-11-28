@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react';
-import FormInput from '../components/shared/InputField';
+import FormInput from '@components/shared/InputField';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { Box } from '@mui/material';
-import { SignInPageFields, PlaceHolders, Types, Common } from '../helpers/enums/enums';
+import { SignInPageFields, PlaceHolders, Types, Common } from '@helpers/enums/enums';
 import { useNavigate } from 'react-router-dom';
-import { selecLastVisitedURL } from '../helpers/selectors/appSelector';
-import { minCharacterCount, maxCharacterCount } from '../helpers/utils/constants';
+import { selecLastVisitedURL } from '@helpers/selectors/appSelector';
+import { minCharacterCount, maxCharacterCount } from '@helpers/utils/constants';
 import {
   repeatingCharacter,
   atLeastOneCapitalorSmallLetter,
   atLeastOneNumber,
   atLeastOneSpecialCharacter,
-} from '../helpers/utils/validationFunctions';
-import { DecodedGoogleCredentialResponse, LoginResponse } from '../helpers/types/login';
+} from '@helpers/utils/validationFunctions';
+import { DecodedGoogleCredentialResponse, LoginResponse } from '@helpers/types/login';
 import * as Yup from 'yup';
 import {
   getAuthenticationAPIDetails,
   setAlertMessage,
   setAuthenticationAPIDetails,
   setGoogleAPIDetails,
-} from '../helpers/reducers/APIRequestReducer';
-import { useAppDispatch, useAppSelector } from '../store';
-import { setIsUserLoggedIn } from '../helpers/reducers/appReducer';
-import { selectIsLoading } from '../helpers/selectors/APIRequestSelector';
-import { sessionStorageUtil } from '../helpers/utils/storageFunctions';
-import { generateErrorMessage } from '../helpers/utils/commonFunctions';
+} from '@helpers/reducers/APIRequestReducer';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import { setIsUserLoggedIn } from '@helpers/reducers/appReducer';
+import { selectIsLoading } from '@helpers/selectors/APIRequestSelector';
+import { sessionStorageUtil } from '@helpers/utils/storageFunctions';
+import { generateErrorMessage } from '@helpers/utils/commonFunctions';
 import { isMobile } from 'react-device-detect';
 import InfoIcon from '@mui/icons-material/Info';
 

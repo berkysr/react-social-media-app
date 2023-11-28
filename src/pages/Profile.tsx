@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/RightbarContainer';
-import Feed from '../components/feed/Feed';
+import Sidebar from '@components/Sidebar';
+import Rightbar from '@components/RightbarContainer';
+import Feed from '@components/feed/Feed';
 import { Box } from '@mui/material';
-import { useAppSelector } from '../store';
-import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../helpers/selectors/APIRequestSelector';
+import { useAppSelector } from '@base/store';
+import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '@helpers/selectors/APIRequestSelector';
 import { t } from 'i18next';
 import { isMobile } from 'react-device-detect';
-import SlidingMenu from '../components/mobile/SlidingMenu';
-import { loadingSVG } from '../helpers/utils/SVG';
+import SlidingMenu from '@components/mobile/SlidingMenu';
+import { loadingSVG } from '@helpers/utils/SVG';
 
 export default function Profile() {
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);

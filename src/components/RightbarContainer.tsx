@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import ProfilePageRightBar from './profile/ProfilePageRightBar';
-import HomePageRightBar from './HomePageRightBar';
+import ProfilePageRightBar from '@components/profile/ProfilePageRightBar';
+import HomePageRightBar from '@components/HomePageRightBar';
 import { isMobile } from 'react-device-detect';
 
 interface RightbarProps {

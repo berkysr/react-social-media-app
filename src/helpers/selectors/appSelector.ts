@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
+import { RootState } from '@base/store';
 
 export const selectApp = createSelector(
   (state: RootState) => state.app,

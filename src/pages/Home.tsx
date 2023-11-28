@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/RightbarContainer';
-import Feed from '../components/feed/Feed';
+import Sidebar from '@components/Sidebar';
+import Rightbar from '@components/RightbarContainer';
+import Feed from '@components/feed/Feed';
 import { Box } from '@mui/material';
-import SlidingMenu from '../components/mobile/SlidingMenu';
+import SlidingMenu from '@components/mobile/SlidingMenu';
 import { isMobile } from 'react-device-detect';
 
 export default function Home() {

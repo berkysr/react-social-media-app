@@ -1,5 +1,5 @@
 import React from 'react';
-import { Company } from '../../helpers/types/company';
+import { Company } from '@helpers/types/company';
 import { Box } from '@mui/material';
 import { t } from 'i18next';
 

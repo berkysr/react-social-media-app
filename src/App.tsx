@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
+import Home from '@pages/Home';
+import Profile from '@pages/Profile';
+import Login from '@pages/Login';
 import { useLocation, Route, Routes } from 'react-router-dom';
-import i18n from './i18n';
-import { changeLanguage } from './helpers/translationTool';
+import i18n from '@base/i18n';
+import { changeLanguage } from '@helpers/translationTool';
 import { Grid, Box } from '@mui/material';
-import Topbar from './components/topbar/Topbar';
-import { PageURLs } from './helpers/enums/enums';
-import ProtectedRoute from './helpers/utils/protectedRoute';
-import { useAppDispatch, useAppSelector } from './store';
-import { selectIsLoggedIn, selectLanguage } from './helpers/selectors/appSelector';
-import { selectAlerts, selectCloseFriends, selectIsLoading, selectOnlineFriends } from './helpers/selectors/APIRequestSelector';
-import { setLastVisitedURL } from './helpers/reducers/appReducer';
-import Alert from './components/shared/Alert';
-import WildCard from './pages/WildCard';
-import Loading from './components/shared/Loading';
+import Topbar from '@components/topbar/Topbar';
+import { PageURLs } from '@helpers/enums/enums';
+import ProtectedRoute from '@helpers/utils/protectedRoute';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import { selectIsLoggedIn, selectLanguage } from '@helpers/selectors/appSelector';
+import { selectAlerts, selectCloseFriends, selectIsLoading, selectOnlineFriends } from '@helpers/selectors/APIRequestSelector';
+import { setLastVisitedURL } from '@helpers/reducers/appReducer';
+import Alert from '@components/shared/Alert';
+import WildCard from '@pages/WildCard';
+import Loading from '@components/shared/Loading';
 import {
   generateRandomUsers,
   generateRandomPosts,
@@ -25,9 +25,9 @@ import {
   setRandomPosts,
   setCurrentUser,
   setFriendRequests,
-} from './helpers/reducers/APIRequestReducer';
-import { generateErrorMessage } from './helpers/utils/commonFunctions';
-import { GeneratePostAPIResponse, GenerateUser, GenerateUserAPIResponse } from './helpers/types/api';
+} from '@helpers/reducers/APIRequestReducer';
+import { generateErrorMessage } from '@helpers/utils/commonFunctions';
+import { GeneratePostAPIResponse, GenerateUser, GenerateUserAPIResponse } from '@helpers/types/api';
 
 function App() {
   const dispatch = useAppDispatch();

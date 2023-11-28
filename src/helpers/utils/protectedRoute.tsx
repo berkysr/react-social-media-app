@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { PageURLs } from '../enums/enums';
+import { PageURLs } from '@helpers/enums/enums';
 
 interface ProtectedRouteProps {
   component: React.ReactNode;

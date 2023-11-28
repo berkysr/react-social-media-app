@@ -1,9 +1,9 @@
 import React from 'react';
-import Share from './Share';
-import PostCard from './Post';
+import Share from '@components/feed/Share';
+import PostCard from '@components/feed/Post';
 import { Box } from '@mui/system';
-import { selectRandomPosts } from '../../helpers/selectors/APIRequestSelector';
-import { useAppSelector } from '../../store';
+import { selectRandomPosts } from '@helpers/selectors/APIRequestSelector';
+import { useAppSelector } from '@base/store';
 
 export default function Feed() {
   const posts = useAppSelector(selectRandomPosts);

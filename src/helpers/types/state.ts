@@ -1,8 +1,8 @@
-import { Languages } from '../enums/enums';
-import { RandomPost, RandomUser } from './api';
-import { AlertElement } from './general';
-import { DecodedGoogleCredentialResponse, LoginResponse } from './login';
-import { User } from './user';
+import { Languages } from '@helpers/enums/enums';
+import { RandomPost, RandomUser } from '@helpers/types/api';
+import { AlertElement } from '@helpers/types/general';
+import { DecodedGoogleCredentialResponse, LoginResponse } from '@helpers/types/login';
+import { User } from '@helpers/types/user';
 
 export interface AppState {
   lastVisitedURL: string;
