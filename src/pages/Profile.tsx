@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '@components/Sidebar';
 import Rightbar from '../components/RightbarContainer';
 import Feed from '../components/feed/Feed';
 import { Box } from '@mui/material';
