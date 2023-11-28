@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { Box } from '@mui/material';
+import { Box, Button, LinearProgress } from '@mui/material';
 import Icon from '../shared/Icon';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { selectCurrentUser, selectGoogleInfo, selectRandomPosts } from '../../helpers/selectors/APIRequestSelector';
@@ -18,6 +18,10 @@ export default function Share() {
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
   const [shareText, setShareText] = useState('');
+  const [uploadImageInput, setUploadImageInput] = useState(false);
+  const [uploadedImageSource, setUploadedImageSource] = useState('');
+  const [showUploadImageLoader, setShowUploadImageLoader] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState('');
 
   useEffect(() => {
     if (currentUser) {
@@ -32,7 +36,7 @@ export default function Share() {
 
     const newPost: RandomPost = {
       id: Math.random().toString(),
-      image: '',
+      image: uploadedImage,
       likes: 0,
       tags: [''],
       text: shareText,
@@ -50,10 +54,75 @@ export default function Share() {
 
     dispatch(setRandomPosts(newPosts));
     setShareText('');
+    setUploadedImage('');
+    setUploadImageInput(false);
+    setShowUploadImageLoader(false);
   };
 
   const handleChange = (event: React.ChangeEvent) => {
     setShareText((event.target as HTMLInputElement).value);
+  };
+
+  const handleUploadClick = () => {
+    setUploadImageInput(!uploadImageInput);
+    setShowUploadImageLoader(false);
+  };
+
+  const handleUploadImageSourceClick = () => {
+    setShowUploadImageLoader(true);
+
+    setTimeout(() => {
+      setShowUploadImageLoader(false);
+
+      if (!validateImageResolution()) {
+        return;
+      }
+    }, 550);
+
+    setUploadedImage(uploadedImageSource);
+    setUploadedImageSource('');
+  };
+
+  const handleImageSourceChange = (event: React.ChangeEvent) => {
+    setUploadedImageSource((event.target as HTMLInputElement).value);
+  };
+
+  const validateImageResolution = () => {
+    const img = new Image();
+    img.src = uploadedImageSource;
+
+    if (img.height === 0 || img.width === 0) {
+      alert(`Uploaded image is not valid.`);
+
+      setUploadedImageSource('');
+      setUploadedImage('');
+
+      return false;
+    }
+
+    if (img.height > 1920) {
+      alert(
+        `Uploaded image height is more than 1920px's, please upload lower an image with lower height. Current image height ${img.height}px's`,
+      );
+
+      setUploadedImageSource('');
+      setUploadedImage('');
+
+      return false;
+    }
+
+    if (img.width > 1080) {
+      alert(
+        `Uploaded image width is more than 1080px's, please upload lower an image with lower width. Current image width ${img.width}px's`,
+      );
+
+      setUploadedImageSource('');
+      setUploadedImage('');
+
+      return false;
+    }
+
+    return true;
   };
 
   const shareIcons = [
@@ -123,6 +192,7 @@ export default function Share() {
 
         <Box
           display="flex"
+          width="100%"
           ml={2}
         >
           <textarea
@@ -134,6 +204,35 @@ export default function Share() {
         </Box>
       </Box>
 
+      {uploadImageInput ? (
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          width="100%"
+          height="25px"
+          fontSize="12px"
+          mt={3}
+        >
+          <input
+            placeholder="Use image source to upload"
+            className="w-[85%] p-[5px] outline-none border-solid border-2 border-sky-500"
+            type="text"
+            onChange={(event) => handleImageSourceChange(event)}
+            value={uploadedImageSource}
+          ></input>
+          <Button onClick={() => handleUploadImageSourceClick()}>{uploadedImage === '' ? 'Upload' : 'Remove'}</Button>
+
+          {uploadedImage !== '' ? (
+            <img
+              width="15%"
+              height="15%"
+              src={uploadedImage}
+            ></img>
+          ) : null}
+        </Box>
+      ) : null}
+      {showUploadImageLoader ? <LinearProgress className="w-full mt-[20px]" /> : null}
       <hr className="mb-2 mt-5" />
 
       <Box
@@ -147,6 +246,7 @@ export default function Share() {
             key={icon.infoText}
             infoText={isMobile ? '' : t(`components.share.${icon.infoText}`)}
             isOnlyBigScreen={!isMobile}
+            onClick={icon.infoText === 'photoVideo' ? handleUploadClick : () => {}}
           >
             {icon.child}
           </Icon>
