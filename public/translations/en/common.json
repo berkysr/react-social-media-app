@@ -73,6 +73,10 @@
         "close": "Close"
       },
       "success": "Success"
+    },
+    "tooltip": {
+      "email": "Email field accept all emails fits with validation rules.",
+      "password": "Password field accepts values fits with validation rules."
     }
   },
   "a11y": {

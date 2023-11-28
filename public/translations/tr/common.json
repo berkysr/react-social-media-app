@@ -73,6 +73,10 @@
         "close": "Kapat"
       },
       "success": "Başarılı"
+    },
+    "tooltip": {
+      "email": "E-posta alanı, doğrulama kurallarına uyan tüm e-postaları kabul eder.",
+      "password": "Şifre alanı, doğrulama kurallarına uyan değerleri kabul eder."
     }
   },
   "a11y": {
