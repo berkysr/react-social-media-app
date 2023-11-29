@@ -1,6 +1,6 @@
-import React from 'react';
-import Popover, { PopoverProps } from '@mui/material/Popover';
 import { Box } from '@mui/material';
+import Popover, { PopoverProps } from '@mui/material/Popover';
+import React from 'react';
 
 interface TopbarPopoverProps extends PopoverProps {
   title: string;

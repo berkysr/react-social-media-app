@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import Sidebar from '@components/Sidebar';
-import Rightbar from '@components/RightbarContainer';
-import Feed from '@components/feed/Feed';
 import { Box } from '@mui/material';
-import { useAppSelector } from '@base/store';
-import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '@helpers/selectors/APIRequestSelector';
 import { t } from 'i18next';
+import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { useAppSelector } from '@base/store';
+import Feed from '@components/feed/Feed';
 import SlidingMenu from '@components/mobile/SlidingMenu';
+import Rightbar from '@components/RightbarContainer';
+import Sidebar from '@components/Sidebar';
+import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '@helpers/selectors/APIRequestSelector';
 import { loadingSVG } from '@helpers/utils/SVG';
 
 export default function Profile() {

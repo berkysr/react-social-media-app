@@ -1,8 +1,8 @@
-import React from 'react';
-import { Box } from '@mui/system';
-import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box } from '@mui/system';
 import { t } from 'i18next';
+import React from 'react';
 import { useAppSelector } from '@base/store';
 import { selectFriendRequests } from '@helpers/selectors/APIRequestSelector';
 

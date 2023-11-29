@@ -1,11 +1,11 @@
-import React from 'react';
-import UserInfo, { ProfileDetailRawDataUnionType } from '@components/profile/UserInfo';
-import Following from '@components/profile/Following';
-import { users } from '@helpers/api/users';
-import { usersProfileDetails } from '@helpers/api/profileDetails';
-import { companies } from '@helpers/api/companies';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import Following from '@components/profile/Following';
+import UserInfo, { ProfileDetailRawDataUnionType } from '@components/profile/UserInfo';
+import { companies } from '@helpers/api/companies';
+import { usersProfileDetails } from '@helpers/api/profileDetails';
+import { users } from '@helpers/api/users';
 
 export default function ProfilePageRightBar() {
   const { t } = useTranslation();

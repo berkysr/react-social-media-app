@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import Sidebar from '@components/Sidebar';
-import { selectIsMobileNavbarActive } from '@helpers/selectors/appSelector';
+import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@base/store';
 import ProfileLink from '@components/shared/ProfileLink';
+import Sidebar from '@components/Sidebar';
 import { selectOnlineFriends } from '@helpers/selectors/APIRequestSelector';
-import { useTranslation } from 'react-i18next';
+import { selectIsMobileNavbarActive } from '@helpers/selectors/appSelector';
 
 export default function SlidingMenu() {
   const { t } = useTranslation();
