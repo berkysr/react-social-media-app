@@ -15,6 +15,11 @@
       },
       "api": {
         "genericError": "Bir şeyler ters gitti."
+      },
+      "share": {
+        "invalidImage": "Yüklenen medya geçerli değil.",
+
+        "invalidResolution": "Yüklenen medyanın {{ resolution }} çözünürlüğü {{ maxResolution }}'dan fazla. Lütfen daha düşük {{ resolution }}'e sahip bir medya yükleyiniz. Mevcut {{ resolution }} {{ currentResolution }}px."
       }
     }
   }

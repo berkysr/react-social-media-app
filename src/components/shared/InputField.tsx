@@ -1,4 +1,6 @@
+import { Box, IconButton, Tooltip } from '@mui/material';
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 interface FormInputProps {
   label: string;
   type: string;
@@ -13,12 +15,32 @@ interface FormInputProps {
   helperText: string;
   id: string;
   placeHolder: string;
+  tooltip?: {
+    icon: JSX.Element;
+    text: string;
+  };
 }
 
-export default function FormInput({ label = '', type, name, onChange, value, helperText, id, placeHolder }: FormInputProps) {
+export default function FormInput({ label = '', type, name, onChange, value, helperText, id, placeHolder, tooltip }: FormInputProps) {
   return (
     <>
-      <label className="text-sm">{label}</label>
+      <Box
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        gap={0.5}
+      >
+        <label className="text-sm">{label}</label>
+
+        {tooltip ? (
+          <Tooltip
+            placement={`${isMobile ? 'bottom' : 'right'}`}
+            title={tooltip.text}
+          >
+            <IconButton>{tooltip.icon}</IconButton>
+          </Tooltip>
+        ) : null}
+      </Box>
 
       <input
         id={id}

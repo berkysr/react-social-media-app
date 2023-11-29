@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
 import { PermMedia, Label, Room, EmojiEmotions } from '@mui/icons-material';
-import { useTranslation } from 'react-i18next';
 import { Box, Button, LinearProgress } from '@mui/material';
-import Icon from '../shared/Icon';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { selectCurrentUser, selectGoogleInfo, selectRandomPosts } from '../../helpers/selectors/APIRequestSelector';
-import { setRandomPosts } from '../../helpers/reducers/APIRequestReducer';
-import { RandomPost } from '../../helpers/types/api';
+import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import Icon from '@components/shared/Icon';
+import { Dimensions } from '@helpers/enums/enums';
+import { setAlertMessage, setRandomPosts } from '@helpers/reducers/APIRequestReducer';
+import { selectCurrentUser, selectGoogleInfo, selectRandomPosts } from '@helpers/selectors/APIRequestSelector';
+import { RandomPost } from '@helpers/types/api';
+import { generateErrorMessage } from '@helpers/utils/commonFunctions';
 
 export default function Share() {
   const dispatch = useAppDispatch();
   const posts = useAppSelector(selectRandomPosts);
   const { t } = useTranslation();
   const currentUser = useAppSelector(selectCurrentUser);
+  const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
   const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
@@ -43,9 +46,9 @@ export default function Share() {
       publishDate: new Date().toISOString(),
       owner: {
         id: currentUser.login?.md5 || '',
-        title: currentUser.name?.title || '',
-        firstName: currentUser.name?.first || '',
-        lastName: currentUser.name?.last || '',
+        title: currentUserGoogleInfo.iss ? '' : currentUser.name?.title || '',
+        firstName: currentUserGoogleInfo.iss ? currentUserGoogleInfo.given_name : currentUser.name?.first || '',
+        lastName: currentUserGoogleInfo.iss ? currentUserGoogleInfo.family_name : currentUser.name?.last || '',
         picture: currentUserPicture || '',
       },
     };
@@ -74,12 +77,11 @@ export default function Share() {
     setTimeout(() => {
       setShowUploadImageLoader(false);
 
-      if (!validateImageResolution()) {
+      if (uploadedImage === '' && !validateImageResolution()) {
         return;
       }
     }, 550);
 
-    setUploadedImage(uploadedImageSource);
     setUploadedImageSource('');
   };
 
@@ -88,32 +90,47 @@ export default function Share() {
   };
 
   const validateImageResolution = () => {
+    let resolution;
+    let maxResolution;
+    let currentResolution;
     const img = new Image();
     img.src = uploadedImageSource;
 
     if (img.height === 0 || img.width === 0) {
-      alert(`Uploaded image is not valid.`);
-
       setUploadedImageSource('');
       setUploadedImage('');
+      dispatch(setAlertMessage(generateErrorMessage(t('error:error.validation.share.invalidImage'))));
 
       return false;
     }
 
     if (img.height > 1920) {
-      alert(
-        `Uploaded image height is more than 1920px's, please upload lower an image with lower height. Current image height ${img.height}px's`,
-      );
+      resolution = Dimensions.HEIGHT;
+      maxResolution = '1920px';
+      currentResolution = img.height;
+
+      t('error:error.validation.password.minCharacter', {});
 
       setUploadedImageSource('');
       setUploadedImage('');
+      dispatch(
+        setAlertMessage(
+          generateErrorMessage(t('error:error.validation.share.invalidResolution', { resolution, maxResolution, currentResolution })),
+        ),
+      );
 
       return false;
     }
 
     if (img.width > 1080) {
-      alert(
-        `Uploaded image width is more than 1080px's, please upload lower an image with lower width. Current image width ${img.width}px's`,
+      resolution = Dimensions.WIDTH;
+      maxResolution = '1080px';
+      currentResolution = img.width;
+
+      dispatch(
+        setAlertMessage(
+          generateErrorMessage(t('error:error.validation.share.invalidResolution', { resolution, maxResolution, currentResolution })),
+        ),
       );
 
       setUploadedImageSource('');
@@ -121,6 +138,8 @@ export default function Share() {
 
       return false;
     }
+
+    setUploadedImage(uploadedImageSource);
 
     return true;
   };
@@ -215,17 +234,17 @@ export default function Share() {
           mt={3}
         >
           <input
-            placeholder="Use image source to upload"
+            placeholder={t('placeHolder.mediaUrl')}
             className="w-[85%] p-[5px] outline-none border-solid border-2 border-sky-500"
             type="text"
             onChange={(event) => handleImageSourceChange(event)}
             value={uploadedImageSource}
           ></input>
-          <Button onClick={() => handleUploadImageSourceClick()}>{uploadedImage === '' ? 'Upload' : 'Remove'}</Button>
+          <Button onClick={() => handleUploadImageSourceClick()}>{uploadedImage === '' ? t('button.share') : t('button.remove')}</Button>
 
           {uploadedImage !== '' ? (
             <img
-              width="15%"
+              width={isMobile ? '15%' : '5%'}
               height="15%"
               src={uploadedImage}
             ></img>

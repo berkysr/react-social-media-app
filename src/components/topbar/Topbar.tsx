@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
 import { Search, Person, Chat, Notifications } from '@mui/icons-material';
-import { useTranslation } from 'react-i18next';
-import { Box } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../store';
-import FriendRequest from './FriendRequests';
-import { selectCurrentUser, selectFriendRequests } from '../../helpers/selectors/APIRequestSelector';
-import TopbarPopover from './TopbarPopover';
-import ProfileSettingsPopover from './ProfileSettingsPopover';
+import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
-import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
-import { setIsMobileNavbarActive } from '../../helpers/reducers/appReducer';
-import { selectIsMobileNavbarActive } from '../../helpers/selectors/appSelector';
-import { appLogo } from '../../helpers/utils/SVG';
+import { Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import FriendRequest from '@components/topbar/FriendRequests';
+import ProfileSettingsPopover from '@components/topbar/ProfileSettingsPopover';
+import TopbarPopover from '@components/topbar/TopbarPopover';
+import { setIsMobileNavbarActive } from '@helpers/reducers/appReducer';
+import { selectCurrentUser, selectFriendRequests } from '@helpers/selectors/APIRequestSelector';
+import { selectIsMobileNavbarActive } from '@helpers/selectors/appSelector';
+import { appLogo } from '@helpers/utils/SVG';
 
 export default function Topbar() {
   const { t } = useTranslation();

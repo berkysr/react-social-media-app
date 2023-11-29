@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/RightbarContainer';
-import Feed from '../components/feed/Feed';
 import { Box } from '@mui/material';
-import { useAppSelector } from '../store';
-import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '../helpers/selectors/APIRequestSelector';
 import { t } from 'i18next';
+import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
-import SlidingMenu from '../components/mobile/SlidingMenu';
-import { loadingSVG } from '../helpers/utils/SVG';
+import { useAppSelector } from '@base/store';
+import Feed from '@components/feed/Feed';
+import SlidingMenu from '@components/mobile/SlidingMenu';
+import Rightbar from '@components/RightbarContainer';
+import Sidebar from '@components/Sidebar';
+import { selectCurrentUser, selectGoogleInfo, selectSelectedUser } from '@helpers/selectors/APIRequestSelector';
+import { loadingSVG } from '@helpers/utils/SVG';
 
 export default function Profile() {
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
@@ -42,7 +42,7 @@ export default function Profile() {
       setCurrentUserName(`${selectedUser.name?.first} ${selectedUser.name?.last}`);
     }
 
-    setBackgroundPicture(`https://source.unsplash.com/random/1366x768?v=${Math.random().toFixed()}`);
+    setBackgroundPicture(`https://source.unsplash.com/random/1366x768?v=${Math.random().toFixed(4)}`);
   }, [currentUser, currentUserGoogleInfo, selectedUser]);
 
   return isCurrentUserLoaded ? (

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Company } from '../../helpers/types/company';
 import { Box } from '@mui/material';
 import { t } from 'i18next';
+import React from 'react';
+import { Company } from '@helpers/types/company';
 
 interface FollowingProps {
   company: Company;

@@ -1,18 +1,18 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { selectCurrentUser, selectGoogleInfo } from '../../helpers/selectors/APIRequestSelector';
-import { Languages, PageURLs } from '../../helpers/enums/enums';
-import TopbarPopover from './TopbarPopover';
-import SelectLanguage from './SelectLanguage';
-import { selectLanguage } from '../../helpers/selectors/appSelector';
-import { setIsUserLoggedIn } from '../../helpers/reducers/appReducer';
 import LogoutIcon from '@mui/icons-material/Logout';
-import LanguageSelectorPopover from './LanguageSelectorPopover';
-import ProfileLink from '../shared/ProfileLink';
-import { RandomUser } from '../../helpers/types/api';
+import { Box } from '@mui/material';
+import { t } from 'i18next';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import ProfileLink from '@components/shared/ProfileLink';
+import LanguageSelectorPopover from '@components/topbar/LanguageSelectorPopover';
+import SelectLanguage from '@components/topbar/SelectLanguage';
+import TopbarPopover from '@components/topbar/TopbarPopover';
+import { Languages, PageURLs } from '@helpers/enums/enums';
+import { setIsUserLoggedIn } from '@helpers/reducers/appReducer';
+import { selectCurrentUser, selectGoogleInfo } from '@helpers/selectors/APIRequestSelector';
+import { selectLanguage } from '@helpers/selectors/appSelector';
+import { RandomUser } from '@helpers/types/api';
 
 export default function ProfileSettingsPopover() {
   const dispatch = useAppDispatch();

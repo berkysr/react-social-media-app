@@ -1,4 +1,4 @@
-import { SafePrimitives } from '../types/general';
+import { SafePrimitives } from '@helpers/types/general';
 
 // Check if the browser supports storages, this is an explicit check for the headless browsers not to fail
 export function hasStorage() {

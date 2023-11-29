@@ -1,6 +1,6 @@
-import React from 'react';
-import { loadingSVG } from '../../helpers/utils/SVG';
 import { Box } from '@mui/system';
+import React from 'react';
+import { loadingSVG } from '@helpers/utils/SVG';
 
 export default function Loading() {
   return (

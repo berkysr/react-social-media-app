@@ -2,7 +2,7 @@
   "pages": {
     "login": {
       "welcome": "Welcome!",
-      "email": "Your Email",
+      "email": "Email",
       "password": "Password",
       "or": "or"
     },
@@ -16,7 +16,12 @@
   "button": {
     "signIn": "Sign in to your account",
     "share": "Share",
-    "showMore": "Show More"
+    "showMore": "Show More",
+    "upload": "Upload",
+    "remove": "Remove"
+  },
+  "placeHolder": {
+    "mediaUrl": "Use image source to upload"
   },
   "logo": {
     "social": "React Social"
@@ -73,6 +78,10 @@
         "close": "Close"
       },
       "success": "Success"
+    },
+    "tooltip": {
+      "email": "Email field accept all emails fits with validation rules.",
+      "password": "Password field accepts values fits with validation rules."
     }
   },
   "a11y": {

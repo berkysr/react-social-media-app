@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
 import { t } from 'i18next';
 import React from 'react';
-import { AlertElement } from '../../helpers/types/general';
-import { useAppDispatch } from '../../store';
-import { setAlertMessageAsRemoved } from '../../helpers/reducers/APIRequestReducer';
-import { alertSVG, alertCloseButtonSVG } from '../../helpers/utils/SVG';
+import { useAppDispatch } from '@base/store';
+import { setAlertMessageAsRemoved } from '@helpers/reducers/APIRequestReducer';
+import { AlertElement } from '@helpers/types/general';
+import { alertSVG, alertCloseButtonSVG } from '@helpers/utils/SVG';
 
 export default function Alert({ identifier, icon, message, canBeClosed = true }: AlertElement) {
   const dispatch = useAppDispatch();

@@ -1,10 +1,10 @@
-import React from 'react';
-import Sidebar from '../components/Sidebar';
-import Rightbar from '../components/RightbarContainer';
-import Feed from '../components/feed/Feed';
 import { Box } from '@mui/material';
-import SlidingMenu from '../components/mobile/SlidingMenu';
+import React from 'react';
 import { isMobile } from 'react-device-detect';
+import Feed from '@components/feed/Feed';
+import SlidingMenu from '@components/mobile/SlidingMenu';
+import Rightbar from '@components/RightbarContainer';
+import Sidebar from '@components/Sidebar';
 
 export default function Home() {
   return (

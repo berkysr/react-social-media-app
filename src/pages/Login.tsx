@@ -1,40 +1,41 @@
-import React, { useEffect } from 'react';
-import FormInput from '../components/shared/InputField';
-import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
-import { useTranslation } from 'react-i18next';
-import jwt_decode from 'jwt-decode';
-import { useFormik } from 'formik';
+import InfoIcon from '@mui/icons-material/Info';
 import { Box } from '@mui/material';
-import { SignInPageFields, PlaceHolders, Types, Common } from '../helpers/enums/enums';
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
+import { useFormik } from 'formik';
+import jwt_decode from 'jwt-decode';
+import React, { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { selecLastVisitedURL } from '../helpers/selectors/appSelector';
-import { minCharacterCount, maxCharacterCount } from '../helpers/utils/constants';
-import {
-  repeatingCharacter,
-  atLeastOneCapitalorSmallLetter,
-  atLeastOneNumber,
-  atLeastOneSpecialCharacter,
-} from '../helpers/utils/validationFunctions';
-import { DecodedGoogleCredentialResponse, LoginResponse } from '../helpers/types/login';
 import * as Yup from 'yup';
+import { useAppDispatch, useAppSelector } from '@base/store';
+import FormInput from '@components/shared/InputField';
+import { SignInPageFields, PlaceHolders, Types, Common } from '@helpers/enums/enums';
 import {
   getAuthenticationAPIDetails,
   setAlertMessage,
   setAuthenticationAPIDetails,
   setGoogleAPIDetails,
-} from '../helpers/reducers/APIRequestReducer';
-import { useAppDispatch, useAppSelector } from '../store';
-import { setIsUserLoggedIn } from '../helpers/reducers/appReducer';
-import { selectIsLoading } from '../helpers/selectors/APIRequestSelector';
-import { sessionStorageUtil } from '../helpers/utils/storageFunctions';
-import { generateErrorMessage } from '../helpers/utils/commonFunctions';
-import { isMobile } from 'react-device-detect';
+} from '@helpers/reducers/APIRequestReducer';
+import { setIsUserLoggedIn } from '@helpers/reducers/appReducer';
+import { selectIsLoading } from '@helpers/selectors/APIRequestSelector';
+import { selecLastVisitedURL } from '@helpers/selectors/appSelector';
+import { DecodedGoogleCredentialResponse, LoginResponse } from '@helpers/types/login';
+import { generateErrorMessage } from '@helpers/utils/commonFunctions';
+import { minCharacterCount, maxCharacterCount } from '@helpers/utils/constants';
+import { sessionStorageUtil } from '@helpers/utils/storageFunctions';
+import {
+  repeatingCharacter,
+  atLeastOneCapitalorSmallLetter,
+  atLeastOneNumber,
+  atLeastOneSpecialCharacter,
+} from '@helpers/utils/validationFunctions';
 
 export default function Login() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const [loginError] = React.useState('');
+  const [loginError] = useState('');
   const lastVisitedURL = useAppSelector(selecLastVisitedURL);
   const isLoading = useAppSelector(selectIsLoading);
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export default function Login() {
         () => t('error:error.validation.password.repeatingCharacters'),
         (value) => {
           if (value) {
-            return !repeatingCharacter(value);
+            return repeatingCharacter(value);
           }
 
           return false;
@@ -132,7 +133,7 @@ export default function Login() {
         });
     },
 
-    isInitialValid: true,
+    validateOnMount: false,
   });
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
@@ -172,6 +173,7 @@ export default function Login() {
               label={t('pages.login.email')}
               helperText={formik.errors.email ? formik.errors.email : ''}
               onChange={formik.handleChange}
+              tooltip={{ icon: <InfoIcon fontSize="small" />, text: t('components.tooltip.email') }}
             ></FormInput>
           </Box>
 
@@ -185,6 +187,7 @@ export default function Login() {
               label={t('pages.login.password')}
               helperText={formik.errors.password ? formik.errors.password : ''}
               onChange={formik.handleChange}
+              tooltip={{ icon: <InfoIcon fontSize="small" />, text: t('components.tooltip.password') }}
             ></FormInput>
           </Box>
 

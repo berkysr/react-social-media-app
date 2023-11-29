@@ -15,6 +15,10 @@
       },
       "api": {
         "genericError": "Something went wrong."
+      },
+      "share": {
+        "invalidImage": "Uploaded image is not valid.",
+        "invalidResolution": "Uploaded image {{ resolution }} is more than {{ maxResolution }}s, please upload an image with lower {{ resolution }}. Current image {{ resolution }} {{ currentResolution }}px`"
       }
     }
   }

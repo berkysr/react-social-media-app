@@ -1,11 +1,11 @@
-import React from 'react';
 import { t } from 'i18next';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../store';
-import { setSelectedUser } from '../../helpers/reducers/APIRequestReducer';
-import { PageURLs } from '../../helpers/enums/enums';
-import { formatTextValue } from '../../helpers/utils/commonFunctions';
-import { RandomUser } from '../../helpers/types/api';
+import { useAppDispatch } from '@base/store';
+import { PageURLs } from '@helpers/enums/enums';
+import { setSelectedUser } from '@helpers/reducers/APIRequestReducer';
+import { RandomUser } from '@helpers/types/api';
+import { formatTextValue } from '@helpers/utils/commonFunctions';
 
 interface ProfileLinkProps {
   user: RandomUser;
