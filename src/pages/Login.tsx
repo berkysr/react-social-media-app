@@ -20,6 +20,7 @@ import {
 import { setIsUserLoggedIn } from '@helpers/reducers/appReducer';
 import { selectIsLoading } from '@helpers/selectors/APIRequestSelector';
 import { selecLastVisitedURL } from '@helpers/selectors/appSelector';
+import { APIError } from '@helpers/types/general';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '@helpers/types/login';
 import { generateErrorMessage } from '@helpers/utils/commonFunctions';
 import { minCharacterCount, maxCharacterCount } from '@helpers/utils/constants';
@@ -128,7 +129,7 @@ export default function Login() {
             navigate(lastVisitedURL);
           }
         })
-        .catch((error: any) => {
+        .catch((error: APIError) => {
           dispatch(setAlertMessage(generateErrorMessage(error.error)));
         });
     },
