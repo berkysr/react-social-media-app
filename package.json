@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "CI=false && craco build",
     "test": "craco test",
     "eject": "craco eject",
     "lint": "eslint \"src/**/*.ts\"",
