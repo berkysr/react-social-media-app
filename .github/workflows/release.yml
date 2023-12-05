@@ -22,5 +22,5 @@ jobs:
           https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           HEAD:refs/heads/v1
         env:
-          CI: ''
+          CI: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
