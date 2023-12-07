@@ -120,6 +120,7 @@ By adopting these best practices, I've created an application that is not only f
 
 ## Project Folder Structure
 
+```
 react-social-media-app
 ├─ .github
 │ └─ workflows
@@ -128,10 +129,10 @@ react-social-media-app
 ├─ .husky
 │ ├─ commit
 │ ├─ pre-commit
-│ └─ \_
+│ └─ _
 │ ├─ .gitignore
-│ └─ husky\.sh
-├─ \_\_tests\_\_
+│ └─ husky.sh
+├─ __tests__
 └─ taskList.test.tsx
 ├─ cypress
 │ ├─ downloads
@@ -234,8 +235,9 @@ react-social-media-app
 ├─ craco.config.js
 ├─ tailwind.config.js
 ├─ tsconfig.json
-├─ README\.md
-├─ LICENSE\.md
+├─ README.md
+├─ LICENSE.md
+```
 
 ## Installation
 
