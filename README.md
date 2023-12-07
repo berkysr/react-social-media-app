@@ -1,12 +1,12 @@
 # React Social App
 
-<p>
+<section>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="#" target="_blank">
+  <img alt="Github Code Size" src="https://img.shields.io/github/languages/code-size/berkysr/react-social-media-app">
+  <a href="https://choosealicense.com/licenses/mit/" target="_blank" alt="MIT License">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-</p>
+</section>
 
 A React-based social networking application resembling popular platforms. This showcase project demonstrates essential features including user authentication, profile management, a dynamic news feed, a friendship system, and real-time updates. The app is designed with a responsive interface for seamless usage across various devices.
 
@@ -18,24 +18,37 @@ Here is a working live demo : https://react-social-media-app-tau.vercel.app/
 
 <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <a href="#tech-stack">Tech Stack</a>
     </li>
+    <li><a href="#features">Features</a></li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#motivation-of-choices-on-implementation">Motivation of Choices on Implementation</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#project-structure-overview">Project Structure Overview</a></li>
+        <li><a href="#hierarchical-organization">Hierarchical Organization</a></li>
+        <li><a href="#test-and-e2e-directory">Test and E2E Directory</a></li>
+        <li><a href="#configuration-files">Configuration Files</a></li>
+        <li><a href="#styling-and-tooling">Styling and Tooling</a></li>
+        <li><a href="#overall-benefits">Overall Benefits</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#project-folder-structure">Project Folder Structure</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li>
+    <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#development">Development</a></li>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#unit-testing">Unit Testing</a></li>
+        <li><a href="#end-to-end-testing-with-cypress">End-to-End Testing with Cypress</a></li>
+        <li><a href="#code-linting">Code Linting</a></li>
+        <li><a href="#stylelint">Stylelint</a></li>
+        <li><a href="#ejecting-configuration">Ejecting Configuration</a></li>
+      </ul>
+    </li>
+    <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="#links">Links</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 
 ## Tech Stack
@@ -55,6 +68,40 @@ This project is built on the foundation of best practices for React app developm
 
 ## Motivation of Choices on Implementation
 
+#### Project Structure Overview
+
+The chosen project folder structure for the "react-social-media-app" is a well-thought-out organization that reflects my commitment to scalability, maintainability, and efficient development practices. Here are the motivations behind key choices made in the implementation:
+
+#### Hierarchical Organization
+
+**Components Directory:** The 'components' directory is structured hierarchically, promoting a modular approach to development. Each sub-directory represents a specific feature or section, such as 'feed', 'topbar', 'shared', and 'mobile' contributing to code isolation and ease of navigation.
+
+**Helpers Directory:** The 'helpers' directory consolidates utility functions, reducers, and selectors, offering a centralized location for shared logic. This separation aids in better code organization and maintainability.
+
+**Pages Directory:** The 'pages' directory contains top-level components, each representing a distinct page of the application. This approach aligns with React best practices, facilitating clear separation of concerns.
+
+**Public Directory:** The 'public' directory houses static assets and translations, providing a centralized location for resources that don't require compilation. The 'translations' sub-directory supports multi-language support with separate folders for each language.
+
+#### Test and E2E Directory
+
+\***\*tests** Directory:** The '**tests\*\*' directory follows a clear naming convention, making it easy to identify and execute unit tests. This approach ensures that testing is an integral part of the development process.
+
+**Cypress Directory:** The 'cypress' directory contains end-to-end (E2E) testing configurations and specifications.
+
+#### Configuration Files
+
+**.github Directory:** The '.github' directory holds workflows for linting and release processes. This helps automate code quality checks and streamline the release pipeline.
+
+**.husky Directory:** The '.husky' directory configures Git hooks, providing automated checks and tasks at various stages of the development process. The 'commit' and 'pre-commit' directories align with best practices for version control.
+
+#### Styling and Tooling
+
+**SCSS and Tailwind:** The use of '.scss' files and 'tailwind.config.js' indicates a combination of SCSS for styling components and Tailwind CSS for utility-first styling. This allows for a flexible and maintainable approach to styling.
+
+**Environment Configuration:** The inclusion of '.env' files signifies a structured approach to environment-specific configurations, ensuring consistency across development, testing, and production environments.
+
+#### Overall Benefits
+
 **Scalability:** TypeScript, refactoring, and state management practices contribute to a scalable codebase.
 
 **Maintainability:** Linting, formatting, and code organization make maintenance straightforward.
@@ -62,6 +109,12 @@ This project is built on the foundation of best practices for React app developm
 **User Experience:** Features like i18n, loading indicators, and implementation of accessibility practices enhance the overall user experience.
 
 **Performance:** Reduced image sizes, special component rendering for mobile devices, loading external resources asynchronously as performance improvement practices and CI/CD automation contribute to a faster and more reliable application.
+
+**Versatility and Ease of Development:** The chosen structure facilitates modular development, making it easy to extend and adapt the application. The use of TypeScript, Redux, and clear directory organization promotes ease of development.
+
+**Improved Organization and Readability:** The project structure enhances code organization, making it easier for developers to locate and understand various components, utilities, and configurations. This contributes to improved readability and maintainability.
+
+**Adaptability to Change:** By adhering to best practices and maintaining a modular structure, the application is well-prepared for future changes, updates, and feature additions. The organized codebase allows for seamless adaptation to evolving requirements.
 
 By adopting these best practices, I've created an application that is not only feature-rich but also scalable, easy to manage, and poised for future enhancements. Feel free to explore the branches.
 
@@ -77,8 +130,8 @@ react-social-media-app
 │ ├─ pre-commit
 │ └─ \_
 │ ├─ .gitignore
-│ └─ husky.sh
-├─ **tests**
+│ └─ husky\.sh
+├─ \_\_tests\_\_
 └─ taskList.test.tsx
 ├─ cypress
 │ ├─ downloads
@@ -181,255 +234,128 @@ react-social-media-app
 ├─ craco.config.js
 ├─ tailwind.config.js
 ├─ tsconfig.json
-├─ README.md
-├─ LICENSE.md
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
-## Appendix
-
-Any additional information goes here
-
-## Authors
-
-- [@octokatherine](https://www.github.com/octokatherine)
-
-## Color Reference
-
-| Color         | Hex                                                              |
-| ------------- | ---------------------------------------------------------------- |
-| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
-
-## Contributing
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
-
-## Deployment
-
-To deploy this project run
-
-```bash
-  npm run deploy
-```
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
-
-## FAQ
-
-#### Question 1
-
-Answer 1
-
-#### Question 2
-
-Answer 2
-
-## Feedback
-
-If you have any feedback, please reach out to us at fake@fake.com
-
-## 🚀 About Me
-
-I'm a full stack developer...
-
-# Hi, I'm Katherine! 👋
-
-## 🔗 Links
-
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/)
-
-## Other Common Github Profile Sections
-
-👩‍💻 I'm currently working on...
-
-🧠 I'm currently learning...
-
-👯‍♀️ I'm looking to collaborate on...
-
-🤔 I'm looking for help with...
-
-💬 Ask me about...
-
-📫 How to reach me...
-
-😄 Pronouns...
-
-⚡️ Fun fact...
-
-## 🛠 Skills
-
-Javascript, HTML, CSS...
+├─ README\.md
+├─ LICENSE\.md
 
 ## Installation
 
-Install my-project with npm
+### Prerequisites
+
+Before proceeding with the installation, ensure you have the following prerequisites installed on your machine:
+
+- **Node.js** (version 14 or higher)
+- **npm** (Node Package Manager)
+
+1. Clone the repository to your local machine:
 
 ```bash
-  npm install my-project
-  cd my-project
+  git clone https://github.com/berkysr/react-social-media-app.git
 ```
 
-## Lessons Learned
-
-What did you learn while building this project? What challenges did you face and how did you overcome them?
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
-## Optimizations
-
-What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
-
-## Related
-
-Here are some related projects
-
-[Awesome README](https://github.com/matiassingers/awesome-readme)
-
-## Roadmap
-
-- Additional browser support
-
-- Add more integrations
-
-## Run Locally
-
-Clone the project
+2. Navigate to the project directory:
 
 ```bash
-  git clone https://link-to-project
+  cd react-social-media-app
 ```
 
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
-Install dependencies
+3. Install project dependencies:
 
 ```bash
   npm install
 ```
 
-Start the server
+## Usage
+
+### Development
+
+To run the application in development mode:
 
 ```bash
-  npm run start
+  npm start
 ```
 
-## Screenshots
+This command starts the development server using Craco, which is a configuration layer for Create React App. Open your browser and visit http://localhost:3000 to view the application.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+### Build
 
-## Support
+To build the application for production:
 
-For support, email fake@fake.com or join our Slack channel.
+```bash
+  npm run build
+```
 
-## Running Tests
+This command creates a production-ready build in the build directory.
 
-To run tests, run the following command
+### Unit Testing
+
+Run unit tests using:
 
 ```bash
   npm run test
 ```
 
-## Usage/Examples
+### End-to-End Testing with Cypress
 
-```javascript
-import Component from 'my-project';
+To open the Cypress Test Runner:
 
-function App() {
-  return <Component />;
-}
+```bash
+  npm run cypress:open
 ```
 
-## Used By
+This command opens the Cypress Test Runner, allowing you to run end-to-end tests interactively.
 
-This project is used by the following companies:
+### Code Linting
 
-- Company 1
-- Company 2
+Lint your TypeScript code with:
 
-## Install
-
-```sh
-npm install
+```bash
+  npm run lint
 ```
 
-## Usage
+Fix linting issues automatically:
 
-```sh
-npm run start
+```bash
+  npm run lint-fix
 ```
 
-## Run tests
+### Stylelint
 
-```sh
-npm run test
+Lint your SCSS styles:
+
+```bash
+  npm run stylelint
 ```
 
-## Author
+### Ejecting Configuration
 
-👤 **Berk YASAR**
+If needed, you can eject the configuration with:
 
-- Github: [@berkysr](https://github.com/berkysr)
-- LinkedIn: [@berkysr](https://linkedin.com/in/berkysr)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/berkysr/react-social-media-app/issues).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
+```bash
+  npm run eject
 ```
 
-```
+Note: Ejecting is a one-way operation and should be done with caution.
+
+## Screenshots
+
+### Mobile Screenshots
+
+<section style="display: flex; flex-direction: row; gap: 10px; width: 100%; padding: 5px;">
+<img alt="Mobile Login Page" src="https://private-user-images.githubusercontent.com/58268857/288875770-63d13d5d-0bf7-40dc-8518-a83923d73f5b.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDE5Nzg4NTksIm5iZiI6MTcwMTk3ODU1OSwicGF0aCI6Ii81ODI2ODg1Ny8yODg4NzU3NzAtNjNkMTNkNWQtMGJmNy00MGRjLTg1MTgtYTgzOTIzZDczZjViLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjA3VDE5NDkxOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTNjZDYyNmU0ZTkzMDkzYmE2NDUzMWY0OTYxNjBlNWIzYmE1Zjg5M2NlNmJmODNjMGNhNWU5Mzg0ZmI4Mzc2ZTYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.6VPiYuMo0Y9QvR1Jseeo5VV5T70H2NurEU_F7-JqTP4">
+<img alt="Mobile Home Page" src="https://private-user-images.githubusercontent.com/58268857/288875781-84e2a89e-512f-4219-ba97-9dc6545276c6.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDE5Nzg4NTksIm5iZiI6MTcwMTk3ODU1OSwicGF0aCI6Ii81ODI2ODg1Ny8yODg4NzU3ODEtODRlMmE4OWUtNTEyZi00MjE5LWJhOTctOWRjNjU0NTI3NmM2LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjA3VDE5NDkxOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTc3NWNiMjczNmEzODU3OGJiZjZiYzZjMWM1ODMxYTkyY2VjMDI4ZGQ2YTY1NTA1MmM3ZjQxMjUxOWUwZGY4OTMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.UCHCYyvKY-iYBZX_M82X02ZwepwXzzPvNso18AaziMA">
+<img alt="Mobile Profile Page" src="https://private-user-images.githubusercontent.com/58268857/288875805-d705598b-9225-40fe-82d6-7f7c7da1595e.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDE5Nzg4NTksIm5iZiI6MTcwMTk3ODU1OSwicGF0aCI6Ii81ODI2ODg1Ny8yODg4NzU4MDUtZDcwNTU5OGItOTIyNS00MGZlLTgyZDYtN2Y3YzdkYTE1OTVlLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjA3VDE5NDkxOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTJjMzUyNGQ3NmY0MmU2MmViOWYwNTVjNjYyNzE4NjEzODY2MTE2YjkzM2U1YTM0MmZiZjcyZTQ5NmQ1M2NlYmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.pW7u-8Ha-5EgVrTpH8gJQX_4baD5Naceyguve4ypkRc">
+</section>
+
+### Desktop Screenshot
+
+<section style="display: flex; width: 100%; padding: 5px;">
+<img alt="Desktop Home Page" src="https://private-user-images.githubusercontent.com/58268857/288875789-26777fb1-0220-4e81-9ac5-a28752a9654f.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDE5NzkyMjUsIm5iZiI6MTcwMTk3ODkyNSwicGF0aCI6Ii81ODI2ODg1Ny8yODg4NzU3ODktMjY3NzdmYjEtMDIyMC00ZTgxLTlhYzUtYTI4NzUyYTk2NTRmLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjA3VDE5NTUyNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTYwZDkwMDM0MzhkYWUwZjg4NjUxYTAyNDk5ODUyMGFkODNiZDhhMGU4YWE5MzM2Y2U1NDg4MjdlZGJmNTQ2YmMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.6Eq3IIUJgFOLUs_MiZMuMRYAjakwsi8WuZpI-iXHvhc">
+</section>
+
+## Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/berkysr/)
+
+## License
+
+Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. See LICENSE\.md for more information.
