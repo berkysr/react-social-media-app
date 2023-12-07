@@ -342,15 +342,13 @@ Note: Ejecting is a one-way operation and should be done with caution.
 
 ### Mobile Screenshots
 
-<section style="display: flex; flex-direction: row; gap: 10px; height: 500px; padding: 5px;">
-<img layout="fill" objectFit="contain" alt="Mobile Login Page" src="/public/assets/github-screenshots/react-social-app-mobile-login.jpg">
-<img layout="fill" objectFit="contain" alt="Mobile Home Page" src="/public/assets/github-screenshots/react-social-app-mobile-home.jpg">
-<img layout="fill" objectFit="contain" alt="Mobile Profile Page" src="/public/assets/github-screenshots/react-social-app-mobile-profile.jpg">
+<section style="display: flex; height: 433px; padding: 5px;">
+<img alt="Mobile Screenshots" src="/public/assets/github-screenshots/react-social-app-mobile-screenshot.png">
 </section>
 
 ### Desktop Screenshot
 
-<section style="display: flex; width: 100%; padding: 5px;">
+<section style="display: flex; height: 461px; padding: 5px;">
 <img alt="Desktop Home Page" src="/public/assets/github-screenshots/react-social-app-desktop-home.jpg">
 </section>
 
