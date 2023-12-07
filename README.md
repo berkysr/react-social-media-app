@@ -84,7 +84,7 @@ The chosen project folder structure for the "react-social-media-app" is a well-t
 
 #### Test and E2E Directory
 
-\***\*tests** Directory:** The '**tests\*\*' directory follows a clear naming convention, making it easy to identify and execute unit tests. This approach ensures that testing is an integral part of the development process.
+**Tests Directory:** The '\_\_test\_\_' directory follows a clear naming convention, making it easy to identify and execute unit tests. This approach ensures that testing is an integral part of the development process.
 
 **Cypress Directory:** The 'cypress' directory contains end-to-end (E2E) testing configurations and specifications.
 
