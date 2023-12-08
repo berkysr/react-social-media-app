@@ -15,6 +15,7 @@ export default function Share() {
   const { t } = useTranslation();
   const currentUser = useAppSelector(selectCurrentUser);
   const currentProfileImage = useAppSelector(selectGoogleInfo).picture;
+  const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
   const currentUserPicture = currentProfileImage || ((currentUser || {}).picture || {})?.medium || '';
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
   const [shareText, setShareText] = useState('');
@@ -39,9 +40,9 @@ export default function Share() {
       publishDate: new Date().toISOString(),
       owner: {
         id: currentUser.login?.md5 || '',
-        title: currentUser.name?.title || '',
-        firstName: currentUser.name?.first || '',
-        lastName: currentUser.name?.last || '',
+        title: currentUserGoogleInfo.iss ? '' : currentUser.name?.title || '',
+        firstName: currentUserGoogleInfo.iss ? currentUserGoogleInfo.given_name : currentUser.name?.first || '',
+        lastName: currentUserGoogleInfo.iss ? currentUserGoogleInfo.family_name : currentUser.name?.last || '',
         picture: currentUserPicture || '',
       },
     };
@@ -112,6 +113,7 @@ export default function Share() {
         >
           <img
             loading="lazy"
+            referrerPolicy="no-referrer"
             src={currentUserPicture}
             width="100%"
             height="100%"
