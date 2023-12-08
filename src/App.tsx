@@ -1,5 +1,6 @@
 import { Grid, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { useLocation, Route, Routes } from 'react-router-dom';
 import i18n from '@base/i18n';
 import { useAppDispatch, useAppSelector } from '@base/store';
@@ -183,8 +184,9 @@ function App() {
 
         {alerts ? (
           <Box
-            position="absolute"
-            className="right-4 top-0 z-[999] max-h-96 overflow-y-auto"
+            flexDirection="column"
+            alignItems={isMobile ? 'center' : ''}
+            className={`right-4 top-0 z-[999] overflow-y-auto ${isMobile ? 'flex w-full justify-center right-[0] fixed' : 'absolute'}`}
           >
             {alerts.map((alert) => (
               <Alert

@@ -16,7 +16,12 @@
   "button": {
     "signIn": "Hesabına giriş yap",
     "share": "Paylaş",
-    "showMore": "Daha Fazlası"
+    "showMore": "Daha Fazlası",
+    "upload": "Yükle",
+    "remove": "Kaldır"
+  },
+  "placeHolder": {
+    "mediaUrl": "Yüklemek için bir medya kaynağı giriniz"
   },
   "logo": {
     "social": "React Social"

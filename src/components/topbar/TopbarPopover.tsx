@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import Popover, { PopoverProps } from '@mui/material/Popover';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface TopbarPopoverProps extends PopoverProps {
   title: string;
@@ -9,7 +9,7 @@ interface TopbarPopoverProps extends PopoverProps {
 }
 
 export default function TopbarPopover({ title, icon, children }: TopbarPopoverProps) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   return (

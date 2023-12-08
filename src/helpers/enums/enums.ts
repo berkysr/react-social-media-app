@@ -65,3 +65,8 @@ export enum ErrorCode {
 export enum Common {
   TOKEN = 'token',
 }
+
+export enum Dimensions {
+  WIDTH = 'width',
+  HEIGHT = 'height',
+}

@@ -2,7 +2,7 @@
   "pages": {
     "login": {
       "welcome": "Welcome!",
-      "email": "Your Email",
+      "email": "Email",
       "password": "Password",
       "or": "or"
     },
@@ -16,7 +16,12 @@
   "button": {
     "signIn": "Sign in to your account",
     "share": "Share",
-    "showMore": "Show More"
+    "showMore": "Show More",
+    "upload": "Upload",
+    "remove": "Remove"
+  },
+  "placeHolder": {
+    "mediaUrl": "Use image source to upload"
   },
   "logo": {
     "social": "React Social"

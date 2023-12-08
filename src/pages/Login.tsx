@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useFormik } from 'formik';
 import jwt_decode from 'jwt-decode';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,7 @@ export default function Login() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const [loginError] = React.useState('');
+  const [loginError] = useState('');
   const lastVisitedURL = useAppSelector(selecLastVisitedURL);
   const isLoading = useAppSelector(selectIsLoading);
   const navigate = useNavigate();

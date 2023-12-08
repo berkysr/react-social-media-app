@@ -1,14 +1,15 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 interface IconProps {
   children: ReactJSXElement;
   infoText: string;
   isOnlyBigScreen: boolean;
+  onClick?: MouseEventHandler;
 }
 
-export default function Icon({ children, infoText, isOnlyBigScreen }: IconProps) {
+export default function Icon({ children, infoText, isOnlyBigScreen, onClick }: IconProps) {
   return (
     <Box
       display="flex"
@@ -17,6 +18,7 @@ export default function Icon({ children, infoText, isOnlyBigScreen }: IconProps)
       mr={isOnlyBigScreen ? 4 : 0}
       className="cursor-pointer"
       aria-label={infoText}
+      onClick={onClick}
     >
       {children}
 
