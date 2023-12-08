@@ -10,10 +10,9 @@ import { users } from '@helpers/api/users';
 export default function ProfilePageRightBar() {
   const { t } = useTranslation();
   const currentUser = users.filter((user) => user.currentUser)[0];
-  const { id, following } = currentUser;
-  const currentProfileDetail = usersProfileDetails.filter((userProfileDetail) => userProfileDetail.id === id)[0];
+  const { following } = currentUser;
+  const currentProfileDetail = usersProfileDetails[Math.floor(Math.random() * usersProfileDetails.length)];
   const followedCompanies = companies.filter((company) => following?.includes(company.id));
-
   const profileDetails = Object.keys(currentProfileDetail) as ProfileDetailRawDataUnionType[];
 
   return (
