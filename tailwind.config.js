@@ -10,6 +10,9 @@ module.exports = {
       boxShadow: {
         card: '0px 0px 16px -8px rgba(0,0,0,0.68)',
       },
+      screens: {
+        sm: { max: '400px' },
+      },
     },
   },
   plugins: [],

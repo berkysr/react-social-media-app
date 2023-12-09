@@ -155,8 +155,7 @@ export default function Login() {
           display="flex"
           flexDirection="column"
           justifyItems="center"
-          p={10}
-          className={`${isMobile ? 'w-full' : 'w-[75vh]'} shadow-card h-[75vh] bg-gray-200`}
+          className={`${isMobile ? 'w-full' : 'w-[40vw]'} shadow-card p-[5rem] sm:p-[3rem] h-[75vh] sm:h-[85vh] bg-gray-200`}
         >
           <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
           <Box
