@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    'jest/globals': true,
   },
   extends: [
     'eslint:recommended',
@@ -8,6 +9,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/typescript',
+    'plugin:jest/recommended',
     'prettier',
   ],
   settings: {
@@ -32,7 +34,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier', 'import'],
+  plugins: ['react', 'prettier', 'import', 'jest'],
   rules: {
     'no-console': 'warn',
     'no-debugger': 'warn',
