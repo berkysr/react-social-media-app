@@ -3,6 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import APIRequestReducer from '@helpers/reducers/APIRequestReducer';
 import appReducer from '@helpers/reducers/appReducer';
 
+declare global {
+  interface Window {
+    store: any;
+    Cypress: any;
+  }
+}
+
 export const store = configureStore({
   reducer: {
     app: appReducer,
@@ -17,3 +24,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+if (window.Cypress) {
+  window.store = store;
+}
