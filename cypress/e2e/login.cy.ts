@@ -1,3 +1,5 @@
+/* eslint-disable jest/valid-title */
+/* eslint-disable jest/expect-expect */
 describe('React Social App', () => {
   describe('Login Page', () => {
     it('Visits the sign-in page check if URL includes "sign-in" as main path and if includes "WELCOME" header', () => {
