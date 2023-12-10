@@ -1,7 +1,7 @@
 # React Social App
 
 <section>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.2.0-blue.svg?cacheSeconds=2592000" />
   <img alt="Github Code Size" src="https://img.shields.io/github/languages/code-size/berkysr/react-social-media-app">
   <a href="https://choosealicense.com/licenses/mit/" target="_blank" alt="MIT License">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
@@ -126,6 +126,7 @@ react-social-media-app
 │ └─ workflows
 │ ├─ lint.yml
 │ └─ release.yml
+│ └─ unit-test.yml
 ├─ .husky
 │ ├─ commit
 │ ├─ pre-commit
@@ -133,16 +134,20 @@ react-social-media-app
 │ ├─ .gitignore
 │ └─ husky.sh
 ├─ __tests__
-└─ taskList.test.tsx
+│ ├─ helpers
+│ │ └─ utils
+│ │  ├─ commonFunctions.test.ts
+│ │  └─ validationFunctions.test.ts
 ├─ cypress
 │ ├─ downloads
 │ ├─ e2e
-│ │ └─ spec.cy.ts
+│ │ └─ login.cy.ts
 │ ├─ fixtures
 │ │ └─ example.json
-│ └─ support
-│ ├─ commands.ts
-│ └─ e2e.ts
+│ ├─ support
+│ │ ├─ commands.ts
+│ │ └─ e2e.ts
+│ └─ tsconfig.json
 ├─ public
 │ ├─ index.html
 │ └─ translations
@@ -280,10 +285,16 @@ This command starts the development server using Craco, which is a configuration
 
 ### Build
 
-To build the application for production:
+To build the application for production on Linux:
 
 ```bash
   npm run build
+```
+
+To build the application for production on Windows:
+
+```bash
+  npm run windows:build
 ```
 
 This command creates a production-ready build in the build directory.
