@@ -36,6 +36,8 @@ module.exports = {
   },
   plugins: ['react', 'prettier', 'import', 'jest'],
   rules: {
+    'no-console': 'warn',
+    'no-debugger': 'warn',
     'no-undefined': 'off',
     'no-undef': 'off',
     'import/no-unresolved': 'off',

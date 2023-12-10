@@ -14,7 +14,6 @@ export default function Profile() {
   const currentUserGoogleInfo = useAppSelector(selectGoogleInfo);
   const currentUser = useAppSelector(selectCurrentUser);
   const selectedUser = useAppSelector(selectSelectedUser);
-
   const [isCurrentUserLoaded, setIsCurrentUserLoaded] = useState(false);
   const [currentProfileImage, setCurrentProfileImage] = useState('');
   const [currentUserName, setCurrentUserName] = useState('');
@@ -101,6 +100,7 @@ export default function Profile() {
                 bottom-0 cursor-pointer w-36 h-36 border-4 white"
               aria-label={t('a11y.currentUserPicture')}
               src={currentUserPicture}
+              referrerPolicy="no-referrer"
               width="100%"
               height="100%"
               alt={t('a11y.currentUserPicture')}

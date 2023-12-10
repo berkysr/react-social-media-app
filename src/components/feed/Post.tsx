@@ -30,6 +30,7 @@ export default function PostCard({ post, index }: PostProps) {
           <img
             loading={`${index === 0 ? 'eager' : 'lazy'}`}
             src={owner.picture}
+            referrerPolicy="no-referrer"
             width="100%"
             height="100%"
             aria-label={`${t('a11y.postOwnerImage')}-${owner.firstName} ${owner.lastName}`}

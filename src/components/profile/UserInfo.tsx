@@ -9,12 +9,11 @@ interface UserInfoProps {
 }
 
 export enum ProfileDetailRawData {
-  CITY = 'city',
   FROM = 'from',
   RELTIONSHIP = 'relationship',
-  BIRTHDAY = 'birthday',
-  JOB = 'job',
-  SCHOOL = 'school',
+  AGE = 'age',
+  COMPANY = 'company',
+  DESCRIPTION = 'description',
 }
 
 export type ProfileDetailRawDataUnionType = `${ProfileDetailRawData}`;

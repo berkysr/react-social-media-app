@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/system';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import '@base/index.scss';
@@ -35,6 +37,8 @@ root.render(
         <Suspense fallback={<Loading />}>
           <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
             <App />
+            <Analytics />
+            <SpeedInsights />
           </GoogleOAuthProvider>
         </Suspense>
       </ThemeProvider>
