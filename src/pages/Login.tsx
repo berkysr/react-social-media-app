@@ -20,6 +20,7 @@ import {
 import { setIsUserLoggedIn } from '@helpers/reducers/appReducer';
 import { selectIsLoading } from '@helpers/selectors/APIRequestSelector';
 import { selecLastVisitedURL } from '@helpers/selectors/appSelector';
+import { APIError } from '@helpers/types/general';
 import { DecodedGoogleCredentialResponse, LoginResponse } from '@helpers/types/login';
 import { generateErrorMessage } from '@helpers/utils/commonFunctions';
 import { minCharacterCount, maxCharacterCount } from '@helpers/utils/constants';
@@ -128,7 +129,7 @@ export default function Login() {
             navigate(lastVisitedURL);
           }
         })
-        .catch((error: any) => {
+        .catch((error: APIError) => {
           dispatch(setAlertMessage(generateErrorMessage(error.error)));
         });
     },
@@ -147,15 +148,19 @@ export default function Login() {
       display="flex"
       flexDirection="row"
       justifyContent="center"
-      className="w-screen h-screen items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900"
+      className="w-screen h-screen items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900 landscape:h-[55%] landscape:lg:h-[100vh] landscape:md:h-[55%]"
     >
-      <form onSubmit={formik.handleSubmit}>
+      <form
+        className={`${
+          isMobile ? 'w-[90vw] h-fit' : 'w-[40vw]'
+        } shadow-card p-[4rem] sm:p-[2rem] md:w-[65vw] md:h-[55vh] bg-gray-200 landscape:h-[55%] landscape:lg:h-[75vh] landscape:md:h-[55%]`}
+        onSubmit={formik.handleSubmit}
+      >
         <Box
           display="flex"
           flexDirection="column"
           justifyItems="center"
-          p={10}
-          className={`${isMobile ? 'w-full' : 'w-[75vh]'} shadow-card h-[75vh] bg-gray-200`}
+          className="w-full"
         >
           <h1 className="text-2xl font-bold py-5">{t('pages.login.welcome')}</h1>
           <Box

@@ -36,6 +36,7 @@ export default function ProfileLink({ user, isOnline = false, isLoggedInUser = f
           width="100%"
           height="100%"
           src={picture.thumbnail}
+          referrerPolicy="no-referrer"
           aria-label={t('a11y.currentUserPicture')}
           alt={t('a11y.currentUserPicture')}
           className="w-[25px] h-[25px] rounded-full object-cover cursor-pointer"
