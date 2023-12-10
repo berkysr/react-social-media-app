@@ -138,7 +138,6 @@ export default function Login() {
   });
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
-  console.log(isMobile);
 
   useEffect(() => {
     sessionStorageUtil.remove(Common.TOKEN);
