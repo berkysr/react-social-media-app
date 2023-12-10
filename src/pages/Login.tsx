@@ -138,6 +138,7 @@ export default function Login() {
   });
 
   const isDisabled = isLoading || !formik.dirty || !formik.isValid;
+  console.log(isMobile);
 
   useEffect(() => {
     sessionStorageUtil.remove(Common.TOKEN);
@@ -148,12 +149,12 @@ export default function Login() {
       display="flex"
       flexDirection="row"
       justifyContent="center"
-      className="w-screen h-screen items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900 landscape:h-[55%]"
+      className="w-screen h-screen items-center justify-center bg-gradient-to-tl from-green-700 to-blue-900 landscape:h-[55%] landscape:lg:h-[100vh] landscape:md:h-[55%]"
     >
       <form
         className={`${
           isMobile ? 'w-[90vw] h-fit' : 'w-[40vw]'
-        } shadow-card p-[4rem] sm:p-[2rem] h-[75vh] md:w-[65vw] md:h-[55vh] bg-gray-200 landscape:h-[55%]`}
+        } shadow-card p-[4rem] sm:p-[2rem] md:w-[65vw] md:h-[55vh] bg-gray-200 landscape:h-[55%] landscape:lg:h-[75vh] landscape:md:h-[55%]`}
         onSubmit={formik.handleSubmit}
       >
         <Box
